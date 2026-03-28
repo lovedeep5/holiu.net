@@ -109,10 +109,8 @@ export default function HeroSection() {
                 margin: 0,
               }}
             >
-              Do you want more from life? Do you feel there is a treasure deep
-              inside you? Then you are at the right place. Holiu offers you the
-              opportunity to reach a higher level in all areas of your life —
-              finding more joy, serenity and peace within yourself.
+              Spiritual courses, meditations &amp; channeling sessions by Ruth
+              Heinen — Channel Medium, Healer &amp; Spiritual Lifestyle Coach.
             </p>
 
             {/* CTAs */}

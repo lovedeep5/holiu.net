@@ -100,7 +100,7 @@ export default function CoursesPage() {
       >
         <div className="absolute inset-0">
           <Image
-            src="/images/backgrounds/courses-hero.jpg"
+            src="/images/backgrounds/beach-2.jpg"
             alt="Courses & Workshops"
             fill
             className="object-cover object-center"

@@ -73,45 +73,48 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* My Path to Meditation — flows directly from hero, no wave */}
+      {/* My Path to Meditation — full-width text, no repeated portrait */}
       <section className="section-padding bg-brand-cream">
-        <div className="container-max">
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 420px",
-              gap: "4rem",
-              alignItems: "start",
-            }}
-            className="lg:grid-cols-[1fr_420px] grid-cols-1"
-          >
-            {/* Text — left */}
-            <AnimateIn>
-              <p
-                style={{
-                  fontFamily: "var(--font-montserrat), sans-serif",
-                  fontSize: "0.68rem",
-                  fontWeight: 700,
-                  letterSpacing: "0.3em",
-                  textTransform: "uppercase",
-                  color: "#a38d51",
-                  marginBottom: "0.75rem",
-                }}
-              >
-                About Ruth
-              </p>
-              <h2
-                style={{
-                  fontFamily: "var(--font-playfair), Georgia, serif",
-                  fontSize: "clamp(2rem, 3.5vw, 3rem)",
-                  color: "#2c2520",
-                  lineHeight: 1.15,
-                  marginBottom: "2rem",
-                }}
-              >
-                {t("section1Heading")}
-              </h2>
+        <div className="container-max" style={{ maxWidth: "820px" }}>
+          <AnimateIn>
+            <p
+              style={{
+                fontFamily: "var(--font-montserrat), sans-serif",
+                fontSize: "0.68rem",
+                fontWeight: 700,
+                letterSpacing: "0.3em",
+                textTransform: "uppercase",
+                color: "#a38d51",
+                marginBottom: "0.75rem",
+              }}
+            >
+              About Ruth
+            </p>
+            <h2
+              style={{
+                fontFamily: "var(--font-playfair), Georgia, serif",
+                fontSize: "clamp(2rem, 3.5vw, 3rem)",
+                color: "#2c2520",
+                lineHeight: 1.15,
+                marginBottom: "2.5rem",
+              }}
+            >
+              {t("section1Heading")}
+            </h2>
+          </AnimateIn>
 
+          {/* Two-column text for readability */}
+          <AnimateIn delay={0.08}>
+            <div
+              style={{
+                columns: "2",
+                columnGap: "3.5rem",
+                columnRuleWidth: "1px",
+                columnRuleStyle: "solid",
+                columnRuleColor: "rgba(163,141,81,0.15)",
+              }}
+              className="md:columns-2 columns-1"
+            >
               {t("section1Body")
                 .split("\n\n")
                 .map((para, i) => (
@@ -119,18 +122,34 @@ export default function AboutPage() {
                     key={i}
                     style={{
                       fontFamily: "var(--font-montserrat), sans-serif",
-                      fontSize: "1rem",
+                      fontSize: "0.975rem",
                       lineHeight: 1.85,
                       color: "#7a6f66",
-                      marginBottom: "1rem",
+                      marginBottom: "1.1rem",
+                      breakInside: "avoid",
                     }}
                   >
                     {para}
                   </p>
                 ))}
+            </div>
+          </AnimateIn>
 
-              {/* Signature + credit */}
-              <div style={{ marginTop: "2.5rem" }}>
+          {/* Signature + credit */}
+          <AnimateIn delay={0.12}>
+            <div
+              style={{
+                marginTop: "3rem",
+                paddingTop: "2rem",
+                borderTop: "1px solid rgba(163,141,81,0.18)",
+                display: "flex",
+                alignItems: "flex-end",
+                justifyContent: "space-between",
+                flexWrap: "wrap",
+                gap: "1.5rem",
+              }}
+            >
+              <div>
                 <Image
                   src="/images/ruth-signature-real.png"
                   alt="Ruth's signature"
@@ -150,55 +169,11 @@ export default function AboutPage() {
                   {t("credit")}
                 </p>
               </div>
-
-              <div style={{ marginTop: "2rem" }}>
-                <Link href="/meditation" className="btn-primary">
-                  {t("freeMeditationBtn")}
-                </Link>
-              </div>
-            </AnimateIn>
-
-            {/* Portrait — right, sticky so it stays in view while text scrolls */}
-            <AnimateIn delay={0.12}>
-              <div
-                style={{
-                  position: "sticky",
-                  top: "100px",
-                }}
-              >
-                <div
-                  style={{
-                    position: "relative",
-                    borderRadius: "1.25rem",
-                    overflow: "hidden",
-                    boxShadow: "0 24px 60px rgba(44,37,32,0.18)",
-                  }}
-                >
-                  <Image
-                    src="/images/ruth-heinen-about.jpg"
-                    alt="Ruth Heinen"
-                    width={420}
-                    height={520}
-                    style={{
-                      width: "100%",
-                      height: "auto",
-                      display: "block",
-                    }}
-                  />
-                  {/* Gold accent border */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      border: "1px solid rgba(163,141,81,0.25)",
-                      borderRadius: "1.25rem",
-                      pointerEvents: "none",
-                    }}
-                  />
-                </div>
-              </div>
-            </AnimateIn>
-          </div>
+              <Link href="/meditation" className="btn-primary">
+                {t("freeMeditationBtn")}
+              </Link>
+            </div>
+          </AnimateIn>
         </div>
       </section>
 
