@@ -167,7 +167,9 @@ export default function HeroSection() {
             </div>
 
             {/* Floating badge */}
-            <div
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               style={{
                 position: "absolute",
                 bottom: "2rem",
@@ -179,7 +181,6 @@ export default function HeroSection() {
                 display: "flex",
                 alignItems: "center",
                 gap: "0.75rem",
-                animation: "float 5s ease-in-out infinite",
               }}
             >
               <div
@@ -219,7 +220,7 @@ export default function HeroSection() {
                   Ruth Heinen
                 </p>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
