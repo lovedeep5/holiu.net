@@ -89,13 +89,7 @@ export default function MeditationPage() {
       <section id="philosophy" className="section-padding bg-brand-cream">
         <div className="container-max">
           <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "5rem",
-              alignItems: "center",
-            }}
-            className="md:grid-cols-2 grid-cols-1"
+            className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center"
           >
             {/* Portrait */}
             <AnimateIn>
@@ -234,10 +228,8 @@ export default function MeditationPage() {
           </AnimateIn>
 
           <div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"
             style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "0.75rem",
               maxWidth: "900px",
               margin: "0 auto 3rem",
             }}
@@ -403,13 +395,7 @@ export default function MeditationPage() {
       <section className="section-padding" style={{ backgroundColor: "#f5ede0" }}>
         <div className="container-max">
           <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "4rem",
-              alignItems: "center",
-            }}
-            className="md:grid-cols-2 grid-cols-1"
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center"
           >
             {/* Audio player */}
             <AnimateIn>

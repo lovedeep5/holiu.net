@@ -106,14 +106,13 @@ export default function AboutPage() {
           {/* Two-column text for readability */}
           <AnimateIn delay={0.08}>
             <div
+              className="md:columns-2 columns-1"
               style={{
-                columns: "2",
                 columnGap: "3.5rem",
                 columnRuleWidth: "1px",
                 columnRuleStyle: "solid",
                 columnRuleColor: "rgba(163,141,81,0.15)",
               }}
-              className="md:columns-2 columns-1"
             >
               {t("section1Body")
                 .split("\n\n")
@@ -207,14 +206,7 @@ export default function AboutPage() {
             </h2>
           </AnimateIn>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "2rem",
-            }}
-            className="md:grid-cols-2 grid-cols-1"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Course card */}
             <AnimateIn delay={0.05}>
               <Link href="/courses" className="group block">

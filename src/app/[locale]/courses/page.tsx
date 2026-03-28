@@ -169,13 +169,7 @@ export default function CoursesPage() {
       <section className="section-padding bg-white">
         <div className="container-max">
           <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "5rem",
-              alignItems: "center",
-            }}
-            className="md:grid-cols-2 grid-cols-1"
+            className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center"
           >
             {/* Left: product image */}
             <AnimateIn>

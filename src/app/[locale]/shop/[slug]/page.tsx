@@ -76,14 +76,7 @@ export default async function ProductDetailPage({
           </Link>
         </AnimateIn>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "4rem",
-            alignItems: "start",
-          }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">
           {/* Product image */}
           <AnimateIn>
             <div

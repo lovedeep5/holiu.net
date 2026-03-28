@@ -34,14 +34,7 @@ export default function HeroSection() {
         className="relative z-10 w-full pt-28 pb-16 px-6"
         style={{ maxWidth: "1152px", margin: "0 auto" }}
       >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "4rem",
-            alignItems: "center",
-          }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
           {/* ── Left: Text ── */}
           <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}>
             {/* Pre-heading */}
@@ -137,12 +130,13 @@ export default function HeroSection() {
             </p>
           </div>
 
-          {/* ── Right: Portrait ── */}
+          {/* ── Right: Portrait — hidden on mobile ── */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-            style={{ position: "relative", display: "flex", justifyContent: "center" }}
+            className="hidden md:flex"
+            style={{ position: "relative", justifyContent: "center" }}
           >
             <div style={{ position: "relative", width: "380px", maxWidth: "100%" }}>
               {/* Arch background glow */}

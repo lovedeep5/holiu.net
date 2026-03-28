@@ -34,15 +34,7 @@ export default function AccountPage() {
           </h1>
 
           {/* Quick nav */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "1.25rem",
-              marginBottom: "3rem",
-            }}
-            className="md:grid-cols-2 grid-cols-1"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
             {[
               { href: "/account/orders", label: t("orders"), icon: "📦", desc: "View all purchases & download your files" },
               { href: "/account/profile", label: t("profile"), icon: "✏️", desc: "Update your name, email and password" },
