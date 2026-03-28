@@ -1,0 +1,178 @@
+{
+  "nav": {
+    "about": "About Me",
+    "courses": "Courses",
+    "meditation": "Meditation",
+    "shop": "Shop",
+    "account": "My Account",
+    "admin": "Admin"
+  },
+  "hero": {
+    "preHeading": "Welcome to HOLIU",
+    "heading1": "Discover the",
+    "highlight": "TREASURE",
+    "heading2": "inside of you",
+    "description": "Do you want more from life? Do you feel there is a treasure deep inside you? Then you are at the right place. Holiu offers you the opportunity to reach a higher level in all areas of your life — finding more joy, serenity and peace within yourself.",
+    "cta1": "Start Today",
+    "cta2": "Learn More",
+    "trust": "Trusted by hundreds of students worldwide",
+    "badge": "Spiritual Coach"
+  },
+  "about": {
+    "preHeading": "About Ruth",
+    "heading": "My Path to Meditation",
+    "body": "Ruth Heinen is a spiritual coach, channel medium, fashion designer, healer and holistic lifestyle coach. Born in Germany, she has dedicated her life to helping people discover the treasure within themselves through meditation, channeling, and spiritual practices.",
+    "signature": "With love",
+    "cta": "Read Full Story"
+  },
+  "quote": {
+    "text": "Meditation is a science of lighting up all the inner resources of light and love and truth, and of learning that these inner resources are always there, and of working to find more and better ways to utilize them.",
+    "author": "Ruth Heinen"
+  },
+  "products": {
+    "preHeading": "The Shop",
+    "heading": "Transformative Experiences",
+    "subheading": "Digital courses, meditations and channeling sessions — all crafted to help you discover the treasure within.",
+    "viewAll": "View All Products",
+    "buyNow": "Buy Now",
+    "addToCart": "Add to Cart",
+    "category": "Category",
+    "price": "Price",
+    "inStock": "Available now",
+    "digitalProduct": "Instant digital download"
+  },
+  "testimonials": {
+    "preHeading": "Testimonials",
+    "heading": "What Our Students Say"
+  },
+  "cta": {
+    "preHeading": "Free Gift",
+    "heading": "Start Your Journey",
+    "highlight": "Today",
+    "body": "Download your free introductory meditation and take your very first step towards discovering the treasure inside of you. It only takes a spark.",
+    "download": "Download Now — Free",
+    "explore": "Explore Courses",
+    "noCard": "No credit card required · Instant download"
+  },
+  "shop": {
+    "heading": "The Shop",
+    "subheading": "Digital courses, meditations, chakra balancing and channeling sessions.",
+    "allCategories": "All",
+    "noProducts": "No products found.",
+    "loading": "Loading products..."
+  },
+  "productDetail": {
+    "buyNow": "Buy Now — {price}",
+    "digitalDownload": "Instant Digital Download",
+    "downloadInfo": "After purchase you'll receive a download link valid for 72 hours.",
+    "securePayment": "Secure payment via Stripe",
+    "backToShop": "Back to Shop",
+    "relatedProducts": "You might also like"
+  },
+  "checkout": {
+    "successHeading": "Thank you for your purchase!",
+    "successBody": "Your download links are ready. Check your email too — we've sent them there.",
+    "downloadButton": "Download {name}",
+    "expiresIn": "Link valid for 72 hours",
+    "createAccount": "Save your downloads permanently by creating a free account.",
+    "cancelHeading": "Payment cancelled",
+    "cancelBody": "No charge was made. You can return to the shop whenever you're ready.",
+    "backToShop": "Return to Shop"
+  },
+  "account": {
+    "dashboard": "My Account",
+    "orders": "My Orders",
+    "profile": "Profile",
+    "logout": "Sign Out",
+    "login": "Sign In",
+    "signup": "Create Account",
+    "email": "Email address",
+    "password": "Password",
+    "name": "Full name",
+    "noOrders": "You haven't made any purchases yet.",
+    "reDownload": "Re-download",
+    "orderDate": "Order date",
+    "orderStatus": "Status"
+  },
+  "contact": {
+    "heading": "Get in Touch",
+    "subheading": "Have a question? We'd love to hear from you.",
+    "name": "Your name",
+    "email": "Your email",
+    "message": "Your message",
+    "send": "Send Message",
+    "successMessage": "Thank you! We'll get back to you soon.",
+    "errorMessage": "Something went wrong. Please try again."
+  },
+  "footer": {
+    "tagline": "Discover the treasure inside of you. Spiritual wellness courses, meditations, and channeling sessions by Ruth Heinen.",
+    "info": "Info",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "disclaimer": "Legal Disclaimer",
+    "imprint": "Imprint",
+    "shop": "Shop",
+    "chakra": "Chakra Balancing",
+    "channeling": "Channeling",
+    "courses": "Courses",
+    "meditations": "Meditations",
+    "workshops": "Workshops",
+    "copyright": "© HOLIU {year}",
+    "madeWith": "Made with love"
+  },
+  "aboutPage": {
+    "heroAlt": "Ruth Heinen — Founder of HOLIU",
+    "section1Heading": "My Path to Meditation",
+    "section1Body": "As a fashion designer, it has always been my greatest wish to help women express themselves, discover their true beauty and make it shine.\n\nHowever, I have always noticed – especially through many of my clients who have been with me for so long – that the ups and downs of life are not easy to master just with a beautiful dress.\n\nIt takes more, and it was the same for me.\n\nIn my greatest crisis, I discovered meditation.\n\nMeditation has helped me to get into the moment, to actually experience the present and to know that only the Here and Now counts – not the past and not the future. The greatest gift that I have received through meditation is the connection to everything that is, this experience that nothing is separate from each other and the great peace that arises as a result.\n\nMeditation lets us feel that the true essence of our being is pure happiness and my mission is to share that with as many people as possible.\n\nIt is not difficult to learn meditation. It is very easy to integrate into everyday life.\n\nMeditation is just a spark of awareness, a spark of true wisdom. In connecting with this spark and grounding – nothing more is needed and this happens in seconds.\n\nThis is your first step into meditation and from there you can go on and expand it to 5 minutes, 10 minutes or more, however you want it and whenever you want it, it is entirely up to you.\n\nDo you want to learn how? Then you are at the right place. All tools are now available to you.\n\nNameste and see you very soon,",
+    "credit": "Ruth Heinen\nFounder & CEO Holiu.net\nChannel Medium, Fashion Designer,\nHealer & Spiritual Lifestyle Coach",
+    "freeMeditationBtn": "Get Your Free Meditation Now",
+    "visitSection": "Visit",
+    "visitSubheading": "Courses & Workshops",
+    "visitCourse": "Visit This Course",
+    "visitWorkshop": "Visit This Workshop",
+    "signatureLabel": "With love",
+    "ctaHeading": "Ready to Begin?",
+    "ctaBody": "Explore the shop or download a free meditation to take your first step.",
+    "ctaShop": "Explore the Shop",
+    "ctaMeditation": "Free Meditation"
+  },
+  "coursesPage": {
+    "heroHeading": "Change Your Life By Taking The Right Course",
+    "subheading": "All courses and workshops are digital — available instantly after purchase.",
+    "allCourses": "View All →",
+    "noResults": "No courses found.",
+    "featuredCourse": "Featured Course",
+    "featuredTitle": "2×5 Meditation Easy – Your Magic Formula for Joy & Fulfillment in Your Life",
+    "featuredBody1": "Do you want more joy, serenity and fulfillment in your life? Then this course is exactly right for you! With just 2×5 minutes of meditation per day — once in the morning, once in the evening — you will experience a profound transformation.",
+    "featuredBody2": "This is your magic formula: consistency + just 5 minutes = a completely new quality of life. Try it and you will be amazed at what is possible for you!",
+    "featuredBuy": "Get the Course — €97"
+  },
+  "meditationPage": {
+    "heroHeading": "Philosophy – the art of meditation – 5min a day",
+    "philosophyBody": "You are a divine being who makes human experiences.\n\nWhen you meditate, your soul remembers that you are divine. This spark ignites and fills your whole being with a higher vibration that has a healing effect. Time does not exist in this energy.\n\nTherefore, 5 minutes, in the morning and in the evening, are enough to connect you with this quality of energy and align your vibration to your true being in order to achieve a lasting effect for you.\n\nThe key is consistency; twice 5 minutes a day in the morning and in the evening already work wonders.\n\nTry it and you will be amazed!",
+    "philosophyCredit": "Ruth Heinen, CEO & Founder HOLIU",
+    "quoteHay": "We are all family, and the planet is our home.",
+    "quoteHayAuthor": "Louise Hay",
+    "scienceHeading": "Science – benefits for your health & wellbeing",
+    "benefits": "Helps you clear your mind|Helps you to focus on the present moment|Helps you to relax|Helps you to manage stressful situations|Helps you to control pain|Lowers the risk of depression|Can help you release addictions|Can give you a huge productivity boost|Increases self awareness|Promotes emotional health|Helps you gain a positive perspective on challenging situations|Increases your imagination and creativity|Increases your tolerance, patience and self love|Improves sleep|You can do it anywhere",
+    "visitMeditations": "Visit Meditations",
+    "quoteBuddha": "If you are quiet enough, you will hear the flow of the universe. You will feel its rhythm. Go with this flow. Happiness lies ahead. Meditation is key.",
+    "quoteBuddhaAuthor": "Buddha",
+    "quoteRuth": "The first time I meditated consciously, I felt what it means to really be in the moment. The past no longer counts and the future no longer counts, I was in the now.",
+    "quoteRuthAuthor": "Ruth Heinen, CEO & founder of HOLIU",
+    "quoteYogananda": "Meditate more and more deeply, until calmness and joy become second nature to you.",
+    "quoteYoganandaAuthor": "Yogananda",
+    "discoverHeading": "Discover the benefits of meditation for you",
+    "discoverSubheading": "Learn the art of meditation",
+    "freeHeading": "Your Free Meditation Gift",
+    "freeBody": "Download our introductory Chakra Meditation — a gentle guided journey to centre yourself and open your energy centres.",
+    "downloadFree": "Download Free Meditation",
+    "browseMore": "Visit Meditations"
+  },
+  "legal": {
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "disclaimer": "Legal Disclaimer",
+    "imprint": "Imprint"
+  }
+}

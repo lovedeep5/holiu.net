@@ -1,0 +1,124 @@
+@import "tailwindcss";
+@source "../**/*.{js,ts,jsx,tsx}";
+
+@theme {
+  /* Brand colors */
+  --color-brand-orange: #fc8855;
+  --color-brand-gold: #a38d51;
+  --color-brand-cream: #fdf8f2;
+  --color-brand-cream-dark: #f5ede0;
+  --color-brand-warmgray: #7a6f66;
+  --color-brand-dark: #2c2520;
+
+  /* Fonts */
+  --font-display: var(--font-playfair), Georgia, serif;
+  --font-body: var(--font-montserrat), system-ui, sans-serif;
+
+  /* Animations */
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--color-brand-warmgray);
+    background-color: var(--color-brand-cream);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--color-brand-dark);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: var(--color-brand-orange);
+    color: white;
+    padding: 0.875rem 2rem;
+    border-radius: 9999px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .btn-primary:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 10px 25px -5px color-mix(in srgb, var(--color-brand-orange) 30%, transparent);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 2px solid var(--color-brand-gold);
+    color: var(--color-brand-gold);
+    padding: 0.875rem 2rem;
+    border-radius: 9999px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .btn-outline:hover {
+    background-color: var(--color-brand-gold);
+    color: white;
+  }
+
+  .section-padding {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-padding {
+      padding-left: 5rem;
+      padding-right: 5rem;
+    }
+  }
+
+  .container-max {
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

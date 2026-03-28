@@ -1,0 +1,178 @@
+{
+  "nav": {
+    "about": "Über mich",
+    "courses": "Kurse",
+    "meditation": "Meditation",
+    "shop": "Shop",
+    "account": "Mein Konto",
+    "admin": "Admin"
+  },
+  "hero": {
+    "preHeading": "Willkommen bei HOLIU",
+    "heading1": "Entdecke den",
+    "highlight": "SCHATZ",
+    "heading2": "in dir",
+    "description": "Willst du mehr aus dem Leben? Spürst du, dass ein Schatz tief in dir schlummert? Dann bist du hier genau richtig. Holiu bietet dir die Möglichkeit, in allen Lebensbereichen ein höheres Niveau zu erreichen – mehr Freude, Gelassenheit und inneren Frieden zu finden.",
+    "cta1": "Jetzt starten",
+    "cta2": "Mehr erfahren",
+    "trust": "Von Hunderten von Studierenden weltweit geschätzt",
+    "badge": "Spiritual Coach"
+  },
+  "about": {
+    "preHeading": "Über Ruth",
+    "heading": "Mein Weg zur Meditation",
+    "body": "Ruth Heinen ist Spiritual Coach, Channel Medium, Modedesignerin, Heilerin und Holistic Lifestyle Coach. Sie hat ihr Leben der Begleitung von Menschen gewidmet, die den Schatz in sich selbst entdecken möchten – durch Meditation, Channeling und spirituelle Praxis.",
+    "signature": "Mit Liebe",
+    "cta": "Ganze Geschichte lesen"
+  },
+  "quote": {
+    "text": "Meditation ist eine Wissenschaft, alle inneren Ressourcen von Licht, Liebe und Wahrheit zu entzünden – und zu erkennen, dass diese Ressourcen immer vorhanden sind.",
+    "author": "Ruth Heinen"
+  },
+  "products": {
+    "preHeading": "Der Shop",
+    "heading": "Transformative Erfahrungen",
+    "subheading": "Digitale Kurse, Meditationen und Channeling-Sitzungen – alles, um den Schatz in dir zu entdecken.",
+    "viewAll": "Alle Produkte anzeigen",
+    "buyNow": "Jetzt kaufen",
+    "addToCart": "In den Warenkorb",
+    "category": "Kategorie",
+    "price": "Preis",
+    "inStock": "Sofort verfügbar",
+    "digitalProduct": "Sofortiger digitaler Download"
+  },
+  "testimonials": {
+    "preHeading": "Erfahrungsberichte",
+    "heading": "Was unsere Studierenden sagen"
+  },
+  "cta": {
+    "preHeading": "Kostenlos",
+    "heading": "Starte deine Reise",
+    "highlight": "Heute",
+    "body": "Lade unsere kostenlose Einführungsmeditation herunter und mache deinen allerersten Schritt, um den Schatz in dir zu entdecken.",
+    "download": "Jetzt kostenlos herunterladen",
+    "explore": "Kurse entdecken",
+    "noCard": "Keine Kreditkarte erforderlich · Sofort-Download"
+  },
+  "shop": {
+    "heading": "Der Shop",
+    "subheading": "Digitale Kurse, Meditationen, Chakra-Balancing und Channeling-Sitzungen.",
+    "allCategories": "Alle",
+    "noProducts": "Keine Produkte gefunden.",
+    "loading": "Produkte werden geladen..."
+  },
+  "productDetail": {
+    "buyNow": "Jetzt kaufen — {price}",
+    "digitalDownload": "Sofortiger digitaler Download",
+    "downloadInfo": "Nach dem Kauf erhältst du einen Download-Link, der 72 Stunden gültig ist.",
+    "securePayment": "Sichere Zahlung über Stripe",
+    "backToShop": "Zurück zum Shop",
+    "relatedProducts": "Das könnte dir auch gefallen"
+  },
+  "checkout": {
+    "successHeading": "Vielen Dank für deinen Kauf!",
+    "successBody": "Deine Download-Links sind bereit. Schau auch in deine E-Mail — wir haben sie dir dort zugeschickt.",
+    "downloadButton": "{name} herunterladen",
+    "expiresIn": "Link 72 Stunden gültig",
+    "createAccount": "Speichere deine Downloads dauerhaft, indem du ein kostenloses Konto erstellst.",
+    "cancelHeading": "Zahlung abgebrochen",
+    "cancelBody": "Es wurde nichts berechnet. Du kannst jederzeit zum Shop zurückkehren.",
+    "backToShop": "Zurück zum Shop"
+  },
+  "account": {
+    "dashboard": "Mein Konto",
+    "orders": "Meine Bestellungen",
+    "profile": "Profil",
+    "logout": "Abmelden",
+    "login": "Anmelden",
+    "signup": "Konto erstellen",
+    "email": "E-Mail-Adresse",
+    "password": "Passwort",
+    "name": "Vollständiger Name",
+    "noOrders": "Du hast noch keine Käufe getätigt.",
+    "reDownload": "Erneut herunterladen",
+    "orderDate": "Bestelldatum",
+    "orderStatus": "Status"
+  },
+  "contact": {
+    "heading": "Kontakt aufnehmen",
+    "subheading": "Hast du eine Frage? Wir freuen uns von dir zu hören.",
+    "name": "Dein Name",
+    "email": "Deine E-Mail",
+    "message": "Deine Nachricht",
+    "send": "Nachricht senden",
+    "successMessage": "Danke! Wir melden uns bald bei dir.",
+    "errorMessage": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+  },
+  "footer": {
+    "tagline": "Entdecke den Schatz in dir. Spirituelle Wellness-Kurse, Meditationen und Channeling-Sitzungen von Ruth Heinen.",
+    "info": "Info",
+    "privacy": "Datenschutz",
+    "terms": "AGB",
+    "disclaimer": "Impressum",
+    "imprint": "Impressum",
+    "shop": "Shop",
+    "chakra": "Chakra Balancing",
+    "channeling": "Channeling",
+    "courses": "Kurse",
+    "meditations": "Meditationen",
+    "workshops": "Workshops",
+    "copyright": "© HOLIU {year}",
+    "madeWith": "Mit Liebe gemacht"
+  },
+  "aboutPage": {
+    "heroAlt": "Ruth Heinen — Gründerin von HOLIU",
+    "section1Heading": "Mein Weg zur Meditation",
+    "section1Body": "Als Modedesignerin war es immer mein größter Wunsch, Frauen dabei zu helfen, sich selbst auszudrücken, ihre wahre Schönheit zu entdecken und zum Strahlen zu bringen.\n\nIch habe jedoch immer bemerkt – besonders durch viele meiner langjährigen Klientinnen – dass die Höhen und Tiefen des Lebens nicht einfach nur mit einem schönen Kleid zu meistern sind.\n\nEs braucht mehr, und das war bei mir genauso.\n\nIn meiner größten Krise entdeckte ich die Meditation.\n\nMeditation hat mir geholfen, in den Moment zu kommen, die Gegenwart wirklich zu erleben und zu wissen, dass nur das Hier und Jetzt zählt – nicht die Vergangenheit und nicht die Zukunft. Das größte Geschenk, das ich durch die Meditation erhalten habe, ist die Verbindung zu allem, was ist, diese Erfahrung, dass nichts voneinander getrennt ist, und der große Frieden, der daraus entsteht.\n\nMeditation lässt uns spüren, dass das wahre Wesen unseres Seins pures Glück ist, und meine Mission ist es, das mit so vielen Menschen wie möglich zu teilen.\n\nEs ist nicht schwer, Meditation zu lernen. Es ist sehr einfach, sie in den Alltag zu integrieren.\n\nMeditation ist nur ein Funke des Bewusstseins, ein Funke wahrer Weisheit. Indem man sich mit diesem Funken verbindet und erdet – mehr braucht es nicht, und das passiert in Sekunden.\n\nDies ist dein erster Schritt in die Meditation und von dort aus kannst du es auf 5 Minuten, 10 Minuten oder mehr ausbauen, wie und wann immer du willst, es liegt ganz bei dir.\n\nMöchtest du lernen wie? Dann bist du hier genau richtig. Alle Werkzeuge stehen dir jetzt zur Verfügung.\n\nNameste und bis sehr bald,",
+    "credit": "Ruth Heinen\nGründerin & CEO Holiu.net\nChannel Medium, Modedesignerin,\nHeilerin & Spiritual Lifestyle Coach",
+    "freeMeditationBtn": "Hol dir jetzt deine kostenlose Meditation",
+    "visitSection": "Besuche",
+    "visitSubheading": "Kurse & Workshops",
+    "visitCourse": "Zum Kurs",
+    "visitWorkshop": "Zum Workshop",
+    "signatureLabel": "Mit Liebe",
+    "ctaHeading": "Bereit anzufangen?",
+    "ctaBody": "Erkunde den Shop oder lade eine kostenlose Meditation herunter, um deinen ersten Schritt zu machen.",
+    "ctaShop": "Shop entdecken",
+    "ctaMeditation": "Kostenlose Meditation"
+  },
+  "coursesPage": {
+    "heroHeading": "Verändere dein Leben mit dem richtigen Kurs",
+    "subheading": "Alle Kurse und Workshops sind digital – sofort nach dem Kauf verfügbar.",
+    "allCourses": "Alle anzeigen →",
+    "noResults": "Keine Kurse gefunden.",
+    "featuredCourse": "Empfohlener Kurs",
+    "featuredTitle": "2×5 Meditation Easy – Deine Zauberformel für Freude & Erfüllung in deinem Leben",
+    "featuredBody1": "Möchtest du mehr Freude, Gelassenheit und Erfüllung in deinem Leben? Dann ist dieser Kurs genau das Richtige für dich! Mit nur 2×5 Minuten Meditation pro Tag – einmal morgens, einmal abends – wirst du eine tiefe Transformation erleben.",
+    "featuredBody2": "Das ist deine Zauberformel: Kontinuität + nur 5 Minuten = eine völlig neue Lebensqualität. Probiere es aus und du wirst staunen, was für dich möglich ist!",
+    "featuredBuy": "Kurs kaufen – €97"
+  },
+  "meditationPage": {
+    "heroHeading": "Philosophie – die Kunst der Meditation – 5 Min täglich",
+    "philosophyBody": "Du bist ein göttliches Wesen, das menschliche Erfahrungen macht.\n\nWenn du meditierst, erinnert sich deine Seele daran, dass du göttlich bist. Dieser Funke entzündet sich und füllt dein ganzes Wesen mit einer höheren Schwingung, die eine heilende Wirkung hat. In dieser Energie existiert keine Zeit.\n\nDaher reichen 5 Minuten morgens und abends aus, um dich mit dieser Qualität der Energie zu verbinden und deine Schwingung auf dein wahres Wesen auszurichten, um einen dauerhaften Effekt für dich zu erzielen.\n\nDer Schlüssel ist Beständigkeit; zweimal 5 Minuten täglich, morgens und abends, wirken bereits Wunder.\n\nProbiere es aus und du wirst erstaunt sein!",
+    "philosophyCredit": "Ruth Heinen, CEO & Gründerin HOLIU",
+    "quoteHay": "Wir sind alle eine Familie, und der Planet ist unser Zuhause.",
+    "quoteHayAuthor": "Louise Hay",
+    "scienceHeading": "Wissenschaft – Vorteile für deine Gesundheit & dein Wohlbefinden",
+    "benefits": "Hilft dir, deinen Geist zu klären|Hilft dir, dich auf den gegenwärtigen Moment zu konzentrieren|Hilft dir zu entspannen|Hilft dir, stressige Situationen zu bewältigen|Hilft dir, Schmerzen zu kontrollieren|Senkt das Depressionsrisiko|Kann dir helfen, Süchte zu lösen|Kann dir einen enormen Produktivitätsschub geben|Steigert das Selbstbewusstsein|Fördert die emotionale Gesundheit|Hilft dir, eine positive Perspektive auf herausfordernde Situationen zu gewinnen|Steigert deine Vorstellungskraft und Kreativität|Steigert deine Toleranz, Geduld und Selbstliebe|Verbessert den Schlaf|Du kannst es überall tun",
+    "visitMeditations": "Meditationen entdecken",
+    "quoteBuddha": "Wenn du ruhig genug bist, wirst du den Fluss des Universums hören. Du wirst seinen Rhythmus spüren. Geh mit diesem Fluss. Glück liegt voraus. Meditation ist der Schlüssel.",
+    "quoteBuddhaAuthor": "Buddha",
+    "quoteRuth": "Das erste Mal, als ich bewusst meditierte, spürte ich, was es bedeutet, wirklich im Moment zu sein. Die Vergangenheit zählt nicht mehr und die Zukunft zählt nicht mehr, ich war im Jetzt.",
+    "quoteRuthAuthor": "Ruth Heinen, CEO & Gründerin von HOLIU",
+    "quoteYogananda": "Meditiere immer tiefer, bis Ruhe und Freude zu deiner zweiten Natur werden.",
+    "quoteYoganandaAuthor": "Yogananda",
+    "discoverHeading": "Entdecke die Vorteile der Meditation für dich",
+    "discoverSubheading": "Erlerne die Kunst der Meditation",
+    "freeHeading": "Dein kostenloses Meditationsgeschenk",
+    "freeBody": "Lade unsere einführende Chakra-Meditation herunter – eine sanfte geführte Reise, um dich zu zentrieren und deine Energiezentren zu öffnen.",
+    "downloadFree": "Kostenlose Meditation herunterladen",
+    "browseMore": "Meditationen entdecken"
+  },
+  "legal": {
+    "privacy": "Datenschutz",
+    "terms": "AGB",
+    "disclaimer": "Haftungsausschluss",
+    "imprint": "Impressum"
+  }
+}
