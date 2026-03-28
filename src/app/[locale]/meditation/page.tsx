@@ -233,7 +233,6 @@ export default function MeditationPage() {
               maxWidth: "900px",
               margin: "0 auto 3rem",
             }}
-            className="sm:grid-cols-2 grid-cols-1"
           >
             {benefits.map((benefit, i) => (
               <AnimateIn key={i} delay={i * 0.04}>
