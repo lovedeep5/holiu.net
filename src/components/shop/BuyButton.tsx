@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { ShoppingBag } from "lucide-react";
 
 interface BuyButtonProps {
@@ -11,6 +11,7 @@ interface BuyButtonProps {
 
 export default function BuyButton({ productSlug, price }: BuyButtonProps) {
   const t = useTranslations("productDetail");
+  const locale = useLocale();
   const [loading, setLoading] = useState(false);
 
   async function handleBuy() {
@@ -19,7 +20,7 @@ export default function BuyButton({ productSlug, price }: BuyButtonProps) {
       const res = await fetch("/api/stripe/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slug: productSlug }),
+        body: JSON.stringify({ productSlug, locale }),
       });
       if (!res.ok) throw new Error("Checkout failed");
       const { url } = await res.json();

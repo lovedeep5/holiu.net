@@ -29,6 +29,7 @@ export interface Database {
         };
         Insert: Omit<Database["public"]["Tables"]["products"]["Row"], "id" | "created_at">;
         Update: Partial<Database["public"]["Tables"]["products"]["Insert"]>;
+        Relationships: [];
       };
       profiles: {
         Row: {
@@ -39,6 +40,7 @@ export interface Database {
         };
         Insert: Omit<Database["public"]["Tables"]["profiles"]["Row"], "created_at">;
         Update: Partial<Database["public"]["Tables"]["profiles"]["Insert"]>;
+        Relationships: [];
       };
       orders: {
         Row: {
@@ -51,6 +53,7 @@ export interface Database {
         };
         Insert: Omit<Database["public"]["Tables"]["orders"]["Row"], "id" | "created_at">;
         Update: Partial<Database["public"]["Tables"]["orders"]["Insert"]>;
+        Relationships: [];
       };
       order_items: {
         Row: {
@@ -61,6 +64,7 @@ export interface Database {
         };
         Insert: Omit<Database["public"]["Tables"]["order_items"]["Row"], "id">;
         Update: Partial<Database["public"]["Tables"]["order_items"]["Insert"]>;
+        Relationships: [];
       };
       download_tokens: {
         Row: {
@@ -75,6 +79,7 @@ export interface Database {
         };
         Insert: Omit<Database["public"]["Tables"]["download_tokens"]["Row"], "id" | "created_at">;
         Update: Partial<Database["public"]["Tables"]["download_tokens"]["Insert"]>;
+        Relationships: [];
       };
       leads: {
         Row: {
@@ -87,8 +92,13 @@ export interface Database {
         };
         Insert: Omit<Database["public"]["Tables"]["leads"]["Row"], "id" | "created_at">;
         Update: Partial<Database["public"]["Tables"]["leads"]["Insert"]>;
+        Relationships: [];
       };
     };
+    Views: Record<string, never>;
+    Functions: Record<string, never>;
+    Enums: Record<string, never>;
+    CompositeTypes: Record<string, never>;
   };
 }
 
