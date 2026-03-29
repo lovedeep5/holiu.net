@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { getMessages } from "next-intl/server";
+import { headers } from "next/headers";
 import { routing } from "@/i18n/routing";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -42,16 +43,24 @@ export default async function LocaleLayout({
   }
 
   const messages = await getMessages();
+  const headersList = await headers();
+  const isAdmin = headersList.get("x-is-admin") === "1";
 
   return (
     <div
       lang={locale}
-      className="min-h-screen flex flex-col bg-brand-cream"
+      className={isAdmin ? "min-h-screen" : "min-h-screen flex flex-col bg-brand-cream"}
     >
       <NextIntlClientProvider messages={messages}>
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        {isAdmin ? (
+          children
+        ) : (
+          <>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </>
+        )}
       </NextIntlClientProvider>
     </div>
   );
