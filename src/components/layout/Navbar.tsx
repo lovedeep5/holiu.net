@@ -64,24 +64,23 @@ export default function Navbar() {
           }`}
         >
           {/* Logo — hidden on home page until hero is 50% scrolled */}
-          {/* navbar logo temporarily commented out for crash diagnosis */}
-          {/* <Link
+          <Link
             href="/"
-            className="flex items-center shrink-0 transition-all duration-500"
+            className="flex items-center shrink-0"
             style={{ opacity: showLogo ? 1 : 0, pointerEvents: showLogo ? "auto" : "none" }}
           >
             <Image
-              src="/images/logo-dark.png"
+              src="/images/logo-dark-opt.png"
               alt="HOLIU"
               width={72}
-              height={36}
-              className="h-9 w-auto object-contain transition-all duration-300"
+              height={72}
+              sizes="72px"
+              className="h-9 w-auto object-contain"
               style={{
-                filter: isDark ? "drop-shadow(0 1px 3px rgba(0,0,0,0.3)) brightness(0) invert(1)" : "none",
+                filter: isDark ? "brightness(0) invert(1)" : "none",
               }}
-              priority
             />
-          </Link> */}
+          </Link>
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-1">

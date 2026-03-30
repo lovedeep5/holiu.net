@@ -22,20 +22,18 @@ export default function HeroSection() {
         className="relative z-10 flex flex-col items-center px-6"
         style={{ gap: "1rem", paddingTop: "80px" }}
       >
-        {/* logo temporarily commented out for crash diagnosis */}
-        {/* <Image
-          src="/images/logo-dark.png"
+        <Image
+          src="/images/logo-dark-opt.png"
           alt="HOLIU"
-          width={800}
-          height={800}
-          sizes="(max-width: 768px) 88vw, 640px"
-          quality={80}
+          width={400}
+          height={400}
+          sizes="(max-width: 768px) 88vw, 400px"
           style={{
             width: "min(88vw, 78vh)",
             height: "auto",
             objectFit: "contain",
           }}
-        /> */}
+        />
 
       </div>
     </section>
