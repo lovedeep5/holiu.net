@@ -62,9 +62,10 @@ export default function TreasureSection() {
         <div style={{ marginTop: "0.75rem", width: "100%", maxWidth: "480px" }}>
           <audio
             controls
+            preload="none"
             style={{ width: "100%", accentColor: "#a38d51" }}
-            src="https://dev.holiu.net/wp-content/uploads/2025/05/Chakra-Meditation-1.mp3"
           >
+            <source src="https://dev.holiu.net/wp-content/uploads/2025/05/Chakra-Meditation-1.mp3" type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
         </div>
