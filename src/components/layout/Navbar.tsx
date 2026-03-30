@@ -64,7 +64,8 @@ export default function Navbar() {
           }`}
         >
           {/* Logo — hidden on home page until hero is 50% scrolled */}
-          <Link
+          {/* navbar logo temporarily commented out for crash diagnosis */}
+          {/* <Link
             href="/"
             className="flex items-center shrink-0 transition-all duration-500"
             style={{ opacity: showLogo ? 1 : 0, pointerEvents: showLogo ? "auto" : "none" }}
@@ -80,7 +81,7 @@ export default function Navbar() {
               }}
               priority
             />
-          </Link>
+          </Link> */}
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-1">

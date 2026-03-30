@@ -22,7 +22,8 @@ export default function HeroSection() {
         className="relative z-10 flex flex-col items-center px-6"
         style={{ gap: "1rem", paddingTop: "80px" }}
       >
-        <Image
+        {/* logo temporarily commented out for crash diagnosis */}
+        {/* <Image
           src="/images/logo-dark.png"
           alt="HOLIU"
           width={800}
@@ -34,7 +35,7 @@ export default function HeroSection() {
             height: "auto",
             objectFit: "contain",
           }}
-        />
+        /> */}
 
       </div>
     </section>
