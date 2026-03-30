@@ -21,24 +21,20 @@ function setCookie(name: string, value: string, days?: number) {
   document.cookie = `${name}=${value}; path=/${expires}`;
 }
 
-interface Props {
-  isLoggedIn?: boolean;
-}
-
-export default function OptinModal({ isLoggedIn = false }: Props) {
+export default function OptinModal() {
   const [visible, setVisible] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "done">("idle");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    if (isLoggedIn) return;
     if (getCookie(COOKIE_SUBMITTED) || getCookie(COOKIE_DISMISSED)) return;
-
-    // Show after 6 seconds
+    // Check Supabase session client-side
+    const sbSession = getCookie("sb-aoorajsokivjxmkgzwno-auth-token");
+    if (sbSession) return;
     const timer = setTimeout(() => setVisible(true), 6000);
     return () => clearTimeout(timer);
-  }, [isLoggedIn]);
+  }, []);
 
   function handleDismiss() {
     setCookie(COOKIE_DISMISSED, "1", 1); // 1 day
