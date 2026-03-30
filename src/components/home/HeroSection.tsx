@@ -25,12 +25,12 @@ export default function HeroSection() {
           alt="HOLIU"
           width={800}
           height={800}
+          sizes="(max-width: 768px) 88vw, 640px"
           style={{
             width: "min(88vw, 78vh)",
             height: "auto",
             objectFit: "contain",
           }}
-          priority
         />
 
       </div>
