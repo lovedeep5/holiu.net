@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, useRouter, usePathname } from "@/i18n/navigation";
 
@@ -154,15 +153,12 @@ export default function Navbar() {
       </div>
 
       {/* Mobile drawer */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden bg-white/95 backdrop-blur-xl border-t border-brand-gold/10"
-          >
+      <div
+        className="md:hidden bg-white border-t border-brand-gold/10"
+        style={{
+          display: open ? "block" : "none",
+        }}
+      >
             <div className="container-max px-6 py-6 flex flex-col gap-1">
               {navLinks.map((link) => (
                 <Link
@@ -204,9 +200,7 @@ export default function Navbar() {
                 </Link>
               </div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      </div>
     </header>
   );
 }
