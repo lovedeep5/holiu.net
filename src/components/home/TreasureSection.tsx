@@ -65,7 +65,7 @@ export default function TreasureSection() {
             preload="none"
             style={{ width: "100%", accentColor: "#a38d51" }}
           >
-            <source src="https://dev.holiu.net/wp-content/uploads/2025/05/Chakra-Meditation-1.mp3" type="audio/mpeg" />
+            <source src="/audio/chakra-meditation.mp3" type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
         </div>

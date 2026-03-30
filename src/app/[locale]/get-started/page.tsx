@@ -69,9 +69,10 @@ export default async function GetStartedPage() {
             <div style={{ marginBottom: "2rem" }}>
               <audio
                 controls
+                preload="none"
                 style={{ width: "100%", maxWidth: "420px", accentColor: "#a38d51" }}
-                src="https://dev.holiu.net/wp-content/uploads/2025/05/Chakra-Meditation-1.mp3"
               >
+                <source src="/audio/chakra-meditation.mp3" type="audio/mpeg" />
                 Your browser does not support the audio element.
               </audio>
             </div>

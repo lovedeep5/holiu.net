@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import AnimateIn from "@/components/ui/AnimateIn";
 
 const featured = [
   {
@@ -30,15 +29,15 @@ export default function FeaturedProducts() {
   return (
     <section className="section-padding bg-brand-cream">
       <div className="container-max">
-        <AnimateIn className="text-center mb-14">
+        <div className="text-center mb-14">
           <h2 className="font-display text-4xl md:text-5xl text-brand-dark mb-4">
             Visit Our Shop
           </h2>
-        </AnimateIn>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {featured.map((product, i) => (
-            <AnimateIn key={product.name} delay={i * 0.12}>
+          {featured.map((product) => (
+            <div key={product.name}>
               <Link href={product.href} className="group block">
                 <div className="relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-xl transition-shadow duration-400">
                   {/* Product arch image */}
@@ -68,15 +67,15 @@ export default function FeaturedProducts() {
                   </div>
                 </div>
               </Link>
-            </AnimateIn>
+            </div>
           ))}
         </div>
 
-        <AnimateIn delay={0.4} className="text-center mt-12">
+        <div className="text-center mt-12">
           <Link href="/shop" className="btn-primary">
             Visit Shop
           </Link>
-        </AnimateIn>
+        </div>
       </div>
     </section>
   );
