@@ -31,16 +31,9 @@ export default function FeaturedProducts() {
     <section className="section-padding bg-brand-cream">
       <div className="container-max">
         <AnimateIn className="text-center mb-14">
-          <p className="font-body text-xs font-semibold tracking-[0.3em] uppercase text-brand-gold mb-3">
-            The Shop
-          </p>
           <h2 className="font-display text-4xl md:text-5xl text-brand-dark mb-4">
-            Transformative Experiences
+            Visit Our Shop
           </h2>
-          <p className="font-body text-base text-brand-warmgray max-w-xl mx-auto">
-            Digital courses, meditations and channeling sessions — all crafted to help you
-            discover the treasure within.
-          </p>
         </AnimateIn>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -80,8 +73,8 @@ export default function FeaturedProducts() {
         </div>
 
         <AnimateIn delay={0.4} className="text-center mt-12">
-          <Link href="/shop" className="btn-outline">
-            View All Products
+          <Link href="/shop" className="btn-primary">
+            Visit Shop
           </Link>
         </AnimateIn>
       </div>

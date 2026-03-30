@@ -1,5 +1,7 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
-import AnimateIn from "@/components/ui/AnimateIn";
 
 const testimonials = [
   {
@@ -34,11 +36,11 @@ const testimonials = [
   },
 ];
 
-function StarRating() {
+function Stars() {
   return (
-    <div className="flex gap-1">
+    <div style={{ display: "flex", gap: "3px", marginBottom: "1rem" }}>
       {[...Array(5)].map((_, i) => (
-        <svg key={i} className="w-4 h-4 fill-brand-orange" viewBox="0 0 20 20">
+        <svg key={i} width="16" height="16" viewBox="0 0 20 20" fill="#fc8855">
           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
         </svg>
       ))}
@@ -47,45 +49,147 @@ function StarRating() {
 }
 
 export default function TestimonialsSection() {
+  const [current, setCurrent] = useState(0);
+
+  const prev = () => setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length);
+  const next = () => setCurrent((c) => (c + 1) % testimonials.length);
+
+  const t = testimonials[current];
+
   return (
-    <section className="section-padding bg-white">
+    <section
+      className="section-padding"
+      style={{ backgroundColor: "#fdf8f2" }}
+    >
       <div className="container-max">
         {/* Heading */}
-        <AnimateIn className="text-center mb-16">
-          <p className="font-body text-xs font-semibold tracking-[0.3em] uppercase text-brand-gold mb-3">
+        <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+          <p style={{
+            fontFamily: "var(--font-montserrat), sans-serif",
+            fontSize: "0.65rem",
+            fontWeight: 700,
+            letterSpacing: "0.3em",
+            textTransform: "uppercase",
+            color: "#a38d51",
+            marginBottom: "0.75rem",
+          }}>
             Testimonials
           </p>
-          <h2 className="font-display text-4xl md:text-5xl text-brand-dark">
-            What Our Students Say
+          <h2 style={{
+            fontFamily: "var(--font-playfair), Georgia, serif",
+            fontSize: "clamp(2rem, 4vw, 3rem)",
+            color: "#2c2520",
+          }}>
+            WHAT OUR CLIENTS SAY
           </h2>
-        </AnimateIn>
+        </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.map((t, i) => (
-            <AnimateIn key={t.name} delay={i * 0.08}>
-              <div className="bg-brand-cream rounded-2xl p-6 flex flex-col gap-4 h-full border border-brand-gold/10 hover:border-brand-gold/30 hover:shadow-md transition-all duration-300">
-                <StarRating />
-                <p className="font-body text-sm text-brand-warmgray leading-relaxed flex-1 italic">
-                  &ldquo;{t.text}&rdquo;
-                </p>
-                <div className="flex items-center gap-3 pt-2 border-t border-brand-gold/10">
-                  <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0 bg-brand-cream-dark">
-                    <Image
-                      src={t.avatar}
-                      alt={t.name}
-                      fill
-                      className="object-cover"
-                      sizes="40px"
-                    />
-                  </div>
-                  <p className="font-body text-sm font-semibold text-brand-dark">
-                    {t.name}
-                  </p>
-                </div>
-              </div>
-            </AnimateIn>
-          ))}
+        {/* Carousel */}
+        <div style={{ maxWidth: "760px", margin: "0 auto", textAlign: "center" }}>
+          {/* Avatar */}
+          <div style={{
+            width: "80px",
+            height: "80px",
+            borderRadius: "50%",
+            overflow: "hidden",
+            margin: "0 auto 1.5rem",
+            border: "3px solid rgba(163,141,81,0.3)",
+            position: "relative",
+          }}>
+            <Image
+              src={t.avatar}
+              alt={t.name}
+              fill
+              className="object-cover"
+              sizes="80px"
+            />
+          </div>
+
+          {/* Stars */}
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Stars />
+          </div>
+
+          {/* Quote */}
+          <blockquote style={{
+            fontFamily: "var(--font-playfair), Georgia, serif",
+            fontSize: "clamp(1rem, 2vw, 1.2rem)",
+            color: "#4a3f38",
+            lineHeight: 1.8,
+            fontStyle: "italic",
+            margin: "0 0 1.5rem",
+            minHeight: "120px",
+          }}>
+            &ldquo;{t.text}&rdquo;
+          </blockquote>
+
+          {/* Name */}
+          <p style={{
+            fontFamily: "var(--font-montserrat), sans-serif",
+            fontWeight: 700,
+            fontSize: "0.85rem",
+            color: "#2c2520",
+            letterSpacing: "0.05em",
+            marginBottom: "2rem",
+          }}>
+            — {t.name}
+          </p>
+
+          {/* Controls */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1.5rem" }}>
+            <button
+              onClick={prev}
+              aria-label="Previous"
+              style={{
+                width: "44px", height: "44px",
+                borderRadius: "50%",
+                border: "1px solid rgba(163,141,81,0.4)",
+                background: "white",
+                cursor: "pointer",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: "1.1rem", color: "#a38d51",
+              }}
+            >
+              ‹
+            </button>
+
+            {/* Dots */}
+            <div style={{ display: "flex", gap: "8px" }}>
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrent(i)}
+                  aria-label={`Slide ${i + 1}`}
+                  style={{
+                    width: i === current ? "24px" : "8px",
+                    height: "8px",
+                    borderRadius: "4px",
+                    border: "none",
+                    background: i === current ? "#fc8855" : "rgba(163,141,81,0.3)",
+                    cursor: "pointer",
+                    transition: "all 0.3s",
+                    padding: 0,
+                  }}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={next}
+              aria-label="Next"
+              style={{
+                width: "44px", height: "44px",
+                borderRadius: "50%",
+                border: "1px solid rgba(163,141,81,0.4)",
+                background: "white",
+                cursor: "pointer",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: "1.1rem", color: "#a38d51",
+              }}
+            >
+              ›
+            </button>
+          </div>
         </div>
       </div>
     </section>
