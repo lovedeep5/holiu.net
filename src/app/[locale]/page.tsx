@@ -11,33 +11,39 @@ import WaveDivider from "@/components/ui/WaveDivider";
 export default function HomePage() {
   return (
     <>
-      {/* 1 — Hero: sea background + HOLIU logo */}
+      {/* 1 — Hero */}
       <HeroSection />
 
-      {/* 2 — DISCOVER THE / TREASURE / inside of you + CTA + audio */}
-      <WaveDivider fill="#ffffff" background="#fdf8f2" variant="curve" />
+      {/* 2 — TREASURE */}
       <TreasureSection />
 
-      {/* 3 — Brand gradient + Ruth photo left + bio text right + wave */}
-      <WaveDivider fill="#fc8855" background="#ffffff" variant="wave" />
+      {/* 3 — About Ruth (gradient peach) */}
       <AboutRuthSection />
 
-      {/* 4 — Quote */}
+      {/* Wave — matches gradient end exactly (#fdc8b1), white fill for MeditationQuote */}
+      <div style={{ marginTop: "-2px" }}>
+        <WaveDivider fill="#ffffff" background="#fdc8b1" variant="wave" />
+      </div>
+
+      {/* 4 — Meditation quote (white) */}
       <MeditationQuote />
 
-      {/* 5 — Download CTA + wave */}
+      {/* Wave — white → peach (curve flip into DownloadCTA) */}
       <WaveDivider fill="#fce4dc" background="#ffffff" variant="curve" flip />
+
+      {/* 5 — Do You Want More From Life? */}
       <DownloadCTA />
 
-      {/* 6 — Testimonials carousel */}
+      {/* Wave — peach → white (merges into Testimonials) */}
+      <WaveDivider fill="#ffffff" background="#fce4dc" variant="wave" />
+
+      {/* 6 — Testimonials (white) */}
       <TestimonialsSection />
 
-      {/* 7 — Visit Our Shop: 3 products + Visit Shop CTA */}
-      <WaveDivider fill="#fdf8f2" background="#fdf8f2" variant="tilt" />
+      {/* 7 — Featured Products (cream, no wave — straight cut) */}
       <FeaturedProducts />
 
-      {/* 8 — Contact form with dark background image */}
-      <WaveDivider fill="#2c2520" background="#fdf8f2" variant="wave" />
+      {/* 8 — Contact form */}
       <ContactSection />
     </>
   );

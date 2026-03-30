@@ -1,5 +1,6 @@
 {
   "nav": {
+    "home": "Home",
     "about": "Über mich",
     "courses": "Kurse",
     "meditation": "Meditation",
@@ -99,12 +100,14 @@
     "orderStatus": "Status"
   },
   "contact": {
+    "label": "Kontakt",
     "heading": "Kontakt aufnehmen",
     "subheading": "Hast du eine Frage? Wir freuen uns von dir zu hören.",
     "name": "Dein Name",
     "email": "Deine E-Mail",
     "message": "Deine Nachricht",
     "send": "Nachricht senden",
+    "sending": "Wird gesendet…",
     "successMessage": "Danke! Wir melden uns bald bei dir.",
     "errorMessage": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
   },
@@ -149,7 +152,10 @@
     "featuredTitle": "2×5 Meditation Easy – Deine Zauberformel für Freude & Erfüllung in deinem Leben",
     "featuredBody1": "Möchtest du mehr Freude, Gelassenheit und Erfüllung in deinem Leben? Dann ist dieser Kurs genau das Richtige für dich! Mit nur 2×5 Minuten Meditation pro Tag – einmal morgens, einmal abends – wirst du eine tiefe Transformation erleben.",
     "featuredBody2": "Das ist deine Zauberformel: Kontinuität + nur 5 Minuten = eine völlig neue Lebensqualität. Probiere es aus und du wirst staunen, was für dich möglich ist!",
-    "featuredBuy": "Kurs kaufen – €97"
+    "featuredBuy": "Kurs kaufen – €97",
+    "comingSoon": "Demnächst verfügbar",
+    "comingSoonLabel": "Demnächst",
+    "viewCourse": "Kurs ansehen"
   },
   "meditationPage": {
     "heroHeading": "Philosophie – die Kunst der Meditation – 5 Min täglich",
@@ -171,12 +177,70 @@
     "freeHeading": "Dein kostenloses Meditationsgeschenk",
     "freeBody": "Lade unsere einführende Chakra-Meditation herunter – eine sanfte geführte Reise, um dich zu zentrieren und deine Energiezentren zu öffnen.",
     "downloadFree": "Kostenlose Meditation herunterladen",
-    "browseMore": "Meditationen entdecken"
+    "browseMore": "Meditationen entdecken",
+    "inspirationTitle": "Inspiration & Motivation",
+    "inspirationSub": "WAS UNSERE KUNDEN SAGEN"
   },
   "legal": {
     "privacy": "Datenschutz",
     "terms": "AGB",
     "disclaimer": "Haftungsausschluss",
     "imprint": "Impressum"
+  },
+  "getStarted": {
+    "heading": "Lerne Meditation in nur fünf Minuten am Tag!",
+    "p1": "Bist du gestresst oder sehnst du dich nach mehr Energie für alles, was auf deiner Liste steht? Wünschst du dir mehr Freude, Erfüllung und Gelassenheit jeden Tag?",
+    "p2": "Dann hast du die richtige Wahl getroffen: Meditation für das erste Chakra gibt dir Energie, Kraft, Erdung, Gelassenheit und Frieden zugleich.",
+    "p3": "Fang jetzt an und gönne dir dieses Elixier für deinen Alltag! Viel Spaß damit und bis bald,",
+    "closing": "Liebe Grüße, Ruth",
+    "downloadBtn": "Kostenlose Meditation herunterladen",
+    "imageAlt": "HOLIU Chakra Meditation"
+  },
+  "home": {
+    "treasure": {
+      "eyebrow": "ENTDECKE DEN",
+      "title": "SCHATZ",
+      "subtitle": "IN DIR",
+      "cta": "JETZT STARTEN"
+    },
+    "about": {
+      "greeting": "Hallo,",
+      "p1": "Willst du mehr aus dem Leben? Spürst du, dass ein Schatz tief in dir schlummert?",
+      "p2": "Dann bist du hier genau richtig!",
+      "p3": "Entdecke dein verborgenes Potenzial!",
+      "p4": "Holiu bietet dir die Möglichkeit, in allen Lebensbereichen ein höheres Niveau zu erreichen, damit du mehr Freude, Gelassenheit und Frieden in dir findest und dich erfüllter fühlst.",
+      "p5": "Fühlst du dich inspiriert, dein Leben auf ein neues Level zu heben? Möchtest du mehr über deinen Lebenszweck erfahren und dein wahres Wesen leben?",
+      "p6": "Dann warte nicht länger, du hast dein Ziel fast erreicht – starte noch heute und entdecke den Schatz in dir ❣",
+      "p7": "Ich freue mich sehr, dich willkommen zu heißen!",
+      "cta": "Mehr erfahren"
+    },
+    "quote": {
+      "text": "Meditation ist ein Prozess der Aufhellung, des Vertrauens in die grundsätzliche Güte dessen, was wir haben und wer wir sind, und des Erkennens, dass alle Weisheit, die existiert, in dem lebt, was wir bereits haben. Wir können unser Leben so führen, dass wir wacher werden für das, wer wir sind und was wir tun – anstatt zu versuchen, uns zu verbessern oder zu verändern. Der Schlüssel ist, aufzuwachen, wacher, neugieriger und interessierter an unserem wahren Selbst zu werden."
+    },
+    "downloadCta": {
+      "heading": "Willst du mehr vom Leben?",
+      "sub": "Entdecke den Schatz in dir!",
+      "cta": "JETZT HERUNTERLADEN"
+    },
+    "testimonials": {
+      "eyebrow": "Kundenstimmen",
+      "heading": "WAS UNSERE KUNDEN SAGEN"
+    },
+    "shop": {
+      "eyebrow": "Shop",
+      "heading": "Besuche unseren Shop",
+      "cta": "Shop besuchen"
+    },
+    "contact": {
+      "heading": "KONTAKT",
+      "sub": "Wir freuen uns von Ihnen zu hören",
+      "name": "Ihr Name",
+      "email": "Ihre E-Mail",
+      "message": "Nachricht",
+      "send": "Nachricht senden",
+      "sending": "Wird gesendet…",
+      "sent": "Vielen Dank! Ihre Nachricht wurde gesendet.",
+      "error": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."
+    }
   }
 }

@@ -1,14 +1,14 @@
 "use client";
 
 import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 export default function TreasureSection() {
+  const t = useTranslations("home.treasure");
+
   return (
-    <section
-      className="section-padding bg-white text-center"
-    >
+    <section className="section-padding bg-white text-center">
       <div className="container-max flex flex-col items-center" style={{ gap: "1rem" }}>
-        {/* DISCOVER THE */}
         <p
           style={{
             fontFamily: "var(--font-montserrat), sans-serif",
@@ -20,10 +20,9 @@ export default function TreasureSection() {
             margin: 0,
           }}
         >
-          DISCOVER THE
+          {t("eyebrow")}
         </p>
 
-        {/* TREASURE */}
         <h2
           style={{
             fontFamily: "var(--font-playfair), Georgia, serif",
@@ -35,10 +34,9 @@ export default function TreasureSection() {
             fontStyle: "italic",
           }}
         >
-          TREASURE
+          {t("title")}
         </h2>
 
-        {/* INSIDE OF YOU */}
         <p
           style={{
             fontFamily: "var(--font-montserrat), sans-serif",
@@ -50,19 +48,17 @@ export default function TreasureSection() {
             margin: 0,
           }}
         >
-          INSIDE OF YOU
+          {t("subtitle")}
         </p>
 
-        {/* START TODAY */}
         <Link
-          href="/shop"
+          href="/get-started"
           className="btn-primary"
           style={{ marginTop: "0.5rem", letterSpacing: "0.1em" }}
         >
-          START TODAY
+          {t("cta")}
         </Link>
 
-        {/* Audio player */}
         <div style={{ marginTop: "0.75rem", width: "100%", maxWidth: "480px" }}>
           <audio
             controls

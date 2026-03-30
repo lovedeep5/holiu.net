@@ -1,89 +1,113 @@
 "use client";
 
-import Image from "next/image";
-import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 
 export default function Footer() {
-  const t = useTranslations("footer");
+  const infoLinks = [
+    { href: "/privacy" as const, label: "Privacy Policy" },
+    { href: "/terms" as const, label: "Terms & Conditions" },
+    { href: "/disclaimer" as const, label: "Legal Disclaimer" },
+    { href: "/imprint" as const, label: "Imprint" },
+  ];
 
   const shopLinks = [
-    { href: "/shop?cat=Chakra+Balancing" as const, label: t("chakra") },
-    { href: "/shop?cat=Channeling" as const, label: t("channeling") },
-    { href: "/shop?cat=Courses" as const, label: t("courses") },
-    { href: "/shop?cat=Meditations" as const, label: t("meditations") },
-    { href: "/shop?cat=Workshops" as const, label: t("workshops") },
+    { href: "/shop?cat=Chakra+Balancing" as const, label: "Chakra Balancing" },
+    { href: "/shop?cat=Channeling" as const, label: "Channeling" },
+    { href: "/shop?cat=Courses" as const, label: "Courses" },
+    { href: "/shop?cat=Meditations" as const, label: "Meditations" },
+    { href: "/shop?cat=Workshops" as const, label: "Workshops" },
   ];
 
-  const infoLinks = [
-    { href: "/privacy" as const, label: t("privacy") },
-    { href: "/terms" as const, label: t("terms") },
-    { href: "/disclaimer" as const, label: t("disclaimer") },
-    { href: "/imprint" as const, label: t("imprint") },
-  ];
+  const linkStyle: React.CSSProperties = {
+    fontFamily: "var(--font-montserrat), sans-serif",
+    fontSize: "0.9rem",
+    color: "#fc8855",
+    textDecoration: "none",
+    display: "block",
+    marginBottom: "0.5rem",
+  };
+
+  const headingStyle: React.CSSProperties = {
+    fontFamily: "var(--font-montserrat), sans-serif",
+    fontSize: "0.8rem",
+    fontWeight: 700,
+    letterSpacing: "0.08em",
+    color: "#2c2520",
+    marginBottom: "1.25rem",
+    textTransform: "uppercase" as const,
+  };
 
   return (
-    <footer className="bg-brand-cream-dark border-t border-brand-gold/20">
-      <div className="container-max section-padding py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* Brand */}
-          <div className="flex flex-col gap-4">
-            <Image
-              src="/images/logo-dark.png"
-              alt="HOLIU"
-              width={80}
-              height={40}
-              className="h-10 w-auto object-contain"
-            />
-            <p className="text-sm text-brand-warmgray leading-relaxed max-w-xs">
-              {t("tagline")}
-            </p>
-          </div>
-
-          {/* Info links */}
-          <div>
-            <h4 className="font-body text-xs font-semibold tracking-widest uppercase text-brand-dark mb-4">
-              {t("info")}
-            </h4>
-            <ul className="flex flex-col gap-2">
-              {infoLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-brand-warmgray hover:text-brand-orange transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
+    <footer>
+      {/* Main footer — peach background */}
+      <div style={{ backgroundColor: "#fce4dc", padding: "4rem 0 3rem" }}>
+        <div className="container-max">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "2.5rem" }}>
+            {/* INFOS */}
+            <div>
+              <h4 style={headingStyle}>INFOS</h4>
+              {infoLinks.map((l) => (
+                <Link key={l.href} href={l.href} style={linkStyle}>{l.label}</Link>
               ))}
-            </ul>
-          </div>
+            </div>
 
-          {/* Shop links */}
-          <div>
-            <h4 className="font-body text-xs font-semibold tracking-widest uppercase text-brand-dark mb-4">
-              {t("shop")}
-            </h4>
-            <ul className="flex flex-col gap-2">
-              {shopLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-brand-warmgray hover:text-brand-orange transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
+            {/* SHOP */}
+            <div>
+              <h4 style={headingStyle}>SHOP</h4>
+              {shopLinks.map((l) => (
+                <Link key={l.href} href={l.href} style={linkStyle}>{l.label}</Link>
               ))}
-            </ul>
+            </div>
+
+            {/* Credits */}
+            <div>
+              <h4 style={headingStyle}>Credits</h4>
+              <Link href="/credits" style={linkStyle}>Credits &amp; Cooperation</Link>
+            </div>
           </div>
         </div>
+      </div>
 
-        <div className="mt-12 pt-6 border-t border-brand-gold/20 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-brand-warmgray/60">
-            {t("copyright", { year: new Date().getFullYear() })}
+      {/* Bottom bar — dark */}
+      <div style={{ backgroundColor: "#2c2520", padding: "1.25rem 0" }}>
+        <div
+          className="container-max"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: "0.75rem",
+          }}
+        >
+          <div style={{ display: "flex", gap: "1.5rem" }}>
+            {[
+              { href: "/account" as const, label: "My account" },
+              { href: "/checkout" as const, label: "Checkout" },
+              { href: "/shop" as const, label: "Cart" },
+            ].map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                style={{
+                  fontFamily: "var(--font-montserrat), sans-serif",
+                  fontSize: "0.8rem",
+                  color: "rgba(255,255,255,0.6)",
+                  textDecoration: "none",
+                }}
+              >
+                {l.label}
+              </Link>
+            ))}
+          </div>
+          <p style={{
+            fontFamily: "var(--font-montserrat), sans-serif",
+            fontSize: "0.8rem",
+            color: "rgba(255,255,255,0.6)",
+            margin: 0,
+          }}>
+            Copyright © HOLIU {new Date().getFullYear()}
           </p>
-          <p className="text-xs text-brand-warmgray/60">{t("madeWith")} ♥</p>
         </div>
       </div>
     </footer>

@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import WaveDivider from "@/components/ui/WaveDivider";
-import AnimateIn from "@/components/ui/AnimateIn";
+import InspirationCarousel from "@/components/meditation/InspirationCarousel";
 
 export async function generateMetadata({
   params,
@@ -16,470 +15,389 @@ export async function generateMetadata({
   return { title: t("meditation") };
 }
 
-export default function MeditationPage() {
-  const t = useTranslations("meditationPage");
+export default async function MeditationPage() {
+  const t = await getTranslations("meditationPage");
   const benefits = t("benefits").split("|");
 
   return (
     <>
-      {/* Hero — full bleed lotus flower, no wave divider — transition via padding */}
-      <section
-        className="relative overflow-hidden"
-        style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}
-      >
-        <div className="absolute inset-0">
-          <Image
-            src="/images/backgrounds/meditation-bg.jpg"
-            alt="Meditation"
-            fill
-            className="object-cover object-center"
-            priority
-          />
-          <div
-            className="absolute inset-0"
-            style={{ background: "rgba(44,37,32,0.5)" }}
-          />
-        </div>
-
-        {/* Content centered */}
-        <div className="relative z-10 text-center container-max section-padding">
-          <AnimateIn direction="none">
-            <p
-              style={{
-                fontFamily: "var(--font-montserrat), sans-serif",
-                fontSize: "0.7rem",
-                fontWeight: 700,
-                letterSpacing: "0.3em",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,0.6)",
-                marginBottom: "1.5rem",
-              }}
-            >
-              HOLIU
-            </p>
-            <h1
-              style={{
-                fontFamily: "var(--font-playfair), Georgia, serif",
-                fontSize: "clamp(1.75rem, 4vw, 3.5rem)",
-                color: "white",
-                lineHeight: 1.2,
-                maxWidth: "700px",
-                margin: "0 auto 1.5rem",
-              }}
-            >
-              {t("heroHeading")}
-            </h1>
-            <Link href="#philosophy" className="btn-primary">
-              {t("downloadFree")}
-            </Link>
-          </AnimateIn>
-        </div>
-
-        {/* Smooth bottom fade into cream */}
-        <div
-          className="absolute bottom-0 left-0 right-0"
-          style={{
-            height: "200px",
-            background: "linear-gradient(to bottom, transparent, #fdf8f2)",
-          }}
+      {/* Hero — "breathe" neon, full viewport, NO text, NO wave */}
+      <section style={{ position: "relative", height: "100vh", minHeight: "560px" }}>
+        <Image
+          src="/images/backgrounds/bg-5.jpg"
+          alt="Breathe"
+          fill
+          className="object-cover"
+          style={{ objectPosition: "center center" }}
+          priority
         />
       </section>
 
-      {/* Philosophy section */}
-      <section id="philosophy" className="section-padding bg-brand-cream">
-        <div className="container-max">
-          <div
-            className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center"
-          >
-            {/* Portrait */}
-            <AnimateIn>
-              <div
-                style={{
-                  position: "relative",
-                  borderRadius: "1.5rem",
-                  overflow: "hidden",
-                  boxShadow: "0 30px 80px rgba(44,37,32,0.15)",
-                }}
-              >
-                <Image
-                  src="/images/backgrounds/channeling.jpg"
-                  alt="Meditation practice"
-                  width={500}
-                  height={620}
-                  style={{ width: "100%", height: "auto", display: "block" }}
-                />
-              </div>
-            </AnimateIn>
-
-            {/* Philosophy text */}
-            <AnimateIn delay={0.12}>
-              <p
-                style={{
-                  fontFamily: "var(--font-montserrat), sans-serif",
-                  fontSize: "0.7rem",
-                  fontWeight: 700,
-                  letterSpacing: "0.3em",
-                  textTransform: "uppercase",
-                  color: "#a38d51",
-                  marginBottom: "1rem",
-                }}
-              >
-                Philosophy
-              </p>
-
-              {t("philosophyBody")
-                .split("\n\n")
-                .map((para, i) => (
-                  <p
-                    key={i}
-                    style={{
-                      fontFamily: "var(--font-montserrat), sans-serif",
-                      fontSize: "1rem",
-                      lineHeight: 1.85,
-                      color: "#7a6f66",
-                      marginBottom: "1rem",
-                    }}
-                  >
-                    {para}
-                  </p>
-                ))}
-
-              <p
-                style={{
-                  fontFamily: "var(--font-montserrat), sans-serif",
-                  fontSize: "0.85rem",
-                  fontWeight: 600,
-                  color: "#a38d51",
-                  marginTop: "1.5rem",
-                }}
-              >
-                — {t("philosophyCredit")}
-              </p>
-            </AnimateIn>
-          </div>
-        </div>
-      </section>
-
-      {/* Louise Hay quote */}
-      <section
-        className="section-padding text-center"
-        style={{ backgroundColor: "#f5ede0" }}
-      >
-        <div className="container-max" style={{ maxWidth: "680px" }}>
-          <AnimateIn>
-            <p
-              style={{
-                fontFamily: "var(--font-playfair), Georgia, serif",
-                fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)",
-                color: "#2c2520",
-                lineHeight: 1.5,
-                fontStyle: "italic",
-                marginBottom: "1.25rem",
-              }}
-            >
-              &ldquo;{t("quoteHay")}&rdquo;
-            </p>
-            <p
-              style={{
-                fontFamily: "var(--font-montserrat), sans-serif",
-                fontSize: "0.8rem",
-                fontWeight: 600,
-                letterSpacing: "0.15em",
-                textTransform: "uppercase",
-                color: "#a38d51",
-              }}
-            >
-              — {t("quoteHayAuthor")}
-            </p>
-          </AnimateIn>
-        </div>
-      </section>
-
-      <WaveDivider fill="#ffffff" background="#f5ede0" variant="curve" />
-
-      {/* Science — benefits section */}
-      <section className="section-padding bg-white">
-        <div className="container-max">
-          <AnimateIn className="text-center mb-12">
-            <p
-              style={{
-                fontFamily: "var(--font-montserrat), sans-serif",
-                fontSize: "0.7rem",
-                fontWeight: 700,
-                letterSpacing: "0.3em",
-                textTransform: "uppercase",
-                color: "#a38d51",
-                marginBottom: "1rem",
-              }}
-            >
-              Science
-            </p>
-            <h2
-              style={{
-                fontFamily: "var(--font-playfair), Georgia, serif",
-                fontSize: "clamp(1.75rem, 3vw, 2.75rem)",
-                color: "#2c2520",
-                lineHeight: 1.2,
-                marginBottom: "1rem",
-              }}
-            >
-              {t("scienceHeading")}
-            </h2>
-          </AnimateIn>
-
-          <div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"
+      {/* Section 2 — Philosophy (peach) */}
+      <section style={{ backgroundColor: "#fdf0ea", padding: "5rem 1.5rem 0" }}>
+        <div style={{ maxWidth: "680px", margin: "0 auto", textAlign: "center", paddingBottom: "4rem" }}>
+          <h1
             style={{
-              maxWidth: "900px",
-              margin: "0 auto 3rem",
+              fontFamily: "var(--font-playfair), Georgia, serif",
+              fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+              color: "#2c2520",
+              fontWeight: 400,
+              marginBottom: "1.25rem",
+              lineHeight: 1.3,
             }}
           >
-            {benefits.map((benefit, i) => (
-              <AnimateIn key={i} delay={i * 0.04}>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    gap: "0.75rem",
-                    padding: "1rem 1.25rem",
-                    background: "rgba(163,141,81,0.05)",
-                    borderRadius: "0.75rem",
-                    border: "1px solid rgba(163,141,81,0.12)",
-                  }}
-                >
-                  <span style={{ color: "#fc8855", fontWeight: 700, fontSize: "1rem", lineHeight: 1.6 }}>✓</span>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-montserrat), sans-serif",
-                      fontSize: "0.875rem",
-                      color: "#7a6f66",
-                      lineHeight: 1.5,
-                    }}
-                  >
-                    {benefit}
-                  </span>
-                </div>
-              </AnimateIn>
+            {t("heroHeading")}
+          </h1>
+          {/* Orange underline */}
+          <div style={{ width: "48px", height: "3px", background: "#fc8855", margin: "0 auto 2.5rem" }} />
+
+          {t("philosophyBody")
+            .split("\n\n")
+            .map((para, i) => (
+              <p
+                key={i}
+                style={{
+                  fontFamily: "var(--font-montserrat), sans-serif",
+                  fontSize: "0.9rem",
+                  lineHeight: 1.85,
+                  color: "#5a4a3a",
+                  marginBottom: "1rem",
+                }}
+              >
+                {para}
+              </p>
             ))}
+
+          {/* Ruth signature */}
+          <div style={{ marginTop: "2rem" }}>
+            <p
+              style={{
+                fontFamily: "var(--font-playfair), Georgia, serif",
+                fontSize: "clamp(1.25rem, 2vw, 1.6rem)",
+                color: "#2c2520",
+                fontWeight: 700,
+                marginBottom: "0.15rem",
+              }}
+            >
+              Ruth Heinen
+            </p>
+            <p
+              style={{
+                fontFamily: "var(--font-montserrat), sans-serif",
+                fontSize: "0.65rem",
+                color: "#7a6f66",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+              }}
+            >
+              CEO &amp; Founder HOLIU
+            </p>
           </div>
-
-          <AnimateIn className="text-center">
-            <Link href="/shop" className="btn-primary">
-              {t("visitMeditations")}
-            </Link>
-          </AnimateIn>
         </div>
+
+        {/* Wave: peach → white */}
+        <WaveDivider fill="#ffffff" background="#fdf0ea" variant="wave" />
       </section>
 
-      <WaveDivider fill="#fdf8f2" background="#ffffff" variant="wave" />
-
-      {/* Three quotes section */}
-      <section className="section-padding bg-brand-cream">
-        <div className="container-max" style={{ maxWidth: "760px" }}>
-          {/* Buddha quote */}
-          <AnimateIn className="mb-14">
-            <div
-              style={{
-                padding: "2.5rem",
-                background: "white",
-                borderRadius: "1.25rem",
-                boxShadow: "0 8px 40px rgba(44,37,32,0.06)",
-                borderLeft: "4px solid #fc8855",
-              }}
-            >
-              <p
-                style={{
-                  fontFamily: "var(--font-playfair), Georgia, serif",
-                  fontSize: "clamp(1.1rem, 2vw, 1.4rem)",
-                  color: "#2c2520",
-                  lineHeight: 1.7,
-                  fontStyle: "italic",
-                  marginBottom: "1rem",
-                }}
-              >
-                &ldquo;{t("quoteBuddha")}&rdquo;
-              </p>
-              <p
-                style={{
-                  fontFamily: "var(--font-montserrat), sans-serif",
-                  fontSize: "0.8rem",
-                  fontWeight: 600,
-                  color: "#a38d51",
-                  letterSpacing: "0.1em",
-                }}
-              >
-                — {t("quoteBuddhaAuthor")}
-              </p>
-            </div>
-          </AnimateIn>
-
-          {/* Ruth's personal quote */}
-          <AnimateIn className="mb-14">
-            <div
-              style={{
-                padding: "2.5rem",
-                background: "#fc8855",
-                borderRadius: "1.25rem",
-                boxShadow: "0 8px 40px rgba(252,136,85,0.25)",
-              }}
-            >
-              <p
-                style={{
-                  fontFamily: "var(--font-playfair), Georgia, serif",
-                  fontSize: "clamp(1.1rem, 2vw, 1.4rem)",
-                  color: "white",
-                  lineHeight: 1.7,
-                  fontStyle: "italic",
-                  marginBottom: "1rem",
-                }}
-              >
-                &ldquo;{t("quoteRuth")}&rdquo;
-              </p>
-              <p
-                style={{
-                  fontFamily: "var(--font-montserrat), sans-serif",
-                  fontSize: "0.8rem",
-                  fontWeight: 600,
-                  color: "rgba(255,255,255,0.8)",
-                  letterSpacing: "0.1em",
-                }}
-              >
-                — {t("quoteRuthAuthor")}
-              </p>
-            </div>
-          </AnimateIn>
-
-          {/* Yogananda quote */}
-          <AnimateIn>
-            <div
-              style={{
-                padding: "2.5rem",
-                background: "white",
-                borderRadius: "1.25rem",
-                boxShadow: "0 8px 40px rgba(44,37,32,0.06)",
-                borderLeft: "4px solid #a38d51",
-              }}
-            >
-              <p
-                style={{
-                  fontFamily: "var(--font-playfair), Georgia, serif",
-                  fontSize: "clamp(1.1rem, 2vw, 1.4rem)",
-                  color: "#2c2520",
-                  lineHeight: 1.7,
-                  fontStyle: "italic",
-                  marginBottom: "1rem",
-                }}
-              >
-                &ldquo;{t("quoteYogananda")}&rdquo;
-              </p>
-              <p
-                style={{
-                  fontFamily: "var(--font-montserrat), sans-serif",
-                  fontSize: "0.8rem",
-                  fontWeight: 600,
-                  color: "#a38d51",
-                  letterSpacing: "0.1em",
-                }}
-              >
-                — {t("quoteYoganandaAuthor")}
-              </p>
-            </div>
-          </AnimateIn>
-        </div>
-      </section>
-
-      <WaveDivider fill="#f5ede0" background="#fdf8f2" variant="tilt" />
-
-      {/* Free meditation + discover CTA */}
-      <section className="section-padding" style={{ backgroundColor: "#f5ede0" }}>
-        <div className="container-max">
+      {/* Section 3 — Louise Hay quote (white) */}
+      <section style={{ backgroundColor: "#ffffff", padding: "5rem 1.5rem" }}>
+        <div style={{ maxWidth: "560px", margin: "0 auto", textAlign: "center" }}>
+          {/* Large quote marks */}
           <div
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center"
+            style={{
+              fontFamily: "Georgia, serif",
+              fontSize: "5rem",
+              color: "#fc8855",
+              lineHeight: 0.7,
+              marginBottom: "1rem",
+              opacity: 0.55,
+              textAlign: "left",
+            }}
           >
-            {/* Audio player */}
-            <AnimateIn>
-              <div
-                style={{
-                  background: "white",
-                  borderRadius: "1.5rem",
-                  padding: "2.5rem",
-                  boxShadow: "0 20px 60px rgba(0,0,0,0.08)",
-                  textAlign: "center",
-                }}
-              >
-                <p
-                  style={{
-                    fontFamily: "var(--font-montserrat), sans-serif",
-                    fontSize: "0.7rem",
-                    fontWeight: 700,
-                    letterSpacing: "0.3em",
-                    textTransform: "uppercase",
-                    color: "#a38d51",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  Free Gift
-                </p>
-                <h3
-                  style={{
-                    fontFamily: "var(--font-playfair), Georgia, serif",
-                    fontSize: "1.5rem",
-                    color: "#2c2520",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  Chakra Meditation
-                </h3>
-                <p
-                  style={{
-                    fontFamily: "var(--font-montserrat), sans-serif",
-                    fontSize: "0.875rem",
-                    color: "#7a6f66",
-                    marginBottom: "1.5rem",
-                  }}
-                >
-                  Guided · Ruth Heinen
-                </p>
-                <audio
-                  controls
-                  style={{ width: "100%", borderRadius: "0.5rem", marginBottom: "1.5rem" }}
-                  src="https://dev.holiu.net/wp-content/uploads/2025/05/Chakra-Meditation-1.mp3"
-                >
-                  Your browser does not support the audio element.
-                </audio>
-                <a
-                  href="https://dev.holiu.net/wp-content/uploads/2025/05/Chakra-Meditation-1.mp3"
-                  download="Holiu-Chakra-Meditation.mp3"
-                  className="btn-primary"
-                  style={{ display: "inline-flex" }}
-                >
-                  {t("downloadFree")}
-                </a>
-              </div>
-            </AnimateIn>
+            &#8220;
+          </div>
+          <p
+            style={{
+              fontFamily: "var(--font-montserrat), sans-serif",
+              fontSize: "clamp(0.9rem, 1.8vw, 1rem)",
+              color: "#4a3f38",
+              lineHeight: 1.8,
+              marginBottom: "1.75rem",
+            }}
+          >
+            {t("quoteHay")}
+          </p>
+          {/* Avatar + name row */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.75rem" }}>
+            <div
+              style={{
+                width: "44px",
+                height: "44px",
+                borderRadius: "50%",
+                overflow: "hidden",
+                flexShrink: 0,
+              }}
+            >
+              <img
+                src="/images/ruth-meditation-portrait.jpg"
+                alt={t("quoteHayAuthor")}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </div>
+            <p
+              style={{
+                fontFamily: "var(--font-montserrat), sans-serif",
+                fontSize: "0.85rem",
+                color: "#5a4a3a",
+                fontWeight: 500,
+              }}
+            >
+              {t("quoteHayAuthor")}
+            </p>
+          </div>
+        </div>
+      </section>
 
-            {/* Discover text */}
-            <AnimateIn delay={0.12}>
-              <p
-                style={{
-                  fontFamily: "var(--font-montserrat), sans-serif",
-                  fontSize: "0.7rem",
-                  fontWeight: 700,
-                  letterSpacing: "0.3em",
-                  textTransform: "uppercase",
-                  color: "#a38d51",
-                  marginBottom: "1rem",
-                }}
-              >
-                For You
-              </p>
+      {/* Section 4 — Science benefits (white, 2-col) */}
+      <section style={{ backgroundColor: "#ffffff", padding: "5rem 1.5rem 6rem" }}>
+        <div className="container-max">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            {/* Left: heading + bullet list + button */}
+            <div>
               <h2
                 style={{
                   fontFamily: "var(--font-playfair), Georgia, serif",
-                  fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
-                  color: "#2c2520",
-                  lineHeight: 1.2,
+                  fontSize: "clamp(1.3rem, 2.5vw, 1.8rem)",
+                  color: "#a38d51",
+                  fontStyle: "italic",
+                  fontWeight: 400,
+                  marginBottom: "1.5rem",
+                  lineHeight: 1.3,
+                }}
+              >
+                {t("scienceHeading")}
+              </h2>
+              <ul style={{ listStyle: "disc", paddingLeft: "1.25rem", marginBottom: "2rem" }}>
+                {benefits.map((b, i) => (
+                  <li
+                    key={i}
+                    style={{
+                      fontFamily: "var(--font-montserrat), sans-serif",
+                      fontSize: "0.85rem",
+                      color: "#5a4a3a",
+                      lineHeight: 1.7,
+                      marginBottom: "0.2rem",
+                    }}
+                  >
+                    {b}
+                  </li>
+                ))}
+              </ul>
+              <Link href="/shop" className="btn-primary" style={{ fontSize: "0.75rem" }}>
+                {t("visitMeditations")} »
+              </Link>
+            </div>
+
+            {/* Right: lotus image — white border + drop shadow */}
+            <div
+              style={{
+                border: "6px solid #ffffff",
+                boxShadow: "0 12px 50px rgba(0,0,0,0.18)",
+                display: "inline-block",
+                width: "100%",
+              }}
+            >
+              <Image
+                src="/images/med-4.jpg"
+                alt="Lotus meditation"
+                width={600}
+                height={900}
+                style={{ width: "100%", height: "auto", display: "block" }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 5 — Buddha quote (light warm) */}
+      <section style={{ backgroundColor: "#f5f0eb", padding: "5rem 1.5rem" }}>
+        <div style={{ maxWidth: "680px", margin: "0 auto", textAlign: "center" }}>
+          <div
+            style={{
+              fontFamily: "Georgia, serif",
+              fontSize: "5rem",
+              color: "#fc8855",
+              lineHeight: 0.7,
+              marginBottom: "1rem",
+              opacity: 0.5,
+              textAlign: "left",
+            }}
+          >
+            &#8220;
+          </div>
+          <p
+            style={{
+              fontFamily: "var(--font-montserrat), sans-serif",
+              fontSize: "clamp(0.9rem, 1.8vw, 1rem)",
+              color: "#4a3f38",
+              lineHeight: 1.8,
+              marginBottom: "1.25rem",
+            }}
+          >
+            {t("quoteBuddha")}
+          </p>
+          <p
+            style={{
+              fontFamily: "var(--font-montserrat), sans-serif",
+              fontSize: "0.85rem",
+              color: "#5a4a3a",
+            }}
+          >
+            {t("quoteBuddhaAuthor")} ♥
+          </p>
+        </div>
+      </section>
+
+      {/* Section 6 — Ruth photo + quote (white, 2-col) */}
+      <section style={{ backgroundColor: "#ffffff", padding: "5rem 1.5rem" }}>
+        <div className="container-max">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center" style={{ maxWidth: "980px", margin: "0 auto" }}>
+            {/* Left: Ruth photo — white border + drop shadow */}
+            <div
+              style={{
+                border: "6px solid #ffffff",
+                boxShadow: "0 12px 50px rgba(0,0,0,0.15)",
+                display: "inline-block",
+                width: "100%",
+              }}
+            >
+              <Image
+                src="/images/med-5.jpg"
+                alt="Ruth Heinen meditating"
+                width={500}
+                height={650}
+                style={{ width: "100%", height: "auto", display: "block" }}
+              />
+            </div>
+
+            {/* Right: quote */}
+            <div style={{ textAlign: "center" }}>
+              <div
+                style={{
+                  fontFamily: "Georgia, serif",
+                  fontSize: "4rem",
+                  color: "#fc8855",
+                  lineHeight: 0.8,
                   marginBottom: "0.75rem",
+                  opacity: 0.5,
+                }}
+              >
+                &#8220;
+              </div>
+              <p
+                style={{
+                  fontFamily: "var(--font-montserrat), sans-serif",
+                  fontSize: "clamp(0.85rem, 1.6vw, 0.95rem)",
+                  color: "#4a3f38",
+                  lineHeight: 1.8,
+                  marginBottom: "1rem",
+                }}
+              >
+                {t("quoteRuth")}
+              </p>
+              <div
+                style={{
+                  fontFamily: "Georgia, serif",
+                  fontSize: "4rem",
+                  color: "#fc8855",
+                  lineHeight: 0.5,
+                  marginBottom: "1rem",
+                  opacity: 0.5,
+                }}
+              >
+                &#8221;
+              </div>
+              <p
+                style={{
+                  fontFamily: "var(--font-playfair), Georgia, serif",
+                  fontSize: "1.15rem",
+                  color: "#a38d51",
+                  fontWeight: 700,
+                  marginBottom: "0.15rem",
+                }}
+              >
+                Ruth Heinen
+              </p>
+              <p
+                style={{
+                  fontFamily: "var(--font-montserrat), sans-serif",
+                  fontSize: "0.65rem",
+                  color: "#a38d51",
+                  letterSpacing: "0.05em",
+                  textTransform: "uppercase",
+                }}
+              >
+                CEO &amp; founder of HOLIU
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 7 — Yogananda quote (light warm) */}
+      <section style={{ backgroundColor: "#f5f0eb", padding: "5rem 1.5rem" }}>
+        <div style={{ maxWidth: "680px", margin: "0 auto" }}>
+          <div
+            style={{
+              fontFamily: "Georgia, serif",
+              fontSize: "5rem",
+              color: "#fc8855",
+              lineHeight: 0.7,
+              marginBottom: "1rem",
+              opacity: 0.5,
+            }}
+          >
+            &#8220;
+          </div>
+          <p
+            style={{
+              fontFamily: "var(--font-montserrat), sans-serif",
+              fontSize: "clamp(0.9rem, 1.8vw, 1rem)",
+              color: "#4a3f38",
+              lineHeight: 1.8,
+              marginBottom: "1.25rem",
+              textAlign: "center",
+            }}
+          >
+            <strong>{t("quoteYogananda").split(" ").slice(0, 1).join(" ")}</strong>{" "}
+            {t("quoteYogananda").split(" ").slice(1).join(" ")}
+          </p>
+          <p
+            style={{
+              fontFamily: "var(--font-montserrat), sans-serif",
+              fontSize: "0.85rem",
+              color: "#5a4a3a",
+              textAlign: "center",
+            }}
+          >
+            {t("quoteYoganandaAuthor")}
+          </p>
+        </div>
+      </section>
+
+      {/* Section 8 — CTA (peach, 2-col) */}
+      <section style={{ backgroundColor: "#fce4dc", padding: "5rem 1.5rem" }}>
+        <div className="container-max">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div>
+              <h2
+                style={{
+                  fontFamily: "var(--font-playfair), Georgia, serif",
+                  fontSize: "clamp(1.6rem, 3vw, 2.5rem)",
+                  color: "#2c2520",
+                  fontWeight: 400,
+                  marginBottom: "0.35rem",
+                  lineHeight: 1.2,
                 }}
               >
                 {t("discoverHeading")}
@@ -487,19 +405,60 @@ export default function MeditationPage() {
               <p
                 style={{
                   fontFamily: "var(--font-montserrat), sans-serif",
-                  fontSize: "1rem",
+                  fontSize: "0.65rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
                   color: "#7a6f66",
-                  marginBottom: "2rem",
-                  lineHeight: 1.7,
                 }}
               >
                 {t("discoverSubheading")}
               </p>
-              <Link href="/shop" className="btn-outline">
-                {t("browseMore")}
-              </Link>
-            </AnimateIn>
+            </div>
+            <Link href="/shop" className="btn-primary" style={{ whiteSpace: "nowrap" }}>
+              {t("visitMeditations").toUpperCase()}
+            </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Wave: peach → white */}
+      <WaveDivider fill="#ffffff" background="#fce4dc" variant="wave" />
+
+      {/* Section 9 — Inspiration & Motivation (white) */}
+      <section style={{ backgroundColor: "#ffffff", padding: "5rem 1.5rem 6rem" }}>
+        <div className="container-max">
+          {/* Heading */}
+          <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+            <p
+              style={{
+                fontFamily: "var(--font-montserrat), sans-serif",
+                fontSize: "0.65rem",
+                fontWeight: 700,
+                letterSpacing: "0.25em",
+                textTransform: "uppercase",
+                color: "#7a6f66",
+                marginBottom: "0.4rem",
+              }}
+            >
+              {t("inspirationSub")}
+            </p>
+            <h2
+              style={{
+                fontFamily: "var(--font-playfair), Georgia, serif",
+                fontSize: "clamp(1.6rem, 3vw, 2.25rem)",
+                color: "#2c2520",
+                fontWeight: 400,
+                marginBottom: "0.75rem",
+              }}
+            >
+              {t("inspirationTitle")}
+            </h2>
+            <div style={{ width: "48px", height: "3px", background: "#fc8855", margin: "0 auto" }} />
+          </div>
+
+          {/* Carousel */}
+          <InspirationCarousel />
         </div>
       </section>
     </>

@@ -6,6 +6,8 @@ import { headers } from "next/headers";
 import { routing } from "@/i18n/routing";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import OptinModal from "@/components/ui/OptinModal";
+import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
   title: {
@@ -46,6 +48,17 @@ export default async function LocaleLayout({
   const headersList = await headers();
   const isAdmin = headersList.get("x-is-admin") === "1";
 
+  let isLoggedIn = false;
+  if (!isAdmin) {
+    try {
+      const supabase = await createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      isLoggedIn = !!user;
+    } catch {
+      // not logged in
+    }
+  }
+
   return (
     <div
       lang={locale}
@@ -59,6 +72,7 @@ export default async function LocaleLayout({
             <Navbar />
             <main className="flex-1">{children}</main>
             <Footer />
+            <OptinModal isLoggedIn={isLoggedIn} />
           </>
         )}
       </NextIntlClientProvider>

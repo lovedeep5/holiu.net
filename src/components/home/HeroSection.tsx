@@ -1,11 +1,8 @@
 import Image from "next/image";
 
 export default function HeroSection() {
-
   return (
-    <section
-      className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden"
-    >
+    <section className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden">
       {/* Full-bleed beach background */}
       <div className="absolute inset-0">
         <Image
@@ -15,42 +12,27 @@ export default function HeroSection() {
           className="object-cover object-center"
           priority
         />
-        {/* Subtle warm overlay so dark text stays readable */}
-        <div
-          className="absolute inset-0"
-          style={{ background: "rgba(253,248,242,0.42)" }}
-        />
+        <div className="absolute inset-0" style={{ background: "rgba(253,248,242,0.35)" }} />
       </div>
 
-      {/* Centered logo */}
+      {/* Centered logo — pushed below fixed navbar (80px) */}
       <div
         className="relative z-10 flex flex-col items-center px-6"
-        style={{ gap: "0.75rem" }}
+        style={{ gap: "1rem", paddingTop: "80px" }}
       >
-        {/* HOLIU Logo mark */}
         <Image
           src="/images/logo-dark.png"
           alt="HOLIU"
-          width={200}
-          height={200}
-          style={{ objectFit: "contain" }}
+          width={800}
+          height={800}
+          style={{
+            width: "min(88vw, 78vh)",
+            height: "auto",
+            objectFit: "contain",
+          }}
           priority
         />
 
-        {/* HOLISTIC LIFESTYLE UNIVERSE tagline */}
-        <p
-          style={{
-            fontFamily: "var(--font-montserrat), sans-serif",
-            fontSize: "clamp(0.6rem, 1.2vw, 0.75rem)",
-            fontWeight: 600,
-            letterSpacing: "0.35em",
-            textTransform: "uppercase",
-            color: "#2c2520",
-            margin: 0,
-          }}
-        >
-          HOLISTIC LIFESTYLE UNIVERSE
-        </p>
       </div>
     </section>
   );

@@ -1,14 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import AnimateIn from "@/components/ui/AnimateIn";
 
 export default function AccountLoginPage() {
   const t = useTranslations("account");
+  const locale = useLocale();
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [info, setInfo] = useState<string | null>(null);
 
   return (
     <section
@@ -90,11 +93,39 @@ export default function AccountLoginPage() {
             </div>
 
             <form
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault();
                 setLoading(true);
-                // TODO: wire to Supabase Auth
-                setTimeout(() => setLoading(false), 1000);
+                setError(null);
+                setInfo(null);
+                const form = e.currentTarget;
+                const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+                const password = (form.elements.namedItem("password") as HTMLInputElement).value;
+                const name = mode === "signup"
+                  ? (form.elements.namedItem("name") as HTMLInputElement)?.value
+                  : undefined;
+
+                const res = await fetch("/api/account/auth", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ mode, email, password, name }),
+                });
+                const data = await res.json();
+
+                if (!res.ok) {
+                  setError(data.error ?? "Something went wrong.");
+                  setLoading(false);
+                  return;
+                }
+
+                if (mode === "signup") {
+                  setInfo(data.message ?? "Check your email to confirm your account.");
+                  setLoading(false);
+                  return;
+                }
+
+                // Login success — redirect to account dashboard
+                window.location.href = `/${locale}/account`;
               }}
               style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}
             >
@@ -193,13 +224,40 @@ export default function AccountLoginPage() {
                 />
               </div>
 
+              {error && (
+                <p style={{
+                  background: "rgba(220,38,38,0.08)",
+                  border: "1px solid rgba(220,38,38,0.25)",
+                  borderRadius: "0.5rem",
+                  padding: "0.75rem 1rem",
+                  fontFamily: "var(--font-montserrat), sans-serif",
+                  fontSize: "0.8rem",
+                  color: "#dc2626",
+                }}>
+                  {error}
+                </p>
+              )}
+              {info && (
+                <p style={{
+                  background: "rgba(163,141,81,0.1)",
+                  border: "1px solid rgba(163,141,81,0.3)",
+                  borderRadius: "0.5rem",
+                  padding: "0.75rem 1rem",
+                  fontFamily: "var(--font-montserrat), sans-serif",
+                  fontSize: "0.8rem",
+                  color: "#a38d51",
+                }}>
+                  {info}
+                </p>
+              )}
+
               <button
                 type="submit"
                 disabled={loading}
                 className="btn-primary"
                 style={{ width: "100%", justifyContent: "center", opacity: loading ? 0.7 : 1 }}
               >
-                {loading ? "..." : mode === "login" ? t("login") : t("signup")}
+                {loading ? "…" : mode === "login" ? t("login") : t("signup")}
               </button>
             </form>
           </div>

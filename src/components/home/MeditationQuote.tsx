@@ -1,7 +1,10 @@
-export default function MeditationQuote() {
+import { getTranslations } from "next-intl/server";
+
+export default async function MeditationQuote() {
+  const t = await getTranslations("home.quote");
+
   return (
     <section className="section-padding bg-white relative overflow-hidden">
-      {/* Large decorative quote mark — left-aligned */}
       <div
         className="absolute top-6 left-8"
         style={{
@@ -29,12 +32,7 @@ export default function MeditationQuote() {
             letterSpacing: "0.02em",
           }}
         >
-          Meditation is a process of lightening up, of trusting the basic goodness of what we
-          have and who we are, and of realizing that any wisdom that exists, lives in what we
-          already have. We can lead our life so as to become more awake to who we are and what
-          we&apos;re doing rather than trying to improve or change or get rid of who we are or
-          what we&apos;re doing. The key is to wake up, to become more alert, more inquisitive
-          and curious about our true selves.
+          {t("text")}
         </blockquote>
       </div>
     </section>

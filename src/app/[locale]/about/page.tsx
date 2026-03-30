@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import WaveDivider from "@/components/ui/WaveDivider";
-import AnimateIn from "@/components/ui/AnimateIn";
 
 export async function generateMetadata({
   params,
@@ -16,181 +14,153 @@ export async function generateMetadata({
   return { title: t("about") };
 }
 
-export default function AboutPage() {
-  const t = useTranslations("aboutPage");
+export default async function AboutPage() {
+  const t = await getTranslations("aboutPage");
+
+  const paragraphs = t("section1Body").split("\n\n");
 
   return (
     <>
-      {/* Hero — Ruth's editorial fashion photo, no wave divider at bottom */}
-      <section
-        className="relative flex items-end overflow-hidden"
-        style={{ minHeight: "65vh" }}
-      >
-        <div className="absolute inset-0">
-          <Image
-            src="/images/backgrounds/ruth-outdoor.jpg"
-            alt={t("heroAlt")}
-            fill
-            className="object-cover"
-            style={{ objectPosition: "center top" }}
-            priority
-          />
-          <div
-            className="absolute inset-0"
+      {/* Hero — full viewport editorial photo, face visible at top */}
+      <section style={{ position: "relative", height: "100vh", minHeight: "600px" }}>
+        <Image
+          src="/images/backgrounds/ruth-outdoor.jpg"
+          alt={t("heroAlt")}
+          fill
+          className="object-cover"
+          style={{ objectPosition: "center top" }}
+          priority
+        />
+      </section>
+
+      {/* Section 1 — Centered text, signature, CTA */}
+      <section style={{ backgroundColor: "#fdf0ea", padding: "3rem 1.5rem 5rem" }}>
+        <div style={{ maxWidth: "680px", margin: "0 auto", textAlign: "center" }}>
+          <h1
             style={{
-              background:
-                "linear-gradient(to top, rgba(44,37,32,0.9) 0%, rgba(44,37,32,0.4) 45%, rgba(44,37,32,0.05) 100%)",
+              fontFamily: "var(--font-playfair), Georgia, serif",
+              fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+              color: "#2c2520",
+              marginBottom: "2.5rem",
+              fontWeight: 400,
             }}
-          />
-        </div>
-        <div className="relative z-10 container-max section-padding pb-14">
-          <AnimateIn direction="up">
-            <h1
-              style={{
-                fontFamily: "var(--font-playfair), Georgia, serif",
-                fontSize: "clamp(2.75rem, 5vw, 5rem)",
-                color: "white",
-                lineHeight: 1.05,
-                margin: 0,
-              }}
-            >
-              Ruth Heinen
-            </h1>
+          >
+            {t("section1Heading")}
+          </h1>
+
+          {paragraphs.map((para, i) => (
             <p
+              key={i}
               style={{
                 fontFamily: "var(--font-montserrat), sans-serif",
-                fontSize: "0.72rem",
-                fontWeight: 700,
-                letterSpacing: "0.35em",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,0.65)",
-                marginTop: "0.75rem",
+                fontSize: "0.95rem",
+                lineHeight: 1.85,
+                color: "#5a4a3a",
+                marginBottom: "1.1rem",
               }}
             >
-              Spiritual Coach · Channel Medium · Healer & Fashion Designer
+              {para}
             </p>
-          </AnimateIn>
+          ))}
+
+          {/* Signature */}
+          <div style={{ margin: "2.5rem 0 2rem" }}>
+            <Image
+              src="/images/ruth-signature-real.png"
+              alt="Ruth's signature"
+              width={160}
+              height={60}
+              style={{ height: "auto", display: "inline-block" }}
+            />
+          </div>
+
+          {/* CTA */}
+          <Link href="/meditation" className="btn-primary">
+            {t("freeMeditationBtn")}
+          </Link>
         </div>
       </section>
 
-      {/* My Path to Meditation — full-width text, no repeated portrait */}
-      <section className="section-padding bg-brand-cream">
-        <div className="container-max" style={{ maxWidth: "820px" }}>
-          <AnimateIn>
-            <p
-              style={{
-                fontFamily: "var(--font-montserrat), sans-serif",
-                fontSize: "0.68rem",
-                fontWeight: 700,
-                letterSpacing: "0.3em",
-                textTransform: "uppercase",
-                color: "#a38d51",
-                marginBottom: "0.75rem",
-              }}
-            >
-              About Ruth
-            </p>
-            <h2
-              style={{
-                fontFamily: "var(--font-playfair), Georgia, serif",
-                fontSize: "clamp(2rem, 3.5vw, 3rem)",
-                color: "#2c2520",
-                lineHeight: 1.15,
-                marginBottom: "2.5rem",
-              }}
-            >
-              {t("section1Heading")}
-            </h2>
-          </AnimateIn>
+      {/* Wave: peach section 1 → white section 2 */}
+      <WaveDivider fill="#ffffff" background="#fdf0ea" variant="wave" />
 
-          {/* Two-column text for readability */}
-          <AnimateIn delay={0.08}>
-            <div
-              className="md:columns-2 columns-1"
-              style={{
-                columnGap: "3.5rem",
-                columnRuleWidth: "1px",
-                columnRuleStyle: "solid",
-                columnRuleColor: "rgba(163,141,81,0.15)",
-              }}
-            >
-              {t("section1Body")
-                .split("\n\n")
-                .map((para, i) => (
-                  <p
-                    key={i}
-                    style={{
-                      fontFamily: "var(--font-montserrat), sans-serif",
-                      fontSize: "0.975rem",
-                      lineHeight: 1.85,
-                      color: "#7a6f66",
-                      marginBottom: "1.1rem",
-                      breakInside: "avoid",
-                    }}
-                  >
-                    {para}
-                  </p>
-                ))}
-            </div>
-          </AnimateIn>
+      {/* Section 2 — Circle photo + credentials + horizontal gold divider */}
+      <section style={{ backgroundColor: "#ffffff", padding: "4rem 1.5rem 0", textAlign: "center" }}>
+        <div style={{ maxWidth: "480px", margin: "0 auto" }}>
+          {/* Circle photo */}
+          <div
+            style={{
+              width: "200px",
+              height: "200px",
+              borderRadius: "50%",
+              overflow: "hidden",
+              margin: "0 auto 1.75rem",
+              position: "relative",
+            }}
+          >
+            <Image
+              src="/images/ruth-heinen-about.jpg"
+              alt="Ruth Heinen"
+              fill
+              className="object-cover"
+              sizes="200px"
+            />
+          </div>
 
-          {/* Signature + credit */}
-          <AnimateIn delay={0.12}>
-            <div
-              style={{
-                marginTop: "3rem",
-                paddingTop: "2rem",
-                borderTop: "1px solid rgba(163,141,81,0.18)",
-                display: "flex",
-                alignItems: "flex-end",
-                justifyContent: "space-between",
-                flexWrap: "wrap",
-                gap: "1.5rem",
-              }}
-            >
-              <div>
-                <Image
-                  src="/images/ruth-signature-real.png"
-                  alt="Ruth's signature"
-                  width={170}
-                  height={65}
-                  style={{ height: "auto", marginBottom: "0.75rem" }}
-                />
-                <p
-                  style={{
-                    fontFamily: "var(--font-montserrat), sans-serif",
-                    fontSize: "0.8rem",
-                    color: "#a38d51",
-                    lineHeight: 1.7,
-                    whiteSpace: "pre-line",
-                  }}
-                >
-                  {t("credit")}
-                </p>
-              </div>
-              <Link href="/meditation" className="btn-primary">
-                {t("freeMeditationBtn")}
-              </Link>
-            </div>
-          </AnimateIn>
+          <h2
+            style={{
+              fontFamily: "var(--font-playfair), Georgia, serif",
+              fontSize: "clamp(1.6rem, 3vw, 2rem)",
+              color: "#2c2520",
+              marginBottom: "0.5rem",
+              fontWeight: 700,
+            }}
+          >
+            Ruth Heinen
+          </h2>
+
+          <p
+            style={{
+              fontFamily: "var(--font-montserrat), sans-serif",
+              fontSize: "0.8rem",
+              color: "#5a4a3a",
+              lineHeight: 1.9,
+              margin: 0,
+              letterSpacing: "0.02em",
+            }}
+          >
+            Founder &amp; CEO Holiu.net<br />
+            Channel Medium, Fashion Designer,<br />
+            Healer &amp; Spiritual Lifestyle Coach
+          </p>
         </div>
+
+        {/* Gold horizontal divider (NOT wave) */}
+        <div
+          style={{
+            width: "100%",
+            maxWidth: "960px",
+            margin: "3.5rem auto 0",
+            height: "1px",
+            background: "linear-gradient(to right, transparent, #c9a84c 15%, #c9a84c 85%, transparent)",
+          }}
+        />
       </section>
 
-      <WaveDivider fill="#f5ede0" background="#fdf8f2" variant="wave" />
-
-      {/* Visit Courses & Workshops */}
-      <section className="section-padding" style={{ backgroundColor: "#f5ede0" }}>
+      {/* Section 3 — Visit Courses & Workshops (same white bg) */}
+      <section style={{ backgroundColor: "#ffffff", padding: "4rem 1.5rem 5rem" }}>
         <div className="container-max">
-          <AnimateIn className="text-center mb-10">
+          {/* Heading */}
+          <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
             <p
               style={{
                 fontFamily: "var(--font-montserrat), sans-serif",
-                fontSize: "0.68rem",
+                fontSize: "0.7rem",
                 fontWeight: 700,
-                letterSpacing: "0.3em",
+                letterSpacing: "0.25em",
                 textTransform: "uppercase",
-                color: "#a38d51",
-                marginBottom: "0.5rem",
+                color: "#7a6f66",
+                marginBottom: "0.4rem",
               }}
             >
               {t("visitSection")}
@@ -198,132 +168,109 @@ export default function AboutPage() {
             <h2
               style={{
                 fontFamily: "var(--font-playfair), Georgia, serif",
-                fontSize: "clamp(2rem, 3.5vw, 3rem)",
+                fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
                 color: "#2c2520",
+                marginBottom: "0.75rem",
+                fontWeight: 400,
               }}
             >
               {t("visitSubheading")}
             </h2>
-          </AnimateIn>
+            {/* Orange accent line */}
+            <div style={{ width: "48px", height: "3px", background: "#fc8855", margin: "0 auto" }} />
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* 2 images side by side — hover: zoom + 20% color overlay */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(2, 1fr)",
+              gap: "1.5rem",
+            }}
+          >
             {/* Course card */}
-            <AnimateIn delay={0.05}>
-              <Link href="/courses" className="group block">
-                <div
+            <Link
+              href="/courses"
+              className="group"
+              style={{
+                display: "block",
+                position: "relative",
+                borderRadius: "0.5rem",
+                overflow: "hidden",
+                aspectRatio: "2/3",
+              }}
+            >
+              <Image
+                src="/images/backgrounds/courses-hero.jpg"
+                alt={t("visitCourse")}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                sizes="(max-width: 768px) 90vw, 45vw"
+              />
+              {/* 20% orange overlay on hover */}
+              <div
+                className="absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+                style={{ background: "rgba(252,136,85,0.45)" }}
+              />
+              {/* Label */}
+              <div style={{ position: "absolute", top: "1.25rem", left: "1.25rem" }}>
+                <span
                   style={{
-                    position: "relative",
-                    borderRadius: "1.25rem",
-                    overflow: "hidden",
-                    aspectRatio: "4/3",
+                    fontFamily: "var(--font-montserrat), sans-serif",
+                    fontSize: "0.85rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.04em",
+                    color: "white",
+                    textShadow: "0 1px 4px rgba(0,0,0,0.5)",
                   }}
                 >
-                  <Image
-                    src="/images/backgrounds/courses-hero.jpg"
-                    alt={t("visitCourse")}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 768px) 90vw, 50vw"
-                  />
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background: "linear-gradient(to top, rgba(44,37,32,0.72) 0%, rgba(44,37,32,0.08) 60%, transparent 100%)",
-                    }}
-                  />
-                  <div style={{ position: "absolute", bottom: "1.5rem", left: "1.5rem", right: "1.5rem" }}>
-                    <h3
-                      style={{
-                        fontFamily: "var(--font-playfair), Georgia, serif",
-                        fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)",
-                        color: "white",
-                        lineHeight: 1.2,
-                      }}
-                    >
-                      {t("visitCourse")}
-                    </h3>
-                  </div>
-                </div>
-              </Link>
-            </AnimateIn>
+                  {t("visitCourse")}
+                </span>
+              </div>
+            </Link>
 
             {/* Workshop card */}
-            <AnimateIn delay={0.12}>
-              <Link href="/shop" className="group block">
-                <div
+            <Link
+              href="/shop"
+              className="group"
+              style={{
+                display: "block",
+                position: "relative",
+                borderRadius: "0.5rem",
+                overflow: "hidden",
+                aspectRatio: "2/3",
+              }}
+            >
+              <Image
+                src="/images/backgrounds/full2.jpg"
+                alt={t("visitWorkshop")}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                sizes="(max-width: 768px) 90vw, 45vw"
+              />
+              {/* 20% orange overlay on hover */}
+              <div
+                className="absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+                style={{ background: "rgba(252,136,85,0.45)" }}
+              />
+              {/* Label */}
+              <div style={{ position: "absolute", top: "1.25rem", left: "1.25rem" }}>
+                <span
                   style={{
-                    position: "relative",
-                    borderRadius: "1.25rem",
-                    overflow: "hidden",
-                    aspectRatio: "4/3",
+                    fontFamily: "var(--font-montserrat), sans-serif",
+                    fontSize: "0.85rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.04em",
+                    color: "white",
+                    textShadow: "0 1px 4px rgba(0,0,0,0.5)",
                   }}
                 >
-                  <Image
-                    src="/images/backgrounds/full2.jpg"
-                    alt={t("visitWorkshop")}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 768px) 90vw, 50vw"
-                  />
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background: "linear-gradient(to top, rgba(44,37,32,0.62) 0%, rgba(44,37,32,0.08) 60%, transparent 100%)",
-                    }}
-                  />
-                  <div style={{ position: "absolute", bottom: "1.5rem", left: "1.5rem", right: "1.5rem" }}>
-                    <h3
-                      style={{
-                        fontFamily: "var(--font-playfair), Georgia, serif",
-                        fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)",
-                        color: "white",
-                        lineHeight: 1.2,
-                      }}
-                    >
-                      {t("visitWorkshop")}
-                    </h3>
-                  </div>
-                </div>
-              </Link>
-            </AnimateIn>
+                  {t("visitWorkshop")}
+                </span>
+              </div>
+            </Link>
           </div>
         </div>
-      </section>
-
-      <WaveDivider fill="#fc8855" background="#f5ede0" variant="tilt" />
-
-      {/* CTA */}
-      <section className="section-padding text-center" style={{ backgroundColor: "#fc8855" }}>
-        <AnimateIn direction="none">
-          <h2
-            style={{
-              fontFamily: "var(--font-playfair), Georgia, serif",
-              fontSize: "clamp(2rem, 3.5vw, 3rem)",
-              color: "white",
-              marginBottom: "1rem",
-            }}
-          >
-            {t("ctaHeading")}
-          </h2>
-          <p
-            style={{
-              fontFamily: "var(--font-montserrat), sans-serif",
-              color: "rgba(255,255,255,0.85)",
-              fontSize: "1rem",
-              marginBottom: "2rem",
-            }}
-          >
-            {t("ctaBody")}
-          </p>
-          <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/shop" className="btn-primary" style={{ backgroundColor: "white", color: "#fc8855" }}>
-              {t("ctaShop")}
-            </Link>
-            <Link href="/meditation" className="btn-outline" style={{ borderColor: "white", color: "white" }}>
-              {t("ctaMeditation")}
-            </Link>
-          </div>
-        </AnimateIn>
       </section>
     </>
   );

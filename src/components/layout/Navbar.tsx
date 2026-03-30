@@ -14,12 +14,16 @@ export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [heroScrolled, setHeroScrolled] = useState(false);
+
+  const isHome = pathname === "/";
 
   // Pages with dark full-bleed hero images — need white logo/text when transparent
   const darkHeroRoutes = ["/about", "/meditation", "/courses"];
   const isDark = !scrolled && darkHeroRoutes.some((r) => pathname === r || pathname.startsWith(r + "/"));
 
   const navLinks = [
+    { href: "/" as const, label: t("home") },
     { href: "/about" as const, label: t("about") },
     { href: "/courses" as const, label: t("courses") },
     { href: "/meditation" as const, label: t("meditation") },
@@ -27,7 +31,11 @@ export default function Navbar() {
   ];
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20);
+    const handler = () => {
+      setScrolled(window.scrollY > 20);
+      // Show navbar logo after user has scrolled past 50% of hero (≈ 50vh)
+      setHeroScrolled(window.scrollY > window.innerHeight * 0.5);
+    };
     handler();
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
@@ -39,6 +47,9 @@ export default function Navbar() {
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
 
+  // On home page: hide logo until user scrolls 50% past hero
+  const showLogo = !isHome || heroScrolled;
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -47,15 +58,18 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      {/* Frosted pill wrapper — always visible */}
       <div className="container-max px-4 md:px-8">
         <div
           className={`flex items-center justify-between transition-all duration-300 ${
             scrolled ? "h-16" : "h-20"
           }`}
         >
-          {/* Logo */}
-          <Link href="/" className="flex items-center shrink-0">
+          {/* Logo — hidden on home page until hero is 50% scrolled */}
+          <Link
+            href="/"
+            className="flex items-center shrink-0 transition-all duration-500"
+            style={{ opacity: showLogo ? 1 : 0, pointerEvents: showLogo ? "auto" : "none" }}
+          >
             <Image
               src="/images/logo-dark.png"
               alt="HOLIU"
@@ -69,7 +83,7 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* Desktop nav — pill style */}
+          {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
@@ -92,13 +106,12 @@ export default function Navbar() {
 
           {/* Right: locale switcher + CTA */}
           <div className="hidden md:flex items-center gap-2">
-            {/* Locale switcher pill */}
             <div
               className={`flex items-center rounded-full p-0.5 text-xs font-semibold tracking-wider transition-all duration-200 ${
                 isDark ? "bg-white/15" : "bg-brand-gold/10"
               }`}
             >
-              {(["en", "de"] as const).map((lng, i) => (
+              {(["en", "de"] as const).map((lng) => (
                 <button
                   key={lng}
                   onClick={() => switchLocale(lng)}
@@ -115,7 +128,6 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Shop CTA */}
             <Link
               href="/shop"
               className={`px-5 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-200 ${

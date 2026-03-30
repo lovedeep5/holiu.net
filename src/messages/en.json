@@ -1,5 +1,6 @@
 {
   "nav": {
+    "home": "Home",
     "about": "About Me",
     "courses": "Courses",
     "meditation": "Meditation",
@@ -99,12 +100,14 @@
     "orderStatus": "Status"
   },
   "contact": {
+    "label": "Contact",
     "heading": "Get in Touch",
     "subheading": "Have a question? We'd love to hear from you.",
     "name": "Your name",
     "email": "Your email",
     "message": "Your message",
     "send": "Send Message",
+    "sending": "Sending…",
     "successMessage": "Thank you! We'll get back to you soon.",
     "errorMessage": "Something went wrong. Please try again."
   },
@@ -149,7 +152,10 @@
     "featuredTitle": "2×5 Meditation Easy – Your Magic Formula for Joy & Fulfillment in Your Life",
     "featuredBody1": "Do you want more joy, serenity and fulfillment in your life? Then this course is exactly right for you! With just 2×5 minutes of meditation per day — once in the morning, once in the evening — you will experience a profound transformation.",
     "featuredBody2": "This is your magic formula: consistency + just 5 minutes = a completely new quality of life. Try it and you will be amazed at what is possible for you!",
-    "featuredBuy": "Get the Course — €97"
+    "featuredBuy": "Get the Course — €97",
+    "comingSoon": "Coming Soon",
+    "viewCourse": "View Course",
+    "comingSoonLabel": "Coming Soon"
   },
   "meditationPage": {
     "heroHeading": "Philosophy – the art of meditation – 5min a day",
@@ -171,12 +177,70 @@
     "freeHeading": "Your Free Meditation Gift",
     "freeBody": "Download our introductory Chakra Meditation — a gentle guided journey to centre yourself and open your energy centres.",
     "downloadFree": "Download Free Meditation",
-    "browseMore": "Visit Meditations"
+    "browseMore": "Visit Meditations",
+    "inspirationTitle": "Inspiration & Motivation",
+    "inspirationSub": "WHAT OUR CLIENTS SAY"
   },
   "legal": {
     "privacy": "Privacy Policy",
     "terms": "Terms & Conditions",
     "disclaimer": "Legal Disclaimer",
     "imprint": "Imprint"
+  },
+  "getStarted": {
+    "heading": "Learn Meditation In Just Five Minutes A Day!",
+    "p1": "Are you stressed out or do you long for more energy to do all the things you have on your list? Do you wish for more joy, fulfillment and serenity every day?",
+    "p2": "Then you have made the right choice: Meditation for the first chakra gives you energy, strength, grounding, serenity and peace at the same time.",
+    "p3": "Start now and treat yourself to this elixir for your everyday life! Have fun with it and see you soon,",
+    "closing": "Love, Ruth",
+    "downloadBtn": "Download Free Meditation",
+    "imageAlt": "HOLIU Chakra Meditation"
+  },
+  "home": {
+    "treasure": {
+      "eyebrow": "DISCOVER THE",
+      "title": "TREASURE",
+      "subtitle": "INSIDE OF YOU",
+      "cta": "START TODAY"
+    },
+    "about": {
+      "greeting": "Hi,",
+      "p1": "Do you want more from life? Do you feel that there is a treasure deep inside you?",
+      "p2": "Then you are at the right place!",
+      "p3": "Discover your hidden potential!",
+      "p4": "Holiu offers you the opportunity to reach a higher level in all areas of your life enabling you to find more joy, serenity and peace within yourself and to be more fulfilled.",
+      "p5": "Do you feel inspired to take your life to a new level? Would you like to know more about your life's purpose and live your true essence?",
+      "p6": "Then don't wait any longer, you have almost reached your goal – start today and discover the treasure within you ❣",
+      "p7": "I'm really looking forward to welcome you!",
+      "cta": "Learn More"
+    },
+    "quote": {
+      "text": "Meditation is a process of lightening up, of trusting the basic goodness of what we have and who we are, and of realizing that any wisdom that exists, lives in what we already have. We can lead our life so as to become more awake to who we are and what we’re doing rather than trying to improve or change or get rid of who we are or what we’re doing. The key is to wake up, to become more alert, more inquisitive and curious about our true selves."
+    },
+    "downloadCta": {
+      "heading": "Do You Want More From Life?",
+      "sub": "Discover the treasure within you!",
+      "cta": "Download NOW"
+    },
+    "testimonials": {
+      "eyebrow": "Testimonials",
+      "heading": "WHAT OUR CLIENTS SAY"
+    },
+    "shop": {
+      "eyebrow": "Shop",
+      "heading": "Visit Our Shop",
+      "cta": "Visit Shop"
+    },
+    "contact": {
+      "heading": "GET IN TOUCH",
+      "sub": "We'd love to hear from you",
+      "name": "Your name",
+      "email": "Your email",
+      "message": "Message",
+      "send": "Send Message",
+      "sending": "Sending…",
+      "sent": "Thank you! Your message has been sent.",
+      "error": "Something went wrong. Please try again."
+    }
   }
 }

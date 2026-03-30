@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 
 const testimonials = [
   {
@@ -59,7 +58,7 @@ export default function TestimonialsSection() {
   return (
     <section
       className="section-padding"
-      style={{ backgroundColor: "#fdf8f2" }}
+      style={{ backgroundColor: "#ffffff" }}
     >
       <div className="container-max">
         {/* Heading */}
@@ -86,7 +85,7 @@ export default function TestimonialsSection() {
 
         {/* Carousel */}
         <div style={{ maxWidth: "760px", margin: "0 auto", textAlign: "center" }}>
-          {/* Avatar */}
+          {/* Avatar — plain img + key forces reload on slide change */}
           <div style={{
             width: "80px",
             height: "80px",
@@ -94,14 +93,12 @@ export default function TestimonialsSection() {
             overflow: "hidden",
             margin: "0 auto 1.5rem",
             border: "3px solid rgba(163,141,81,0.3)",
-            position: "relative",
           }}>
-            <Image
+            <img
+              key={t.name}
               src={t.avatar}
               alt={t.name}
-              fill
-              className="object-cover"
-              sizes="80px"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </div>
 
