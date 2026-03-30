@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const slides = [
   { src: "/images/med-06.jpg", alt: "Breathe" },
@@ -12,15 +12,24 @@ const slides = [
 
 export default function InspirationCarousel() {
   const [current, setCurrent] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   const prev = () => setCurrent((c) => (c - 1 + slides.length) % slides.length);
   const next = () => setCurrent((c) => (c + 1) % slides.length);
 
-  const visible = [
-    slides[current % slides.length],
-    slides[(current + 1) % slides.length],
-    slides[(current + 2) % slides.length],
-  ];
+  const count = isMobile ? 1 : 3;
+  const imgSize = isMobile ? 260 : 200;
+
+  const visible = Array.from({ length: count }, (_, i) =>
+    slides[(current + i) % slides.length]
+  );
 
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "1.5rem" }}>
@@ -49,14 +58,14 @@ export default function InspirationCarousel() {
           ‹
         </button>
 
-        {/* 3 small square images */}
+        {/* images */}
         <div style={{ display: "flex", gap: "1rem" }}>
           {visible.map((slide, i) => (
             <div
               key={`${current}-${i}`}
               style={{
-                width: "200px",
-                height: "200px",
+                width: `${imgSize}px`,
+                height: `${imgSize}px`,
                 overflow: "hidden",
                 flexShrink: 0,
                 borderRadius: "2px",

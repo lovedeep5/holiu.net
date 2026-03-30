@@ -51,15 +51,13 @@ export default function ProductGrid() {
   }
 
   return (
-    <div style={{ display: "flex", gap: "2.5rem", alignItems: "flex-start" }}>
+    <div className="flex flex-col lg:flex-row" style={{ gap: "2.5rem", alignItems: "flex-start" }}>
       {/* ── Main content ── */}
-      <div style={{ flex: 1, minWidth: 0 }}>
+      <div style={{ flex: 1, minWidth: 0, width: "100%" }}>
         {/* Toolbar */}
         <div
+          className="flex flex-wrap items-center justify-between gap-2"
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
             marginBottom: "1.5rem",
             paddingBottom: "0.75rem",
             borderBottom: "1px solid #e8e0d4",
@@ -95,19 +93,13 @@ export default function ProductGrid() {
           </select>
         </div>
 
-        {/* Product grid — 4 columns */}
+        {/* Product grid */}
         {pageProducts.length === 0 ? (
           <p style={{ fontFamily: "var(--font-montserrat), sans-serif", color: "#7a6f66" }}>
             No products found.
           </p>
         ) : (
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: "1.25rem",
-            }}
-          >
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4" style={{ gap: "1.25rem" }}>
             {pageProducts.map((product) => {
               const name =
                 locale === "de" && product.name_de ? product.name_de : product.name_en;
@@ -269,8 +261,8 @@ export default function ProductGrid() {
         )}
       </div>
 
-      {/* ── Sidebar ── */}
-      <aside style={{ width: "220px", flexShrink: 0 }}>
+      {/* ── Sidebar — vertical on desktop, horizontal scroll on mobile ── */}
+      <aside className="lg:w-56 lg:flex-shrink-0 w-full order-first lg:order-last">
         <h3
           style={{
             fontFamily: "var(--font-playfair), Georgia, serif",
@@ -284,7 +276,8 @@ export default function ProductGrid() {
         >
           Product Categories
         </h3>
-        <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+        {/* Desktop: vertical list */}
+        <ul className="hidden lg:block" style={{ listStyle: "none", padding: 0, margin: 0 }}>
           {(CATEGORIES.filter((c) => c !== "All") as string[]).map((cat) => (
             <li key={cat}>
               <button
@@ -313,6 +306,30 @@ export default function ProductGrid() {
             </li>
           ))}
         </ul>
+        {/* Mobile: horizontal pill filters */}
+        <div className="lg:hidden" style={{ display: "flex", gap: "0.5rem", overflowX: "auto", paddingBottom: "0.5rem" }}>
+          {(["All", ...CATEGORIES.filter((c) => c !== "All")] as string[]).map((cat) => (
+            <button
+              key={cat}
+              onClick={() => handleCategory(cat === "All" ? "All" : (cat === activeCategory ? "All" : cat))}
+              style={{
+                flexShrink: 0,
+                padding: "0.35rem 0.875rem",
+                borderRadius: "999px",
+                border: "1px solid",
+                borderColor: activeCategory === cat ? "#fc8855" : "#d4c9b8",
+                background: activeCategory === cat ? "#fc8855" : "#fff",
+                color: activeCategory === cat ? "#fff" : "#5a4a3a",
+                fontFamily: "var(--font-montserrat), sans-serif",
+                fontSize: "0.75rem",
+                cursor: "pointer",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
       </aside>
     </div>
   );
