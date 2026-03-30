@@ -70,7 +70,8 @@ export default function OptinModal({ isLoggedIn = false }: Props) {
         onClick={handleDismiss}
         style={{
           position: "fixed", inset: 0,
-          background: "rgba(44,37,32,0.65)",
+          background: "rgba(44,37,32,0.6)",
+          backdropFilter: "blur(4px)",
           zIndex: 9998,
           animation: "fadeIn 0.3s ease",
         }}
