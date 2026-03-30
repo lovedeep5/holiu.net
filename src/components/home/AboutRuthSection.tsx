@@ -31,6 +31,7 @@ export default async function AboutRuthSection() {
                 fill
                 className="object-cover object-top"
                 sizes="(max-width: 768px) 90vw, 420px"
+                quality={75}
               />
             </div>
           </div>

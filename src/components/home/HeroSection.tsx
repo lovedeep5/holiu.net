@@ -9,6 +9,8 @@ export default function HeroSection() {
           src="/images/hero-bg-2.jpg"
           alt=""
           fill
+          sizes="100vw"
+          quality={70}
           className="object-cover object-center"
           priority
         />
@@ -26,6 +28,7 @@ export default function HeroSection() {
           width={800}
           height={800}
           sizes="(max-width: 768px) 88vw, 640px"
+          quality={80}
           style={{
             width: "min(88vw, 78vh)",
             height: "auto",
