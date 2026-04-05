@@ -8,7 +8,7 @@ export async function GET() {
   // Insert a dummy record then immediately delete it
   const { data, error: insertError } = await supabase
     .from("leads")
-    .insert({ email: "keepalive@system.internal", source: "cron" })
+    .insert({ email: "keepalive@system.internal", source: "cron", name: "cron", message: "keep-alive" })
     .select("id")
     .single();
 
