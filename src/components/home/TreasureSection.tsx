@@ -58,17 +58,6 @@ export default function TreasureSection() {
         >
           {t("cta")}
         </Link>
-
-        <div style={{ marginTop: "0.75rem", width: "100%", maxWidth: "480px" }}>
-          <audio
-            controls
-            preload="none"
-            style={{ width: "100%", accentColor: "#a38d51" }}
-          >
-            <source src="/audio/chakra-meditation.mp3" type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
-        </div>
       </div>
     </section>
   );

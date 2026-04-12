@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 const testimonials = [
   {
@@ -48,6 +49,7 @@ function Stars() {
 }
 
 export default function TestimonialsSection() {
+  const tl = useTranslations("home.testimonials");
   const [current, setCurrent] = useState(0);
 
   const prev = () => setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length);
@@ -72,14 +74,14 @@ export default function TestimonialsSection() {
             color: "#a38d51",
             marginBottom: "0.75rem",
           }}>
-            Testimonials
+            {tl("eyebrow")}
           </p>
           <h2 style={{
             fontFamily: "var(--font-playfair), Georgia, serif",
             fontSize: "clamp(2rem, 4vw, 3rem)",
             color: "#2c2520",
           }}>
-            WHAT OUR CLIENTS SAY
+            {tl("heading")}
           </h2>
         </div>
 

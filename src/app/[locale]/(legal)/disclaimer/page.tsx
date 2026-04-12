@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 
-export const metadata: Metadata = { title: "Legal Disclaimer" };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("legal");
+  return { title: t("disclaimer") };
+}
 
 export default function DisclaimerPage() {
   return (

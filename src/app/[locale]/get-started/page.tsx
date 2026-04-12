@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
+import GetStartedForm from "./GetStartedForm";
 
 export async function generateMetadata({
   params,
@@ -65,21 +65,7 @@ export default async function GetStartedPage() {
               {t("closing")}
             </p>
 
-            {/* Audio player */}
-            <div style={{ marginBottom: "2rem" }}>
-              <audio
-                controls
-                preload="none"
-                style={{ width: "100%", maxWidth: "420px", accentColor: "#a38d51" }}
-              >
-                <source src="/audio/chakra-meditation.mp3" type="audio/mpeg" />
-                Your browser does not support the audio element.
-              </audio>
-            </div>
-
-            <Link href="/shop" className="btn-primary">
-              {t("downloadBtn")}
-            </Link>
+            <GetStartedForm />
           </div>
 
           {/* Right — product image */}

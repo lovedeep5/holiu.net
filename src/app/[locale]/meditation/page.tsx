@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import WaveDivider from "@/components/ui/WaveDivider";
 import InspirationCarousel from "@/components/meditation/InspirationCarousel";
+import TestimonialsSection from "@/components/home/TestimonialsSection";
 
 export async function generateMetadata({
   params,
@@ -22,7 +23,7 @@ export default async function MeditationPage() {
   return (
     <>
       {/* Hero — "breathe" neon, full viewport, NO text, NO wave */}
-      <section style={{ position: "relative", height: "100vh", minHeight: "560px" }}>
+      <section className="relative h-[70vh] md:h-screen" style={{ minHeight: "420px" }}>
         <Image
           src="/images/backgrounds/bg-5.jpg"
           alt="Breathe"
@@ -139,7 +140,7 @@ export default async function MeditationPage() {
               }}
             >
               <img
-                src="/images/ruth-meditation-portrait.jpg"
+                src="/images/louise-hay.jpg"
                 alt={t("quoteHayAuthor")}
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
@@ -461,6 +462,9 @@ export default async function MeditationPage() {
           <InspirationCarousel />
         </div>
       </section>
+
+      {/* Testimonials */}
+      <TestimonialsSection />
     </>
   );
 }

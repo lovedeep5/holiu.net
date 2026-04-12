@@ -113,19 +113,28 @@
   },
   "footer": {
     "tagline": "Entdecke den Schatz in dir. Spirituelle Wellness-Kurse, Meditationen und Channeling-Sitzungen von Ruth Heinen.",
+    "infos": "INFOS",
     "info": "Info",
     "privacy": "Datenschutz",
     "terms": "AGB",
-    "disclaimer": "Impressum",
+    "disclaimer": "Haftungsausschluss",
     "imprint": "Impressum",
+    "shopHeading": "SHOP",
     "shop": "Shop",
     "chakra": "Chakra Balancing",
     "channeling": "Channeling",
     "courses": "Kurse",
     "meditations": "Meditationen",
     "workshops": "Workshops",
+    "creditsHeading": "Credits",
+    "creditsLink": "Credits & Kooperationen",
     "copyright": "© HOLIU {year}",
     "madeWith": "Mit Liebe gemacht"
+  },
+  "creditsPage": {
+    "eyebrow": "HOLIU.NET",
+    "heading": "Herzlichen Dank an unsere Partner & Fotografen:",
+    "imageBy": "BILD VON:"
   },
   "aboutPage": {
     "heroAlt": "Ruth Heinen — Gründerin von HOLIU",
@@ -194,7 +203,15 @@
     "p3": "Fang jetzt an und gönne dir dieses Elixier für deinen Alltag! Viel Spaß damit und bis bald,",
     "closing": "Liebe Grüße, Ruth",
     "downloadBtn": "Kostenlose Meditation herunterladen",
-    "imageAlt": "HOLIU Chakra Meditation"
+    "imageAlt": "HOLIU Chakra Meditation",
+    "formNamePlaceholder": "Dein Name",
+    "formEmailPlaceholder": "Deine E-Mail-Adresse",
+    "formSubmit": "Meine kostenlose Meditation erhalten →",
+    "formSending": "Wird gesendet…",
+    "thankYou": "Hier ist deine kostenlose Meditation!",
+    "thankYouBody": "Klicke auf den Button unten, um deine Chakra Meditation herunterzuladen. Viel Freude — bis bald! 💛",
+    "downloadNow": "Chakra Meditation herunterladen",
+    "noSpam": "Kein Spam. Jederzeit abmelden."
   },
   "home": {
     "treasure": {

@@ -1,0 +1,102 @@
+.grid {
+  columns: 3;
+  column-gap: 6px;
+  margin-top: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    columns: 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    columns: 1;
+  }
+}
+
+.item {
+  break-inside: avoid;
+  margin-bottom: 6px;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+.item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.item:hover img {
+  transform: scale(1.13);
+}
+
+/* Colour overlay — fades in on hover */
+.item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(252, 136, 85, 0.45);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.item:hover::after {
+  opacity: 1;
+}
+
+/* Always-visible gradient + text at bottom */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(44, 37, 32, 0.72) 0%,
+    rgba(44, 37, 32, 0.1) 45%,
+    transparent 100%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.2rem;
+  padding: 1rem 0.75rem;
+  z-index: 2;
+}
+
+.label {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #fc8855;
+  margin: 0;
+  transition: font-size 0.3s ease;
+}
+
+.name {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+  text-align: center;
+  transition: font-size 0.3s ease;
+}
+
+.item:hover .label {
+  font-size: 0.72rem;
+}
+
+.item:hover .name {
+  font-size: 0.95rem;
+}

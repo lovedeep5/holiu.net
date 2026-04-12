@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import WaveDivider from "@/components/ui/WaveDivider";
+import LottieAnimation from "@/components/ui/LottieAnimation";
 
 export async function generateMetadata({
   params,
@@ -20,7 +21,7 @@ export default async function CoursesPage() {
   return (
     <>
       {/* Hero — Buddha stone hands with flowers, full viewport, no text */}
-      <section style={{ position: "relative", height: "100vh", minHeight: "560px" }}>
+      <section className="relative h-[70vh] md:h-screen" style={{ minHeight: "420px" }}>
         <Image
           src="/images/backgrounds/course-hero-bg.jpg"
           alt="Courses & Workshops"
@@ -48,6 +49,12 @@ export default async function CoursesPage() {
           </h1>
           {/* Orange underline */}
           <div style={{ width: "48px", height: "3px", background: "#fc8855", margin: "0 auto" }} />
+
+          {/* Lottie animation */}
+          <LottieAnimation
+            src="https://assets9.lottiefiles.com/private_files/lf30_Yc46BG.json"
+            style={{ width: "280px", height: "280px", margin: "0 auto" }}
+          />
         </div>
 
         {/* Wave: peach → white */}

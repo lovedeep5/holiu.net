@@ -1,21 +1,24 @@
 "use client";
 
 import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 export default function Footer() {
+  const t = useTranslations("footer");
+
   const infoLinks = [
-    { href: "/privacy" as const, label: "Privacy Policy" },
-    { href: "/terms" as const, label: "Terms & Conditions" },
-    { href: "/disclaimer" as const, label: "Legal Disclaimer" },
-    { href: "/imprint" as const, label: "Imprint" },
+    { href: "/privacy" as const, label: t("privacy") },
+    { href: "/terms" as const, label: t("terms") },
+    { href: "/disclaimer" as const, label: t("disclaimer") },
+    { href: "/imprint" as const, label: t("imprint") },
   ];
 
   const shopLinks = [
-    { href: "/shop?cat=Chakra+Balancing" as const, label: "Chakra Balancing" },
-    { href: "/shop?cat=Channeling" as const, label: "Channeling" },
-    { href: "/shop?cat=Courses" as const, label: "Courses" },
-    { href: "/shop?cat=Meditations" as const, label: "Meditations" },
-    { href: "/shop?cat=Workshops" as const, label: "Workshops" },
+    { href: "/shop?cat=Chakra+Balancing" as const, label: t("chakra") },
+    { href: "/shop?cat=Channeling" as const, label: t("channeling") },
+    { href: "/shop?cat=Courses" as const, label: t("courses") },
+    { href: "/shop?cat=Meditations" as const, label: t("meditations") },
+    { href: "/shop?cat=Workshops" as const, label: t("workshops") },
   ];
 
   const linkStyle: React.CSSProperties = {
@@ -45,7 +48,7 @@ export default function Footer() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "2.5rem" }}>
             {/* INFOS */}
             <div>
-              <h4 style={headingStyle}>INFOS</h4>
+              <h4 style={headingStyle}>{t("infos")}</h4>
               {infoLinks.map((l) => (
                 <Link key={l.href} href={l.href} style={linkStyle}>{l.label}</Link>
               ))}
@@ -53,7 +56,7 @@ export default function Footer() {
 
             {/* SHOP */}
             <div>
-              <h4 style={headingStyle}>SHOP</h4>
+              <h4 style={headingStyle}>{t("shopHeading")}</h4>
               {shopLinks.map((l) => (
                 <Link key={l.href} href={l.href} style={linkStyle}>{l.label}</Link>
               ))}
@@ -61,8 +64,8 @@ export default function Footer() {
 
             {/* Credits */}
             <div>
-              <h4 style={headingStyle}>Credits</h4>
-              <Link href="/credits" style={linkStyle}>Credits &amp; Cooperation</Link>
+              <h4 style={headingStyle}>{t("creditsHeading")}</h4>
+              <Link href="/credits" style={linkStyle}>{t("creditsLink")}</Link>
             </div>
           </div>
         </div>
@@ -72,41 +75,15 @@ export default function Footer() {
       <div style={{ backgroundColor: "#2c2520", padding: "1.25rem 0" }}>
         <div
           className="container-max"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: "0.75rem",
-          }}
+          style={{ textAlign: "center" }}
         >
-          <div style={{ display: "flex", gap: "1.5rem" }}>
-            {[
-              { href: "/account" as const, label: "My account" },
-              { href: "/checkout" as const, label: "Checkout" },
-              { href: "/shop" as const, label: "Cart" },
-            ].map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                style={{
-                  fontFamily: "var(--font-montserrat), sans-serif",
-                  fontSize: "0.8rem",
-                  color: "rgba(255,255,255,0.6)",
-                  textDecoration: "none",
-                }}
-              >
-                {l.label}
-              </Link>
-            ))}
-          </div>
           <p style={{
             fontFamily: "var(--font-montserrat), sans-serif",
             fontSize: "0.8rem",
             color: "rgba(255,255,255,0.6)",
             margin: 0,
           }}>
-            Copyright © HOLIU {new Date().getFullYear()}
+            {t("copyright", { year: new Date().getFullYear() })}
           </p>
         </div>
       </div>

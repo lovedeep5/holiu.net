@@ -22,7 +22,7 @@ export default async function AboutPage() {
   return (
     <>
       {/* Hero — full viewport editorial photo, face visible at top */}
-      <section style={{ position: "relative", height: "100vh", minHeight: "600px" }}>
+      <section className="relative h-[70vh] md:h-screen" style={{ minHeight: "420px" }}>
         <Image
           src="/images/backgrounds/ruth-outdoor.jpg"
           alt={t("heroAlt")}
@@ -180,14 +180,8 @@ export default async function AboutPage() {
             <div style={{ width: "48px", height: "3px", background: "#fc8855", margin: "0 auto" }} />
           </div>
 
-          {/* 2 images side by side — hover: zoom + 20% color overlay */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "1.5rem",
-            }}
-          >
+          {/* 2 images side by side — stacks on mobile, 2-col on md+ */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Course card */}
             <Link
               href="/courses"
