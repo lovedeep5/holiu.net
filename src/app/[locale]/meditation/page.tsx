@@ -22,16 +22,31 @@ export default async function MeditationPage() {
 
   return (
     <>
-      {/* Hero — "breathe" neon, full viewport, NO text, NO wave */}
-      <section className="relative h-[70vh] md:h-screen" style={{ minHeight: "420px" }}>
-        <Image
-          src="/images/backgrounds/bg-5.jpg"
-          alt="Breathe"
-          fill
-          className="object-cover"
-          style={{ objectPosition: "center center" }}
-          priority
-        />
+      {/* Hero — "breathe" neon */}
+      <section className="relative">
+        {/* Mobile: full image, no cropping */}
+        <div className="md:hidden">
+          <Image
+            src="/images/backgrounds/bg-5.jpg"
+            alt="Breathe"
+            width={1080}
+            height={1350}
+            sizes="100vw"
+            style={{ width: "100%", height: "auto", display: "block" }}
+            priority
+          />
+        </div>
+        {/* Desktop: full-screen fill */}
+        <div className="hidden md:block relative h-screen" style={{ minHeight: "560px" }}>
+          <Image
+            src="/images/backgrounds/bg-5.jpg"
+            alt="Breathe"
+            fill
+            className="object-cover"
+            style={{ objectPosition: "center center" }}
+            priority
+          />
+        </div>
       </section>
 
       {/* Section 2 — Philosophy (peach) */}

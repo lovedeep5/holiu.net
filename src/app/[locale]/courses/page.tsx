@@ -20,16 +20,31 @@ export default async function CoursesPage() {
 
   return (
     <>
-      {/* Hero — Buddha stone hands with flowers, full viewport, no text */}
-      <section className="relative h-[70vh] md:h-screen" style={{ minHeight: "420px" }}>
-        <Image
-          src="/images/backgrounds/course-hero-bg.jpg"
-          alt="Courses & Workshops"
-          fill
-          className="object-cover"
-          style={{ objectPosition: "center center" }}
-          priority
-        />
+      {/* Hero — Buddha stone hands with flowers */}
+      <section className="relative">
+        {/* Mobile: full image, no cropping */}
+        <div className="md:hidden">
+          <Image
+            src="/images/backgrounds/course-hero-bg.jpg"
+            alt="Courses & Workshops"
+            width={1080}
+            height={1080}
+            sizes="100vw"
+            style={{ width: "100%", height: "auto", display: "block" }}
+            priority
+          />
+        </div>
+        {/* Desktop: full-screen fill */}
+        <div className="hidden md:block relative h-screen" style={{ minHeight: "560px" }}>
+          <Image
+            src="/images/backgrounds/course-hero-bg.jpg"
+            alt="Courses & Workshops"
+            fill
+            className="object-cover"
+            style={{ objectPosition: "center center" }}
+            priority
+          />
+        </div>
       </section>
 
       {/* Section: "Change Your Life..." — peach bg */}

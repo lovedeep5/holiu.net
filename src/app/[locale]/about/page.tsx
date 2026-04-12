@@ -21,16 +21,31 @@ export default async function AboutPage() {
 
   return (
     <>
-      {/* Hero — full viewport editorial photo, face visible at top */}
-      <section className="relative h-[70vh] md:h-screen" style={{ minHeight: "420px" }}>
-        <Image
-          src="/images/backgrounds/ruth-outdoor.jpg"
-          alt={t("heroAlt")}
-          fill
-          className="object-cover"
-          style={{ objectPosition: "center top" }}
-          priority
-        />
+      {/* Hero — natural image on mobile (no crop), full-screen fill on desktop */}
+      <section className="relative">
+        {/* Mobile: full image visible, no cropping */}
+        <div className="md:hidden">
+          <Image
+            src="/images/backgrounds/ruth-outdoor.jpg"
+            alt={t("heroAlt")}
+            width={1080}
+            height={1350}
+            sizes="100vw"
+            style={{ width: "100%", height: "auto", display: "block" }}
+            priority
+          />
+        </div>
+        {/* Desktop: full-screen editorial fill */}
+        <div className="hidden md:block relative h-screen" style={{ minHeight: "600px" }}>
+          <Image
+            src="/images/backgrounds/ruth-outdoor.jpg"
+            alt={t("heroAlt")}
+            fill
+            className="object-cover"
+            style={{ objectPosition: "center top" }}
+            priority
+          />
+        </div>
       </section>
 
       {/* Section 1 — Centered text, signature, CTA */}
