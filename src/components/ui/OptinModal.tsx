@@ -29,11 +29,28 @@ export default function OptinModal() {
 
   useEffect(() => {
     if (getCookie(COOKIE_SUBMITTED) || getCookie(COOKIE_DISMISSED)) return;
-    // Check Supabase session client-side
     const sbSession = getCookie("sb-aoorajsokivjxmkgzwno-auth-token");
     if (sbSession) return;
-    const timer = setTimeout(() => setVisible(true), 6000);
-    return () => clearTimeout(timer);
+
+    let triggered = false;
+    function trigger() {
+      if (triggered) return;
+      triggered = true;
+      setVisible(true);
+      window.removeEventListener("scroll", onScroll);
+      clearTimeout(fallbackTimer);
+    }
+    function onScroll() {
+      const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      if (scrolled >= 0.35) trigger();
+    }
+    // Fallback: show after 10s if user hasn't scrolled enough
+    const fallbackTimer = setTimeout(trigger, 10000);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      clearTimeout(fallbackTimer);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   function handleDismiss() {

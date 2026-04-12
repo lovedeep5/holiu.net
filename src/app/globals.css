@@ -137,4 +137,18 @@
       padding-right: 2rem;
     }
   }
+
+  /* Landscape mobile: reduce section vertical padding so content isn't cramped */
+  @media (max-width: 900px) and (orientation: landscape) {
+    .section-padding {
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+    }
+
+    /* Fixed navbar stays compact */
+    nav {
+      padding-top: 0.5rem !important;
+      padding-bottom: 0.5rem !important;
+    }
+  }
 }

@@ -7,12 +7,12 @@ const testimonials = [
   {
     name: "Sabine Wollert",
     avatar: "/images/testimonials/sabine-wollert.png",
-    text: "You live a down-to-earth, everyday spirituality and you convey this very professionally in your workshops. Here all levels are linked so that the released energies and insights have a lasting effect and can be implemented.",
+    text: "Dear Ruth, you live a down-to-earth, everyday spirituality and you convey this very professionally in your workshops. Here all levels are linked so that the released energies and insights have a lasting effect and can be implemented. Chapeau",
   },
   {
     name: "Nic Naa",
     avatar: "/images/testimonials/nic-naa.png",
-    text: "For me, the meditations are very harmoniously coordinated and structured. I feel light and lively and empowered. The pleasant, clear and sensitive voice grounds me. The meditations leave me feeling very relaxed and full of zest for life.",
+    text: "For me, the meditations are very harmoniously coordinated and structured. You're already looking forward to the next part. I feel light and lively and empowered. The pleasant, clear and sensitive voice grounds me. You can feel the extremely positive energy, which allows me to regain my full strength. The meditations leave me feeling very relaxed and full of zest for life even if my day did not go so well. I encourage everyone who wants to give their life a new direction to try these meditations. They are very calming and at the same time motivating to get you to your full potential. I thank you for this helpful workshop, which supports me and makes my everyday life very positive.",
   },
   {
     name: "Anne Probst",
@@ -22,17 +22,17 @@ const testimonials = [
   {
     name: "Jens Schack",
     avatar: "/images/testimonials/jens-schack.jpg",
-    text: "Ruth loves people. Therefore she can carefully empathize with the needs of the participants in a group. I appreciate this deeply.",
+    text: "Ruth loves people. Therefore she can carefully empathize with the needs of the participants in a group. I appreciate this.",
   },
   {
-    name: "Ursa",
+    name: "Ursa Jordan",
     avatar: "/images/testimonials/ursa.jpg",
-    text: "Your gentle but powerful guidance takes me on a journey within myself. I can open my heart. Your voice allows me to empty my thoughts and brings deep relaxation to me.",
+    text: "Dear Ruth, when I listen to your channelings, whether via audio file or in circle with you in your light-flooded, colourful, energetic and creative breathing loft, after a short time, your voice allows me to empty my thoughts and brings deep relaxation to me. Your gentle but powerful guidance takes me on a journey within myself. I can open my heart to healing inner images for encounters with hidden emotions, positive visions and all kinds of spiritual helpers. Even when it comes to difficult topics such as financial worries or family conflicts. I come back refreshed, confident, relaxed and full of strength and trust in the here and now every time. Thank you very much for that ...",
   },
   {
     name: "Bernd Kienle",
     avatar: "/images/testimonials/bernd-kienle.png",
-    text: "The meditations are a wonderful gift. Ruth has the ability to guide you gently but powerfully into your inner world. Each session leaves me refreshed and centered.",
+    text: "Dear Ruth, thank you very much for the wonderful workshop. It was a perfect fit for me. Respect, you do it very professionally and sensitively, which is not a matter of course, and all of this in an enchanting setting (... the sounds, atmosphere and energy - love all of this). Keep it up 'channel angel'",
   },
 ];
 
