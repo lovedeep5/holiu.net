@@ -7,14 +7,18 @@ export async function isAdminAuthed(): Promise<boolean> {
   const token = cookieStore.get("admin_session")?.value;
   if (!token) return false;
 
-  const adminEmail = process.env.ADMIN_EMAIL;
-  if (!adminEmail) return false;
-
   try {
     const supabase = createServiceClient();
     const { data, error } = await supabase.auth.getUser(token);
     if (error || !data.user) return false;
-    return data.user.email === adminEmail;
+
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("role")
+      .eq("id", data.user.id)
+      .single();
+
+    return profile?.role === "admin";
   } catch {
     return false;
   }

@@ -4,16 +4,22 @@ import { createServiceClient } from "@/lib/supabase/server";
 export async function POST(req: NextRequest) {
   const { email, password } = await req.json();
 
-  const adminEmail = process.env.ADMIN_EMAIL;
-  if (!adminEmail || email !== adminEmail) {
-    return NextResponse.json({ error: "Access denied" }, { status: 403 });
-  }
-
   const supabase = createServiceClient();
   const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
   if (error || !data.session) {
     return NextResponse.json({ error: error?.message || "Invalid credentials" }, { status: 401 });
+  }
+
+  // Check if user has admin role in profiles table
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", data.user.id)
+    .single();
+
+  if (profile?.role !== "admin") {
+    return NextResponse.json({ error: "Access denied" }, { status: 403 });
   }
 
   const res = NextResponse.json({ ok: true });

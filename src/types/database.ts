@@ -36,6 +36,7 @@ export interface Database {
           id: string;
           email: string;
           full_name: string | null;
+          role: string;
           created_at: string;
         };
         Insert: Omit<Database["public"]["Tables"]["profiles"]["Row"], "created_at">;
