@@ -1,13 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import AnimateIn from "@/components/ui/AnimateIn";
 
-export default function AccountLoginPage() {
+function LoginForm() {
   const t = useTranslations("account");
   const locale = useLocale();
+  const searchParams = useSearchParams();
+  const next = searchParams.get("next");
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -124,8 +127,8 @@ export default function AccountLoginPage() {
                   return;
                 }
 
-                // Login success — redirect to account dashboard
-                window.location.href = `/${locale}/account`;
+                // Login success — redirect to next or account dashboard
+                window.location.href = next ?? `/${locale}/account`;
               }}
               style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}
             >
@@ -281,5 +284,13 @@ export default function AccountLoginPage() {
         </AnimateIn>
       </div>
     </section>
+  );
+}
+
+export default function AccountLoginPage() {
+  return (
+    <Suspense>
+      <LoginForm />
+    </Suspense>
   );
 }

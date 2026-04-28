@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { ShoppingBag } from "lucide-react";
+import { createClient } from "@/lib/supabase/client";
 
 interface BuyButtonProps {
   productSlug: string;
@@ -17,6 +18,15 @@ export default function BuyButton({ productSlug, price }: BuyButtonProps) {
   async function handleBuy() {
     setLoading(true);
     try {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+
+      if (!user) {
+        const next = encodeURIComponent(window.location.pathname);
+        window.location.href = `/${locale}/account/login?next=${next}`;
+        return;
+      }
+
       const res = await fetch("/api/stripe/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
