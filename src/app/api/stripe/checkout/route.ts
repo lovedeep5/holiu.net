@@ -25,7 +25,11 @@ export async function POST(req: NextRequest) {
 
     const product = data as unknown as Product;
     const name = locale === "de" && product.name_de ? product.name_de : product.name_en;
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://holiu-net.vercel.app";
+
+    // Derive base URL from request host so it works on any domain without env var issues
+    const host = req.headers.get("x-forwarded-host") || req.headers.get("host") || "holiu-net.vercel.app";
+    const proto = host.startsWith("localhost") ? "http" : "https";
+    const baseUrl = `${proto}://${host}`;
 
     const [stripeClient, mode] = await Promise.all([getStripeClient(), getStripeMode()]);
 
