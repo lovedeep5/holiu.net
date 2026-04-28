@@ -145,6 +145,7 @@ export default function AccountLoginPage() {
                   </label>
                   <input
                     type="text"
+                    name="name"
                     required={mode === "signup"}
                     style={{
                       width: "100%",
@@ -177,6 +178,7 @@ export default function AccountLoginPage() {
                 </label>
                 <input
                   type="email"
+                  name="email"
                   required
                   style={{
                     width: "100%",
@@ -208,6 +210,7 @@ export default function AccountLoginPage() {
                 </label>
                 <input
                   type="password"
+                  name="password"
                   required
                   style={{
                     width: "100%",
