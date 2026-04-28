@@ -95,6 +95,16 @@ export interface Database {
         Update: Partial<Database["public"]["Tables"]["leads"]["Insert"]>;
         Relationships: [];
       };
+      site_settings: {
+        Row: {
+          key: string;
+          value: string;
+          updated_at: string;
+        };
+        Insert: Database["public"]["Tables"]["site_settings"]["Row"];
+        Update: Partial<Database["public"]["Tables"]["site_settings"]["Row"]>;
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;
@@ -109,3 +119,4 @@ export type OrderItem = Database["public"]["Tables"]["order_items"]["Row"];
 export type DownloadToken = Database["public"]["Tables"]["download_tokens"]["Row"];
 export type Lead = Database["public"]["Tables"]["leads"]["Row"];
 export type Profile = Database["public"]["Tables"]["profiles"]["Row"];
+export type SiteSettings = Database["public"]["Tables"]["site_settings"]["Row"];

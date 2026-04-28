@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
+import { getStripeClient, getStripeMode } from "@/lib/stripe";
 import { createServiceClient } from "@/lib/supabase/server";
 import type { Product } from "@/types/database";
 
@@ -27,23 +27,27 @@ export async function POST(req: NextRequest) {
     const name = locale === "de" && product.name_de ? product.name_de : product.name_en;
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://holiu-net.vercel.app";
 
-    const lineItem = product.stripe_price_id
-      ? { price: product.stripe_price_id, quantity: 1 as const }
-      : {
-          price_data: {
-            currency: product.currency || "eur",
-            unit_amount: product.price,
-            product_data: {
-              name,
-              images: product.thumbnail_url
-                ? [`${baseUrl}${product.thumbnail_url}`]
-                : [],
-            },
-          },
-          quantity: 1 as const,
-        };
+    const [stripeClient, mode] = await Promise.all([getStripeClient(), getStripeMode()]);
 
-    const session = await stripe.checkout.sessions.create({
+    // In test mode skip pre-saved price IDs (they belong to live mode)
+    const lineItem =
+      product.stripe_price_id && mode === "live"
+        ? { price: product.stripe_price_id, quantity: 1 as const }
+        : {
+            price_data: {
+              currency: product.currency || "eur",
+              unit_amount: product.price,
+              product_data: {
+                name: mode === "test" ? `[TEST] ${name}` : name,
+                images: product.thumbnail_url
+                  ? [`${baseUrl}${product.thumbnail_url}`]
+                  : [],
+              },
+            },
+            quantity: 1 as const,
+          };
+
+    const session = await stripeClient.checkout.sessions.create({
       mode: "payment",
       payment_method_types: ["card"],
       line_items: [lineItem],

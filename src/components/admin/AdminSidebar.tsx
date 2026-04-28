@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
@@ -8,10 +9,19 @@ const NAV = [
   { href: "/en/admin/products", label: "Products", icon: "◈" },
   { href: "/en/admin/orders", label: "Orders", icon: "◉" },
   { href: "/en/admin/leads", label: "Leads", icon: "◎" },
+  { href: "/en/admin/settings", label: "Settings", icon: "◧" },
 ];
 
 export default function AdminSidebar({ locale }: { locale: string }) {
   const pathname = usePathname();
+  const [testMode, setTestMode] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/admin/stripe-mode")
+      .then((r) => r.json())
+      .then((d) => setTestMode(d.testMode ?? false))
+      .catch(() => {});
+  }, [pathname]); // re-check whenever navigation happens
 
   async function handleLogout() {
     await fetch("/api/admin/auth", { method: "DELETE" });
@@ -46,14 +56,39 @@ export default function AdminSidebar({ locale }: { locale: string }) {
         }}>Admin</p>
       </div>
 
+      {/* Test mode badge */}
+      {testMode && (
+        <div style={{
+          margin: "0.75rem 1rem 0",
+          padding: "0.35rem 0.75rem",
+          background: "rgba(252,136,85,0.1)",
+          border: "1px solid rgba(252,136,85,0.3)",
+          borderRadius: "0.4rem",
+          display: "flex",
+          alignItems: "center",
+          gap: "0.4rem",
+        }}>
+          <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#fc8855", display: "inline-block" }} />
+          <span style={{
+            fontFamily: "var(--font-montserrat), sans-serif",
+            fontSize: "0.6rem",
+            fontWeight: 700,
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+            color: "#fc8855",
+          }}>Test Mode</span>
+        </div>
+      )}
+
       {/* Nav */}
       <nav style={{ flex: 1, padding: "1rem 0" }}>
         {NAV.map((item) => {
-          const active = pathname === item.href || (item.href !== "/en/admin" && pathname.startsWith(item.href));
+          const href = `/${locale}/admin${item.href.replace("/en/admin", "")}`;
+          const active = pathname === href || (href !== `/${locale}/admin` && pathname.startsWith(href));
           return (
             <Link
               key={item.href}
-              href={item.href}
+              href={href}
               style={{
                 display: "flex",
                 alignItems: "center",

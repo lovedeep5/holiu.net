@@ -7,16 +7,30 @@ import type { Product } from "@/types/database";
 
 export const runtime = "nodejs";
 
+function constructEvent(body: string, sig: string) {
+  const liveSecret = process.env.STRIPE_WEBHOOK_SECRET;
+  const testSecret = process.env.STRIPE_WEBHOOK_SECRET_TEST;
+
+  if (liveSecret) {
+    try {
+      return stripe.webhooks.constructEvent(body, sig, liveSecret);
+    } catch {}
+  }
+  if (testSecret) {
+    return stripe.webhooks.constructEvent(body, sig, testSecret);
+  }
+  throw new Error("No webhook secrets configured");
+}
+
 export async function POST(req: NextRequest) {
   const body = await req.text();
   const sig = req.headers.get("stripe-signature");
-  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
   let event;
 
-  if (webhookSecret && sig) {
+  if (sig) {
     try {
-      event = stripe.webhooks.constructEvent(body, sig, webhookSecret);
+      event = constructEvent(body, sig);
     } catch (err: any) {
       console.error("[webhook] Signature verification failed:", err.message);
       return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
@@ -41,7 +55,6 @@ export async function POST(req: NextRequest) {
 
     const supabase = createServiceClient();
 
-    // Idempotency check
     const { data: existing } = await supabase
       .from("orders")
       .select("id")
@@ -50,7 +63,6 @@ export async function POST(req: NextRequest) {
 
     if (existing) return NextResponse.json({ ok: true });
 
-    // Fetch product
     const { data } = await supabase
       .from("products")
       .select("*")
