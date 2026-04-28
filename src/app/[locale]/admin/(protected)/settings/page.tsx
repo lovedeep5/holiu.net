@@ -136,7 +136,7 @@ export default function AdminSettingsPage() {
               <p style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginBottom: "0.2rem" }}>
                 {k.label}
               </p>
-              <p style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "0.7rem", color: "rgba(255,255,255,0.35)", fontFamily: "monospace" }}>
+              <p style={{ fontFamily: "monospace", fontSize: "0.7rem", color: "rgba(255,255,255,0.35)" }}>
                 configured ✓
               </p>
             </div>
