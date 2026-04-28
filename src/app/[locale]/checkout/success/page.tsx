@@ -6,6 +6,7 @@ import AnimateIn from "@/components/ui/AnimateIn";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
+import { createClient } from "@/lib/supabase/client";
 
 interface DownloadItem {
   product: { id: string; name_en: string; name_de: string | null; thumbnail_url: string | null };
@@ -27,6 +28,11 @@ function SuccessContent() {
   const sessionId = searchParams.get("session_id");
   const [order, setOrder] = useState<OrderData | null>(null);
   const [loading, setLoading] = useState(!!sessionId);
+  const [loggedIn, setLoggedIn] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    createClient().auth.getUser().then(({ data }) => setLoggedIn(!!data.user));
+  }, []);
 
   useEffect(() => {
     if (!sessionId) return;
@@ -164,32 +170,63 @@ function SuccessContent() {
             </div>
           )}
 
-          {/* Create account nudge */}
-          <div
-            style={{
-              background: "linear-gradient(135deg, #fdf8f2 0%, #f5ede0 100%)",
-              borderRadius: "1rem",
-              padding: "1.5rem",
-              marginBottom: "2rem",
-              border: "1px solid rgba(163,141,81,0.15)",
-              textAlign: "center",
-            }}
-          >
-            <p
+          {/* Account nudge — only shown when not logged in */}
+          {loggedIn === false && (
+            <div
               style={{
-                fontFamily: "var(--font-montserrat), sans-serif",
-                fontSize: "0.875rem",
-                color: "#7a6f66",
-                lineHeight: 1.7,
-                marginBottom: "1rem",
+                background: "linear-gradient(135deg, #fdf8f2 0%, #f5ede0 100%)",
+                borderRadius: "1rem",
+                padding: "1.5rem",
+                marginBottom: "2rem",
+                border: "1px solid rgba(163,141,81,0.15)",
+                textAlign: "center",
               }}
             >
-              {t("createAccount")}
-            </p>
-            <Link href="/account/login" className="btn-outline" style={{ fontSize: "0.8rem" }}>
-              Create Free Account
-            </Link>
-          </div>
+              <p
+                style={{
+                  fontFamily: "var(--font-montserrat), sans-serif",
+                  fontSize: "0.875rem",
+                  color: "#7a6f66",
+                  lineHeight: 1.7,
+                  marginBottom: "1rem",
+                }}
+              >
+                {t("createAccount")}
+              </p>
+              <Link href="/account/login" className="btn-outline" style={{ fontSize: "0.8rem" }}>
+                Create Free Account
+              </Link>
+            </div>
+          )}
+
+          {/* Already logged in — link to their orders */}
+          {loggedIn === true && (
+            <div
+              style={{
+                background: "linear-gradient(135deg, #fdf8f2 0%, #f5ede0 100%)",
+                borderRadius: "1rem",
+                padding: "1.5rem",
+                marginBottom: "2rem",
+                border: "1px solid rgba(163,141,81,0.15)",
+                textAlign: "center",
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: "var(--font-montserrat), sans-serif",
+                  fontSize: "0.875rem",
+                  color: "#7a6f66",
+                  lineHeight: 1.7,
+                  marginBottom: "1rem",
+                }}
+              >
+                Your purchase has been saved to your account.
+              </p>
+              <Link href="/account/orders" className="btn-outline" style={{ fontSize: "0.8rem" }}>
+                View My Orders
+              </Link>
+            </div>
+          )}
 
           <div style={{ textAlign: "center" }}>
             <Link href="/shop" className="btn-primary">

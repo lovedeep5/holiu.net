@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getStripeClient, getStripeMode } from "@/lib/stripe";
-import { createServiceClient } from "@/lib/supabase/server";
+import { createClient, createServiceClient } from "@/lib/supabase/server";
 import type { Product } from "@/types/database";
 
 export async function POST(req: NextRequest) {
@@ -30,6 +30,9 @@ export async function POST(req: NextRequest) {
     const host = req.headers.get("x-forwarded-host") || req.headers.get("host") || "holiu-net.vercel.app";
     const proto = host.startsWith("localhost") ? "http" : "https";
     const baseUrl = `${proto}://${host}`;
+
+    const userClient = await createClient();
+    const { data: { user } } = await userClient.auth.getUser();
 
     const [stripeClient, mode] = await Promise.all([getStripeClient(), getStripeMode()]);
 
@@ -61,6 +64,7 @@ export async function POST(req: NextRequest) {
         product_id: product.id,
         product_slug: product.slug,
         locale,
+        user_id: user?.id ?? "",
       },
     });
 

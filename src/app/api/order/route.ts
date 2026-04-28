@@ -33,7 +33,9 @@ export async function GET(req: NextRequest) {
   }
 
   const order = data as any;
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://holiu-net.vercel.app";
+  const host = req.headers.get("x-forwarded-host") || req.headers.get("host") || "holiu-net.vercel.app";
+  const proto = host.startsWith("localhost") ? "http" : "https";
+  const baseUrl = `${proto}://${host}`;
 
   const items = ((order.order_items as any[]) || []).map((item: any) => {
     const token = item.download_tokens?.[0];

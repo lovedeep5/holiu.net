@@ -76,9 +76,12 @@ export async function POST(req: NextRequest) {
 
     const product = data as unknown as Product;
 
+    const userId = session.metadata?.user_id || null;
+
     const { downloadTokens } = await fulfillOrder({
       stripeSessionId: session.id,
       customerEmail,
+      userId,
       products: [product],
     });
 
