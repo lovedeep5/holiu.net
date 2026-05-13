@@ -7,7 +7,7 @@ import AnimateIn from "@/components/ui/AnimateIn";
 export default function ContactForm() {
   const t = useTranslations("contact");
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ first_name: "", last_name: "", email: "", message: "" });
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -20,7 +20,7 @@ export default function ContactForm() {
       });
       if (!res.ok) throw new Error();
       setStatus("success");
-      setForm({ name: "", email: "", message: "" });
+      setForm({ first_name: "", last_name: "", email: "", message: "" });
     } catch {
       setStatus("error");
     }
@@ -90,37 +90,75 @@ export default function ContactForm() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-              <div>
-                <label
-                  style={{
-                    fontFamily: "var(--font-montserrat), sans-serif",
-                    fontSize: "0.75rem",
-                    fontWeight: 600,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    color: "#7a6f66",
-                    display: "block",
-                    marginBottom: "0.4rem",
-                  }}
-                >
-                  {t("name")}
-                </label>
-                <input
-                  type="text"
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  style={{
-                    width: "100%",
-                    padding: "0.875rem 1rem",
-                    border: "1px solid rgba(163,141,81,0.3)",
-                    borderRadius: "0.75rem",
-                    fontFamily: "var(--font-montserrat), sans-serif",
-                    fontSize: "0.95rem",
-                    color: "#2c2520",
-                    background: "white",
-                    outline: "none",
-                  }}
-                />
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                <div>
+                  <label
+                    style={{
+                      fontFamily: "var(--font-montserrat), sans-serif",
+                      fontSize: "0.75rem",
+                      fontWeight: 600,
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                      color: "#7a6f66",
+                      display: "block",
+                      marginBottom: "0.4rem",
+                    }}
+                  >
+                    First Name *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={form.first_name}
+                    onChange={(e) => setForm({ ...form, first_name: e.target.value })}
+                    style={{
+                      width: "100%",
+                      padding: "0.875rem 1rem",
+                      border: "1px solid rgba(163,141,81,0.3)",
+                      borderRadius: "0.75rem",
+                      fontFamily: "var(--font-montserrat), sans-serif",
+                      fontSize: "0.95rem",
+                      color: "#2c2520",
+                      background: "white",
+                      outline: "none",
+                      boxSizing: "border-box",
+                    }}
+                  />
+                </div>
+                <div>
+                  <label
+                    style={{
+                      fontFamily: "var(--font-montserrat), sans-serif",
+                      fontSize: "0.75rem",
+                      fontWeight: 600,
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                      color: "#7a6f66",
+                      display: "block",
+                      marginBottom: "0.4rem",
+                    }}
+                  >
+                    Last Name *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={form.last_name}
+                    onChange={(e) => setForm({ ...form, last_name: e.target.value })}
+                    style={{
+                      width: "100%",
+                      padding: "0.875rem 1rem",
+                      border: "1px solid rgba(163,141,81,0.3)",
+                      borderRadius: "0.75rem",
+                      fontFamily: "var(--font-montserrat), sans-serif",
+                      fontSize: "0.95rem",
+                      color: "#2c2520",
+                      background: "white",
+                      outline: "none",
+                      boxSizing: "border-box",
+                    }}
+                  />
+                </div>
               </div>
               <div>
                 <label

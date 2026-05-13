@@ -104,14 +104,17 @@ function LoginForm() {
                 const form = e.currentTarget;
                 const email = (form.elements.namedItem("email") as HTMLInputElement).value;
                 const password = (form.elements.namedItem("password") as HTMLInputElement).value;
-                const name = mode === "signup"
-                  ? (form.elements.namedItem("name") as HTMLInputElement)?.value
+                const first_name = mode === "signup"
+                  ? (form.elements.namedItem("first_name") as HTMLInputElement)?.value
+                  : undefined;
+                const last_name = mode === "signup"
+                  ? (form.elements.namedItem("last_name") as HTMLInputElement)?.value
                   : undefined;
 
                 const res = await fetch("/api/account/auth", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({ mode, email, password, name }),
+                  body: JSON.stringify({ mode, email, password, first_name, last_name }),
                 });
                 const data = await res.json();
 
@@ -133,36 +136,69 @@ function LoginForm() {
               style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}
             >
               {mode === "signup" && (
-                <div>
-                  <label
-                    style={{
-                      fontFamily: "var(--font-montserrat), sans-serif",
-                      fontSize: "0.75rem",
-                      fontWeight: 600,
-                      color: "#7a6f66",
-                      display: "block",
-                      marginBottom: "0.5rem",
-                    }}
-                  >
-                    {t("name")}
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    required={mode === "signup"}
-                    style={{
-                      width: "100%",
-                      padding: "0.75rem 1rem",
-                      borderRadius: "0.625rem",
-                      border: "1px solid rgba(163,141,81,0.25)",
-                      fontFamily: "var(--font-montserrat), sans-serif",
-                      fontSize: "0.9rem",
-                      color: "#2c2520",
-                      background: "#fdf8f2",
-                      outline: "none",
-                      boxSizing: "border-box",
-                    }}
-                  />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
+                  <div>
+                    <label
+                      style={{
+                        fontFamily: "var(--font-montserrat), sans-serif",
+                        fontSize: "0.75rem",
+                        fontWeight: 600,
+                        color: "#7a6f66",
+                        display: "block",
+                        marginBottom: "0.5rem",
+                      }}
+                    >
+                      First Name
+                    </label>
+                    <input
+                      type="text"
+                      name="first_name"
+                      required
+                      style={{
+                        width: "100%",
+                        padding: "0.75rem 1rem",
+                        borderRadius: "0.625rem",
+                        border: "1px solid rgba(163,141,81,0.25)",
+                        fontFamily: "var(--font-montserrat), sans-serif",
+                        fontSize: "0.9rem",
+                        color: "#2c2520",
+                        background: "#fdf8f2",
+                        outline: "none",
+                        boxSizing: "border-box",
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <label
+                      style={{
+                        fontFamily: "var(--font-montserrat), sans-serif",
+                        fontSize: "0.75rem",
+                        fontWeight: 600,
+                        color: "#7a6f66",
+                        display: "block",
+                        marginBottom: "0.5rem",
+                      }}
+                    >
+                      Last Name
+                    </label>
+                    <input
+                      type="text"
+                      name="last_name"
+                      required
+                      style={{
+                        width: "100%",
+                        padding: "0.75rem 1rem",
+                        borderRadius: "0.625rem",
+                        border: "1px solid rgba(163,141,81,0.25)",
+                        fontFamily: "var(--font-montserrat), sans-serif",
+                        fontSize: "0.9rem",
+                        color: "#2c2520",
+                        background: "#fdf8f2",
+                        outline: "none",
+                        boxSizing: "border-box",
+                      }}
+                    />
+                  </div>
                 </div>
               )}
 

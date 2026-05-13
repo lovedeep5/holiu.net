@@ -18,7 +18,8 @@ const inputStyle: React.CSSProperties = {
 
 export default function GetStartedForm() {
   const t = useTranslations("getStarted");
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "done">("idle");
 
@@ -29,7 +30,7 @@ export default function GetStartedForm() {
       await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, source: "get-started" }),
+        body: JSON.stringify({ first_name: firstName, last_name: lastName, email, source: "get-started" }),
       });
       setStatus("done");
     } catch {
@@ -87,13 +88,24 @@ export default function GetStartedForm() {
 
   return (
     <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "0.875rem", marginTop: "0.5rem" }}>
-      <input
-        type="text"
-        placeholder={t("formNamePlaceholder")}
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        style={inputStyle}
-      />
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.625rem" }}>
+        <input
+          type="text"
+          required
+          placeholder="First name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          style={inputStyle}
+        />
+        <input
+          type="text"
+          required
+          placeholder="Last name"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          style={inputStyle}
+        />
+      </div>
       <input
         type="email"
         required

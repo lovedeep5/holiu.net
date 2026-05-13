@@ -86,6 +86,8 @@ export interface Database {
         Row: {
           id: string;
           name: string | null;
+          first_name: string | null;
+          last_name: string | null;
           email: string;
           message: string | null;
           source: string | null;

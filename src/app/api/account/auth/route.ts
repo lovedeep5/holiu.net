@@ -20,16 +20,28 @@ function makeSupabase(req: NextRequest, res: NextResponse) {
 
 /** POST — login or signup */
 export async function POST(req: NextRequest) {
-  const { mode, email, password, name } = await req.json();
+  const { mode, email, password, first_name, last_name, name } = await req.json();
 
   const response = NextResponse.json({ ok: true });
   const supabase = makeSupabase(req, response);
 
   if (mode === "signup") {
+    // Back-compat: accept legacy "name" field
+    const parts = name ? String(name).trim().split(/\s+/) : [];
+    const fName = first_name ?? parts[0] ?? "";
+    const lName = last_name ?? (parts.length > 1 ? parts.slice(1).join(" ") : "");
+    const fullName = [fName, lName].filter(Boolean).join(" ");
+
     const { error } = await supabase.auth.signUp({
       email,
       password,
-      options: { data: { name: name ?? "" } },
+      options: {
+        data: {
+          first_name: fName,
+          last_name: lName,
+          name: fullName,
+        },
+      },
     });
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 400 });

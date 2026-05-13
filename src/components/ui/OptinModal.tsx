@@ -24,7 +24,8 @@ function setCookie(name: string, value: string, days?: number) {
 export default function OptinModal() {
   const [visible, setVisible] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "done">("idle");
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
 
   useEffect(() => {
@@ -65,7 +66,7 @@ export default function OptinModal() {
       await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, source: "popup" }),
+        body: JSON.stringify({ first_name: firstName, last_name: lastName, email, source: "popup" }),
       });
       setCookie(COOKIE_SUBMITTED, "1"); // no expiry = never expires
       setStatus("done");
@@ -148,24 +149,46 @@ export default function OptinModal() {
               </p>
 
               <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "0.875rem" }}>
-                <input
-                  type="text"
-                  placeholder="Your name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  style={{
-                    padding: "0.8rem 1rem",
-                    border: "1px solid rgba(163,141,81,0.25)",
-                    borderRadius: "0.625rem",
-                    fontFamily: "var(--font-montserrat), sans-serif",
-                    fontSize: "0.9rem",
-                    color: "#2c2520",
-                    background: "white",
-                    outline: "none",
-                    width: "100%",
-                    boxSizing: "border-box",
-                  }}
-                />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.625rem" }}>
+                  <input
+                    type="text"
+                    required
+                    placeholder="First name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    style={{
+                      padding: "0.8rem 1rem",
+                      border: "1px solid rgba(163,141,81,0.25)",
+                      borderRadius: "0.625rem",
+                      fontFamily: "var(--font-montserrat), sans-serif",
+                      fontSize: "0.9rem",
+                      color: "#2c2520",
+                      background: "white",
+                      outline: "none",
+                      width: "100%",
+                      boxSizing: "border-box",
+                    }}
+                  />
+                  <input
+                    type="text"
+                    required
+                    placeholder="Last name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    style={{
+                      padding: "0.8rem 1rem",
+                      border: "1px solid rgba(163,141,81,0.25)",
+                      borderRadius: "0.625rem",
+                      fontFamily: "var(--font-montserrat), sans-serif",
+                      fontSize: "0.9rem",
+                      color: "#2c2520",
+                      background: "white",
+                      outline: "none",
+                      width: "100%",
+                      boxSizing: "border-box",
+                    }}
+                  />
+                </div>
                 <input
                   type="email"
                   required
