@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import type { Product } from "@/types/database";
+import MediaPicker, { type MediaItem } from "./MediaPicker";
 
 const DEFAULT_CATEGORIES = ["Courses", "Workshops", "Meditations", "Chakra Balancing", "Channeling"];
 
@@ -26,6 +27,10 @@ export default function ProductForm({ product }: Props) {
   const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
   const [digitalFile, setDigitalFile] = useState<File | null>(null);
   const [thumbnailPreview, setThumbnailPreview] = useState<string | null>(product?.thumbnail_url ?? null);
+  const [thumbnailUrl, setThumbnailUrl] = useState<string | null>(product?.thumbnail_url ?? null);
+  const [filePath, setFilePath] = useState<string | null>(product?.file_path ?? null);
+  const [fileName, setFileName] = useState<string | null>(product?.file_path ?? null);
+  const [picker, setPicker] = useState<null | "image" | "file">(null);
   const [categories, setCategories] = useState(DEFAULT_CATEGORIES);
   const [selectedCategory, setSelectedCategory] = useState(product?.category ?? DEFAULT_CATEGORIES[0]);
   const [newCategory, setNewCategory] = useState("");
@@ -51,6 +56,37 @@ export default function ProductForm({ product }: Props) {
     setThumbnailPreview(URL.createObjectURL(file));
   }
 
+  function removeThumbnail() {
+    setThumbnailFile(null);
+    setThumbnailPreview(null);
+    setThumbnailUrl(null);
+  }
+
+  function handleDigitalChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0] ?? null;
+    setDigitalFile(file);
+    setFileName(file?.name ?? filePath);
+  }
+
+  function removeDigitalFile() {
+    setDigitalFile(null);
+    setFilePath(null);
+    setFileName(null);
+  }
+
+  function handlePick(item: MediaItem) {
+    if (picker === "image") {
+      setThumbnailFile(null);
+      setThumbnailUrl(item.url);
+      setThumbnailPreview(item.url);
+    } else {
+      setDigitalFile(null);
+      setFilePath(item.path);
+      setFileName(item.name);
+    }
+    setPicker(null);
+  }
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
@@ -69,26 +105,30 @@ export default function ProductForm({ product }: Props) {
         featured: (form.elements.namedItem("featured") as HTMLInputElement)?.checked ?? false,
         published: (form.elements.namedItem("published") as HTMLInputElement)?.checked ?? true,
       };
+      // Resolve thumbnail: newly uploaded file > picked/existing URL > null (removed).
+      // New uploads go through the media library so they're reusable later.
+      let finalThumbnail = thumbnailUrl;
       if (thumbnailFile) {
         const fd = new FormData();
-        fd.append("file", thumbnailFile);
-        fd.append("bucket", "thumbnails");
-        fd.append("path", `${slug}-${Date.now()}${thumbnailFile.name.substring(thumbnailFile.name.lastIndexOf("."))}`);
-        const r = await fetch("/api/admin/upload", { method: "POST", body: fd });
+        fd.append("files", thumbnailFile);
+        const r = await fetch("/api/admin/media", { method: "POST", body: fd });
         const d = await r.json();
         if (!r.ok) throw new Error(d.error || "Thumbnail upload failed");
-        payload.thumbnail_url = d.url;
+        finalThumbnail = d.items?.[0]?.url ?? null;
       }
+      payload.thumbnail_url = finalThumbnail;
+
+      // Resolve digital file the same way.
+      let finalFilePath = filePath;
       if (digitalFile) {
         const fd = new FormData();
-        fd.append("file", digitalFile);
-        fd.append("bucket", "digital-products");
-        fd.append("path", `${slug}-${Date.now()}${digitalFile.name.substring(digitalFile.name.lastIndexOf("."))}`);
-        const r = await fetch("/api/admin/upload", { method: "POST", body: fd });
+        fd.append("files", digitalFile);
+        const r = await fetch("/api/admin/media", { method: "POST", body: fd });
         const d = await r.json();
         if (!r.ok) throw new Error(d.error || "File upload failed");
-        payload.file_path = d.path;
+        finalFilePath = d.items?.[0]?.path ?? null;
       }
+      payload.file_path = finalFilePath;
       const url = isEdit ? `/api/admin/products/${product!.id}` : "/api/admin/products";
       const res = await fetch(url, { method: isEdit ? "PUT" : "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
       const data = await res.json();
@@ -112,6 +152,22 @@ export default function ProductForm({ product }: Props) {
     display: "block", marginBottom: "0.5rem",
     fontFamily: "var(--font-montserrat), sans-serif", fontSize: "0.7rem",
     fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#a38d51",
+  };
+  const pickBtn: React.CSSProperties = {
+    padding: "0.5rem 0.9rem", borderRadius: "0.5rem", cursor: "pointer",
+    border: "1px solid rgba(163,141,81,0.3)", background: "rgba(255,255,255,0.04)",
+    color: "rgba(255,255,255,0.7)", fontFamily: "var(--font-montserrat), sans-serif",
+    fontSize: "0.72rem", fontWeight: 600,
+  };
+  const pickBtnPrimary: React.CSSProperties = {
+    ...pickBtn, border: "1px solid rgba(252,136,85,0.4)", background: "rgba(252,136,85,0.1)", color: "#fc8855",
+  };
+  const removeBtn: React.CSSProperties = {
+    ...pickBtn, border: "1px solid rgba(220,38,38,0.3)", background: "rgba(220,38,38,0.08)", color: "#fca5a5",
+  };
+  const hint: React.CSSProperties = {
+    marginTop: "0.4rem", fontFamily: "var(--font-montserrat), sans-serif",
+    fontSize: "0.7rem", color: "rgba(255,255,255,0.35)", wordBreak: "break-all",
   };
 
   return (
@@ -210,23 +266,42 @@ export default function ProductForm({ product }: Props) {
                 <Image src={thumbnailPreview} alt="preview" fill style={{ objectFit: "cover" }} unoptimized />
               </div>
             )}
-            <input type="file" accept="image/*" onChange={handleThumbnailChange} style={{ ...inp, padding: "0.5rem" }} />
-            {product?.thumbnail_url && !thumbnailFile && (
-              <p style={{ marginTop: "0.35rem", fontFamily: "var(--font-montserrat), sans-serif", fontSize: "0.7rem", color: "rgba(255,255,255,0.3)" }}>Current: {product.thumbnail_url}</p>
-            )}
+            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+              <button type="button" onClick={() => setPicker("image")} style={pickBtnPrimary}>◳ Choose from Media</button>
+              <label style={pickBtn}>
+                Upload new
+                <input type="file" accept="image/*" onChange={handleThumbnailChange} style={{ display: "none" }} />
+              </label>
+              {thumbnailPreview && (
+                <button type="button" onClick={removeThumbnail} style={removeBtn}>Remove</button>
+              )}
+            </div>
+            {thumbnailFile && <p style={hint}>New upload: {thumbnailFile.name}</p>}
           </div>
 
           <div>
             <label style={lbl}>Digital File (PDF / MP3 / ZIP)</label>
-            <input type="file" accept=".pdf,.mp3,.mp4,.zip,.m4a,.wav"
-              onChange={(e) => setDigitalFile(e.target.files?.[0] ?? null)}
-              style={{ ...inp, padding: "0.5rem" }} />
-            {product?.file_path && !digitalFile && (
-              <p style={{ marginTop: "0.35rem", fontFamily: "var(--font-montserrat), sans-serif", fontSize: "0.7rem", color: "rgba(255,255,255,0.3)" }}>Current: {product.file_path}</p>
+            {fileName && (
+              <p style={{ ...hint, marginTop: 0, marginBottom: "0.6rem", color: "rgba(255,255,255,0.6)" }}>📄 {fileName}</p>
             )}
+            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+              <button type="button" onClick={() => setPicker("file")} style={pickBtnPrimary}>◳ Choose from Media</button>
+              <label style={pickBtn}>
+                Upload new
+                <input type="file" accept=".pdf,.mp3,.mp4,.zip,.m4a,.wav,.epub"
+                  onChange={handleDigitalChange} style={{ display: "none" }} />
+              </label>
+              {fileName && (
+                <button type="button" onClick={removeDigitalFile} style={removeBtn}>Remove</button>
+              )}
+            </div>
           </div>
         </div>
       </div>
+
+      {picker && (
+        <MediaPicker type={picker} onSelect={handlePick} onClose={() => setPicker(null)} />
+      )}
 
       <div style={{ display: "flex", gap: "1rem", marginTop: "2rem", paddingTop: "1.5rem", borderTop: "1px solid rgba(163,141,81,0.1)" }}>
         <button type="submit" disabled={loading}

@@ -23,3 +23,18 @@ export async function isAdminAuthed(): Promise<boolean> {
     return false;
   }
 }
+
+/** Returns the id of the currently signed-in admin, or null. */
+export async function getAdminUserId(): Promise<string | null> {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("admin_session")?.value;
+  if (!token) return null;
+  try {
+    const supabase = createServiceClient();
+    const { data, error } = await supabase.auth.getUser(token);
+    if (error || !data.user) return null;
+    return data.user.id;
+  } catch {
+    return null;
+  }
+}
