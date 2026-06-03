@@ -17,19 +17,21 @@ export default function HeroSection() {
         <div className="absolute inset-0" style={{ background: "rgba(253,248,242,0.35)" }} />
       </div>
 
-      {/* Centered logo — pushed below fixed navbar (80px) */}
+      {/* Centered logo — pushed below fixed navbar (80px), with breathing room top & bottom */}
       <div
         className="relative z-10 flex flex-col items-center px-6"
-        style={{ gap: "1rem", paddingTop: "80px" }}
+        style={{ gap: "1rem", paddingTop: "calc(80px + 2vh)", paddingBottom: "2vh" }}
       >
         <Image
-          src="/images/logo-dark-opt.png"
+          src="/images/logo-dark.png"
           alt="HOLIU"
-          width={400}
-          height={400}
-          sizes="(max-width: 768px) 88vw, 400px"
+          width={900}
+          height={900}
+          quality={90}
+          priority
+          sizes="(max-width: 768px) 92vw, 820px"
           style={{
-            width: "min(88vw, 78vh)",
+            width: "min(92vw, 86vh)",
             height: "auto",
             objectFit: "contain",
           }}

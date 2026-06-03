@@ -7,7 +7,10 @@ export default function TreasureSection() {
   const t = useTranslations("home.treasure");
 
   return (
-    <section className="section-padding bg-white text-center">
+    <section
+      className="section-padding bg-white text-center"
+      style={{ paddingTop: "clamp(5rem, 12vh, 9rem)", paddingBottom: "clamp(5rem, 12vh, 9rem)" }}
+    >
       <div className="container-max flex flex-col items-center" style={{ gap: "1rem" }}>
         <p
           style={{
@@ -26,7 +29,7 @@ export default function TreasureSection() {
         <h2
           style={{
             fontFamily: "var(--font-playfair), Georgia, serif",
-            fontSize: "clamp(3.5rem, 9vw, 7rem)",
+            fontSize: "clamp(2.25rem, 5.5vw, 4.25rem)",
             lineHeight: 1,
             color: "#2c2520",
             margin: 0,
