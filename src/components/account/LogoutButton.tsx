@@ -1,10 +1,11 @@
 "use client";
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
 export default function LogoutButton() {
   const locale = useLocale();
+  const t = useTranslations("account");
   const [loading, setLoading] = useState(false);
 
   async function handleLogout() {
@@ -33,7 +34,7 @@ export default function LogoutButton() {
         transition: "all 0.2s",
       }}
     >
-      {loading ? "…" : "Sign Out"}
+      {loading ? "…" : t("logout")}
     </button>
   );
 }

@@ -13,7 +13,13 @@ export async function generateMetadata({
   return { title: t("shop") };
 }
 
-export default async function ShopPage() {
+export default async function ShopPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const tn = await getTranslations({ locale, namespace: "nav" });
   return (
     <>
       {/* Simple page header — matches original */}
@@ -29,9 +35,9 @@ export default async function ShopPage() {
             }}
           >
             <Link href="/" style={{ color: "#a38d51", textDecoration: "none" }}>
-              Home
+              {tn("home")}
             </Link>
-            {" / Shop"}
+            {` / ${tn("shop")}`}
           </p>
           <h1
             style={{
@@ -42,7 +48,7 @@ export default async function ShopPage() {
               marginBottom: "2rem",
             }}
           >
-            Shop
+            {tn("shop")}
           </h1>
         </div>
       </div>

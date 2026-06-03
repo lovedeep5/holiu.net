@@ -64,7 +64,13 @@
     "subheading": "Digitale Kurse, Meditationen, Chakra-Balancing und Channeling-Sitzungen.",
     "allCategories": "Alle",
     "noProducts": "Keine Produkte gefunden.",
-    "loading": "Produkte werden geladen..."
+    "loading": "Produkte werden geladen...",
+    "resultsCount": "Zeige {from}–{to} von {total} Ergebnissen",
+    "sortDefault": "Standardsortierung",
+    "sortPriceAsc": "Nach Preis: aufsteigend",
+    "sortPriceDesc": "Nach Preis: absteigend",
+    "addToCart": "In den Warenkorb",
+    "categoriesHeading": "Produktkategorien"
   },
   "productDetail": {
     "buyNow": "Jetzt kaufen — {price}",
@@ -82,7 +88,14 @@
     "createAccount": "Speichere deine Downloads dauerhaft, indem du ein kostenloses Konto erstellst.",
     "cancelHeading": "Zahlung abgebrochen",
     "cancelBody": "Es wurde nichts berechnet. Du kannst jederzeit zum Shop zurückkehren.",
-    "backToShop": "Zurück zum Shop"
+    "backToShop": "Zurück zum Shop",
+    "loadingDownloads": "Deine Downloads werden geladen…",
+    "yourDownloads": "Deine Downloads",
+    "download": "Herunterladen",
+    "createAccountBtn": "Kostenloses Konto erstellen",
+    "savedToAccount": "Dein Kauf wurde in deinem Konto gespeichert.",
+    "viewOrders": "Meine Bestellungen ansehen",
+    "freeMeditation": "Kostenlose Meditation"
   },
   "account": {
     "dashboard": "Mein Konto",
@@ -97,12 +110,21 @@
     "noOrders": "Du hast noch keine Käufe getätigt.",
     "reDownload": "Erneut herunterladen",
     "orderDate": "Bestelldatum",
-    "orderStatus": "Status"
+    "orderStatus": "Status",
+    "namePlaceholder": "Dein vollständiger Name",
+    "emailPlaceholder": "deine@email.com",
+    "changePassword": "Passwort ändern",
+    "newPassword": "Neues Passwort",
+    "confirmPassword": "Neues Passwort bestätigen",
+    "saveChanges": "Änderungen speichern",
+    "saved": "Gespeichert ✓"
   },
   "contact": {
     "label": "Kontakt",
     "heading": "Kontakt aufnehmen",
     "subheading": "Hast du eine Frage? Wir freuen uns von dir zu hören.",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
     "name": "Dein Name",
     "email": "Deine E-Mail",
     "message": "Deine Nachricht",
@@ -150,7 +172,9 @@
     "ctaHeading": "Bereit anzufangen?",
     "ctaBody": "Erkunde den Shop oder lade eine kostenlose Meditation herunter, um deinen ersten Schritt zu machen.",
     "ctaShop": "Shop entdecken",
-    "ctaMeditation": "Kostenlose Meditation"
+    "ctaMeditation": "Kostenlose Meditation",
+    "name": "Ruth Heinen",
+    "credentials": "Gründerin & CEO Holiu.net\nChannel Medium, Modedesignerin,\nHeilerin & Spiritual Lifestyle Coach"
   },
   "coursesPage": {
     "heroHeading": "Verändere dein Leben mit dem richtigen Kurs",
@@ -188,13 +212,28 @@
     "downloadFree": "Kostenlose Meditation herunterladen",
     "browseMore": "Meditationen entdecken",
     "inspirationTitle": "Inspiration & Motivation",
-    "inspirationSub": "WAS UNSERE KUNDEN SAGEN"
+    "inspirationSub": "WAS UNSERE KUNDEN SAGEN",
+    "ruthName": "Ruth Heinen",
+    "ruthRole": "CEO & Gründerin HOLIU"
   },
   "legal": {
     "privacy": "Datenschutz",
     "terms": "AGB",
     "disclaimer": "Haftungsausschluss",
     "imprint": "Impressum"
+  },
+  "optinModal": {
+    "freeGift": "Kostenloses Geschenk",
+    "heading": "Hol dir deine kostenlose Chakra-Meditation",
+    "body": "Finde inneren Frieden in nur 5 Minuten am Tag. Gib deine Daten ein und wir senden sie dir direkt in dein Postfach.",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "Deine E-Mail-Adresse",
+    "submit": "Schick mir die kostenlose Meditation →",
+    "sending": "Wird gesendet…",
+    "noSpam": "Kein Spam. Jederzeit abmelden.",
+    "thankYou": "Vielen Dank!",
+    "thankYouBody": "Deine kostenlose Meditation ist unterwegs. Schau bald in dein Postfach. 💛"
   },
   "getStarted": {
     "heading": "Lerne Meditation in nur fünf Minuten am Tag!",
@@ -205,6 +244,8 @@
     "downloadBtn": "Kostenlose Meditation herunterladen",
     "imageAlt": "HOLIU Chakra Meditation",
     "formNamePlaceholder": "Dein Name",
+    "formFirstName": "Vorname",
+    "formLastName": "Nachname",
     "formEmailPlaceholder": "Deine E-Mail-Adresse",
     "formSubmit": "Meine kostenlose Meditation erhalten →",
     "formSending": "Wird gesendet…",
@@ -241,7 +282,15 @@
     },
     "testimonials": {
       "eyebrow": "Kundenstimmen",
-      "heading": "WAS UNSERE KUNDEN SAGEN"
+      "heading": "WAS UNSERE KUNDEN SAGEN",
+      "items": [
+        { "name": "Sabine Wollert", "text": "Liebe Ruth, du lebst eine bodenständige, alltagstaugliche Spiritualität und vermittelst diese in deinen Workshops sehr professionell. Hier werden alle Ebenen miteinander verbunden, sodass die freigesetzten Energien und Erkenntnisse nachhaltig wirken und umgesetzt werden können. Chapeau" },
+        { "name": "Nic Naa", "text": "Für mich sind die Meditationen sehr harmonisch aufeinander abgestimmt und strukturiert. Man freut sich schon auf den nächsten Teil. Ich fühle mich leicht, lebendig und gestärkt. Die angenehme, klare und feinfühlige Stimme erdet mich. Man spürt die überaus positive Energie, die mir erlaubt, meine volle Kraft zurückzugewinnen. Die Meditationen hinterlassen mich sehr entspannt und voller Lebensfreude, selbst wenn mein Tag nicht so gut lief. Ich ermutige jeden, der seinem Leben eine neue Richtung geben möchte, diese Meditationen auszuprobieren. Sie sind sehr beruhigend und gleichzeitig motivierend, um dich zu deinem vollen Potenzial zu führen. Ich danke dir für diesen hilfreichen Workshop, der mich unterstützt und meinen Alltag sehr positiv macht." },
+        { "name": "Anne Probst", "text": "Ruth nimmt dich in ihren Meditationen mit auf eine ganz besondere Reise. Voller Klarheit, Schärfe und Mitgefühl berühren ihre Ansagen den tiefsten Teil in mir und öffnen die Türen zum Licht. Danke, liebe Ruth, für deine besondere Gabe." },
+        { "name": "Jens Schack", "text": "Ruth liebt die Menschen. Daher kann sie sich behutsam in die Bedürfnisse der Teilnehmer einer Gruppe einfühlen. Das schätze ich sehr." },
+        { "name": "Ursa Jordan", "text": "Liebe Ruth, wenn ich deinen Channelings lausche, ob über Audiodatei oder im Kreis mit dir in deinem lichtdurchfluteten, farbenfrohen, energiegeladenen und kreativen Atem-Loft, erlaubt mir deine Stimme schon nach kurzer Zeit, meine Gedanken zu leeren, und bringt mir tiefe Entspannung. Deine sanfte, aber kraftvolle Führung nimmt mich mit auf eine Reise in mich selbst. Ich kann mein Herz für heilende innere Bilder öffnen, für Begegnungen mit verborgenen Emotionen, positiven Visionen und allerlei spirituellen Helfern. Selbst wenn es um schwierige Themen wie finanzielle Sorgen oder Familienkonflikte geht. Ich komme jedes Mal erfrischt, zuversichtlich, entspannt und voller Kraft und Vertrauen ins Hier und Jetzt zurück. Vielen herzlichen Dank dafür …" },
+        { "name": "Bernd Kienle", "text": "Liebe Ruth, vielen Dank für den wunderbaren Workshop. Er hat perfekt zu mir gepasst. Respekt, du machst es sehr professionell und einfühlsam, was nicht selbstverständlich ist, und das alles in einem bezaubernden Rahmen (… die Klänge, die Atmosphäre und die Energie – ich liebe das alles). Mach weiter so, ‚Channel-Engel‘." }
+      ]
     },
     "shop": {
       "eyebrow": "Shop",

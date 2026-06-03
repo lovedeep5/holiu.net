@@ -92,7 +92,7 @@ export default function GetStartedForm() {
         <input
           type="text"
           required
-          placeholder="First name"
+          placeholder={t("formFirstName")}
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           style={inputStyle}
@@ -100,7 +100,7 @@ export default function GetStartedForm() {
         <input
           type="text"
           required
-          placeholder="Last name"
+          placeholder={t("formLastName")}
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           style={inputStyle}

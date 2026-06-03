@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
 const featured = [
   {
@@ -25,13 +26,14 @@ const featured = [
   },
 ];
 
-export default function FeaturedProducts() {
+export default async function FeaturedProducts() {
+  const t = await getTranslations("home.shop");
   return (
     <section className="section-padding bg-brand-cream">
       <div className="container-max">
         <div className="text-center mb-14">
           <h2 className="font-display text-4xl md:text-5xl text-brand-dark mb-4">
-            Visit Our Shop
+            {t("heading")}
           </h2>
         </div>
 
@@ -73,7 +75,7 @@ export default function FeaturedProducts() {
 
         <div className="text-center mt-12">
           <Link href="/shop" className="btn-primary">
-            Visit Shop
+            {t("cta")}
           </Link>
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 const COOKIE_DISMISSED = "holiu_optin_dismissed"; // expires 1 day
 const COOKIE_SUBMITTED = "holiu_optin_done";       // never expires
@@ -22,6 +23,7 @@ function setCookie(name: string, value: string, days?: number) {
 }
 
 export default function OptinModal() {
+  const t = useTranslations("optinModal");
   const [visible, setVisible] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "done">("idle");
   const [firstName, setFirstName] = useState("");
@@ -129,23 +131,23 @@ export default function OptinModal() {
             <div style={{ textAlign: "center", padding: "1rem 0" }}>
               <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>🌸</div>
               <h2 style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "1.6rem", color: "#2c2520", fontWeight: 400, marginBottom: "0.75rem" }}>
-                Thank you!
+                {t("thankYou")}
               </h2>
               <p style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "0.9rem", color: "#7a6f66", lineHeight: 1.7 }}>
-                Your free meditation is on its way. Check your inbox soon. 💛
+                {t("thankYouBody")}
               </p>
             </div>
           ) : (
             <>
               {/* Heading */}
               <p style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase", color: "#a38d51", marginBottom: "0.5rem" }}>
-                Free Gift
+                {t("freeGift")}
               </p>
               <h2 style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(1.4rem, 3vw, 1.9rem)", color: "#2c2520", fontWeight: 400, lineHeight: 1.25, marginBottom: "0.75rem" }}>
-                Get Your Free<br />Chakra Meditation
+                {t("heading")}
               </h2>
               <p style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "0.85rem", color: "#7a6f66", lineHeight: 1.7, marginBottom: "1.75rem" }}>
-                Discover inner peace in just 5 minutes a day. Enter your details and we&apos;ll send it straight to your inbox.
+                {t("body")}
               </p>
 
               <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "0.875rem" }}>
@@ -153,7 +155,7 @@ export default function OptinModal() {
                   <input
                     type="text"
                     required
-                    placeholder="First name"
+                    placeholder={t("firstName")}
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                     style={{
@@ -172,7 +174,7 @@ export default function OptinModal() {
                   <input
                     type="text"
                     required
-                    placeholder="Last name"
+                    placeholder={t("lastName")}
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
                     style={{
@@ -192,7 +194,7 @@ export default function OptinModal() {
                 <input
                   type="email"
                   required
-                  placeholder="Your email address"
+                  placeholder={t("email")}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   style={{
@@ -214,12 +216,12 @@ export default function OptinModal() {
                   className="btn-primary"
                   style={{ width: "100%", justifyContent: "center", opacity: status === "sending" ? 0.7 : 1 }}
                 >
-                  {status === "sending" ? "Sending…" : "Send Me the Free Meditation →"}
+                  {status === "sending" ? t("sending") : t("submit")}
                 </button>
               </form>
 
               <p style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "0.7rem", color: "#b0a898", textAlign: "center", marginTop: "1rem" }}>
-                No spam. Unsubscribe anytime.
+                {t("noSpam")}
               </p>
             </>
           )}

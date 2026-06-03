@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Image from "next/image";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { STATIC_PRODUCTS, CATEGORIES } from "@/lib/static-products";
 
@@ -16,6 +16,7 @@ type SortKey = "default" | "price-asc" | "price-desc";
 
 export default function ProductGrid() {
   const locale = useLocale();
+  const t = useTranslations("shop");
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [sort, setSort] = useState<SortKey>("default");
   const [page, setPage] = useState(1);
@@ -70,8 +71,11 @@ export default function ProductGrid() {
               color: "#7a6f66",
             }}
           >
-            Showing {start + 1}–{Math.min(start + PER_PAGE, filtered.length)} of{" "}
-            {filtered.length} results
+            {t("resultsCount", {
+              from: start + 1,
+              to: Math.min(start + PER_PAGE, filtered.length),
+              total: filtered.length,
+            })}
           </p>
           <select
             value={sort}
@@ -87,16 +91,16 @@ export default function ProductGrid() {
               cursor: "pointer",
             }}
           >
-            <option value="default">Default sorting</option>
-            <option value="price-asc">Sort by price: low to high</option>
-            <option value="price-desc">Sort by price: high to low</option>
+            <option value="default">{t("sortDefault")}</option>
+            <option value="price-asc">{t("sortPriceAsc")}</option>
+            <option value="price-desc">{t("sortPriceDesc")}</option>
           </select>
         </div>
 
         {/* Product grid */}
         {pageProducts.length === 0 ? (
           <p style={{ fontFamily: "var(--font-montserrat), sans-serif", color: "#7a6f66" }}>
-            No products found.
+            {t("noProducts")}
           </p>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4" style={{ gap: "1.25rem" }}>
@@ -199,7 +203,7 @@ export default function ProductGrid() {
                           cursor: "pointer",
                         }}
                       >
-                        Add to cart
+                        {t("addToCart")}
                       </button>
                     </div>
                   </div>
@@ -274,7 +278,7 @@ export default function ProductGrid() {
             borderBottom: "1px solid #e8e0d4",
           }}
         >
-          Product Categories
+          {t("categoriesHeading")}
         </h3>
         {/* Desktop: vertical list */}
         <ul className="hidden lg:block" style={{ listStyle: "none", padding: 0, margin: 0 }}>
@@ -326,7 +330,7 @@ export default function ProductGrid() {
                 whiteSpace: "nowrap",
               }}
             >
-              {cat}
+              {cat === "All" ? t("allCategories") : cat}
             </button>
           ))}
         </div>

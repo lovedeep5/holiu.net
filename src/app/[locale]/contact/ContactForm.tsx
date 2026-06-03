@@ -104,7 +104,7 @@ export default function ContactForm() {
                       marginBottom: "0.4rem",
                     }}
                   >
-                    First Name *
+                    {t("firstName")} *
                   </label>
                   <input
                     type="text"
@@ -138,7 +138,7 @@ export default function ContactForm() {
                       marginBottom: "0.4rem",
                     }}
                   >
-                    Last Name *
+                    {t("lastName")} *
                   </label>
                   <input
                     type="text"

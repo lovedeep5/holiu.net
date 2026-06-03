@@ -131,7 +131,7 @@ export default async function AboutPage() {
               fontWeight: 700,
             }}
           >
-            Ruth Heinen
+            {t("name")}
           </h2>
 
           <p
@@ -144,9 +144,12 @@ export default async function AboutPage() {
               letterSpacing: "0.02em",
             }}
           >
-            Founder &amp; CEO Holiu.net<br />
-            Channel Medium, Fashion Designer,<br />
-            Healer &amp; Spiritual Lifestyle Coach
+            {t("credentials").split("\n").map((line, i, arr) => (
+              <span key={i}>
+                {line}
+                {i < arr.length - 1 && <br />}
+              </span>
+            ))}
           </p>
         </div>
 

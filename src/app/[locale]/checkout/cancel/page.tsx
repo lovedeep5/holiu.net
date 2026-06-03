@@ -59,7 +59,7 @@ export default function CheckoutCancelPage() {
               {t("backToShop")}
             </Link>
             <Link href="/meditation" className="btn-outline">
-              Free Meditation
+              {t("freeMeditation")}
             </Link>
           </div>
         </AnimateIn>

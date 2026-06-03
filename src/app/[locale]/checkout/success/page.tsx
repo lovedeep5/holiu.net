@@ -100,7 +100,7 @@ function SuccessContent() {
           {/* Downloads */}
           {loading && (
             <div style={{ textAlign: "center", color: "#a38d51", marginBottom: "2rem" }}>
-              Loading your downloads…
+              {t("loadingDownloads")}
             </div>
           )}
 
@@ -118,7 +118,7 @@ function SuccessContent() {
                   textAlign: "center",
                 }}
               >
-                Your Downloads
+                {t("yourDownloads")}
               </p>
               {order.items.map((item, i) => {
                 const name = locale === "de" && item.product.name_de ? item.product.name_de : item.product.name_en;
@@ -161,7 +161,7 @@ function SuccessContent() {
                         className="btn-primary"
                         style={{ fontSize: "0.75rem", padding: "0.6rem 1.25rem", whiteSpace: "nowrap" }}
                       >
-                        Download
+                        {t("download")}
                       </a>
                     )}
                   </div>
@@ -194,7 +194,7 @@ function SuccessContent() {
                 {t("createAccount")}
               </p>
               <Link href="/account/login" className="btn-outline" style={{ fontSize: "0.8rem" }}>
-                Create Free Account
+                {t("createAccountBtn")}
               </Link>
             </div>
           )}
@@ -220,10 +220,10 @@ function SuccessContent() {
                   marginBottom: "1rem",
                 }}
               >
-                Your purchase has been saved to your account.
+                {t("savedToAccount")}
               </p>
               <Link href="/account/orders" className="btn-outline" style={{ fontSize: "0.8rem" }}>
-                View My Orders
+                {t("viewOrders")}
               </Link>
             </div>
           )}

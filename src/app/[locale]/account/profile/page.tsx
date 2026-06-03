@@ -77,11 +77,11 @@ export default function AccountProfilePage() {
             <form onSubmit={handleSave} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
               <div>
                 <label style={labelStyle}>{t("name")}</label>
-                <input type="text" style={inputStyle} placeholder="Your full name" />
+                <input type="text" style={inputStyle} placeholder={t("namePlaceholder")} />
               </div>
               <div>
                 <label style={labelStyle}>{t("email")}</label>
-                <input type="email" style={inputStyle} placeholder="your@email.com" />
+                <input type="email" style={inputStyle} placeholder={t("emailPlaceholder")} />
               </div>
 
               <hr style={{ border: "none", borderTop: "1px solid rgba(163,141,81,0.15)", margin: "0.5rem 0" }} />
@@ -96,14 +96,14 @@ export default function AccountProfilePage() {
                   color: "#a38d51",
                 }}
               >
-                Change Password
+                {t("changePassword")}
               </p>
               <div>
-                <label style={labelStyle}>New Password</label>
+                <label style={labelStyle}>{t("newPassword")}</label>
                 <input type="password" style={inputStyle} placeholder="••••••••" />
               </div>
               <div>
-                <label style={labelStyle}>Confirm New Password</label>
+                <label style={labelStyle}>{t("confirmPassword")}</label>
                 <input type="password" style={inputStyle} placeholder="••••••••" />
               </div>
 
@@ -112,7 +112,7 @@ export default function AccountProfilePage() {
                 className="btn-primary"
                 style={{ justifyContent: "center" }}
               >
-                {saved ? "Saved ✓" : "Save Changes"}
+                {saved ? t("saved") : t("saveChanges")}
               </button>
             </form>
           </div>

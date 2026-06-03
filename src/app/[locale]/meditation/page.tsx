@@ -95,7 +95,7 @@ export default async function MeditationPage() {
                 marginBottom: "0.15rem",
               }}
             >
-              Ruth Heinen
+              {t("ruthName")}
             </p>
             <p
               style={{
@@ -106,7 +106,7 @@ export default async function MeditationPage() {
                 textTransform: "uppercase",
               }}
             >
-              CEO &amp; Founder HOLIU
+              {t("ruthRole")}
             </p>
           </div>
         </div>
@@ -342,7 +342,7 @@ export default async function MeditationPage() {
                   marginBottom: "0.15rem",
                 }}
               >
-                Ruth Heinen
+                {t("ruthName")}
               </p>
               <p
                 style={{
@@ -353,7 +353,7 @@ export default async function MeditationPage() {
                   textTransform: "uppercase",
                 }}
               >
-                CEO &amp; founder of HOLIU
+                {t("ruthRole")}
               </p>
             </div>
           </div>
