@@ -104,6 +104,7 @@ export default function ProductForm({ product }: Props) {
         price: Math.round(parseFloat(get("price")) * 100),
         featured: (form.elements.namedItem("featured") as HTMLInputElement)?.checked ?? false,
         published: (form.elements.namedItem("published") as HTMLInputElement)?.checked ?? true,
+        coming_soon: (form.elements.namedItem("coming_soon") as HTMLInputElement)?.checked ?? false,
       };
       // Resolve thumbnail: newly uploaded file > picked/existing URL > null (removed).
       // New uploads go through the media library so they're reusable later.
@@ -248,7 +249,7 @@ export default function ProductForm({ product }: Props) {
               style={inp} placeholder="e.g. 22.00" />
           </div>
 
-          <div style={{ display: "flex", gap: "1.5rem" }}>
+          <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
             <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", cursor: "pointer" }}>
               <input name="featured" type="checkbox" defaultChecked={product?.featured ?? false} style={{ accentColor: "#fc8855" }} />
               <span style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.6)" }}>Featured</span>
@@ -256,6 +257,10 @@ export default function ProductForm({ product }: Props) {
             <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", cursor: "pointer" }}>
               <input name="published" type="checkbox" defaultChecked={product?.published ?? true} style={{ accentColor: "#fc8855" }} />
               <span style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.6)" }}>Published</span>
+            </label>
+            <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", cursor: "pointer" }}>
+              <input name="coming_soon" type="checkbox" defaultChecked={product?.coming_soon ?? false} style={{ accentColor: "#fc8855" }} />
+              <span style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.6)" }}>Coming Soon</span>
             </label>
           </div>
 
