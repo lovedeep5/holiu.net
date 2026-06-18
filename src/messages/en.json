@@ -79,7 +79,8 @@
     "downloadInfo": "After purchase you'll receive a download link valid for 72 hours.",
     "securePayment": "Secure payment via Stripe",
     "backToShop": "Back to Shop",
-    "relatedProducts": "You might also like"
+    "relatedProducts": "You might also like",
+    "comingSoon": "Coming Soon"
   },
   "checkout": {
     "successHeading": "Thank you for your purchase!",

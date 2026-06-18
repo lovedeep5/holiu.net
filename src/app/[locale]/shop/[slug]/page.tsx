@@ -197,7 +197,7 @@ export default async function ProductDetailPage({
             </div>
 
             {/* Buy button */}
-            <BuyButton productSlug={slug} price={formatPrice(product.price)} />
+            <BuyButton productSlug={slug} price={formatPrice(product.price)} comingSoon={product.coming_soon} />
 
             <p
               style={{

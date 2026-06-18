@@ -1,13 +1,27 @@
 "use client";
 
-import { useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter, usePathname, Link } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
-import { STATIC_PRODUCTS, CATEGORIES } from "@/lib/static-products";
+import { CATEGORIES } from "@/lib/static-products";
 
 const PER_PAGE = 12;
+
+interface Product {
+  id: string;
+  slug: string;
+  name_en: string;
+  name_de: string | null;
+  category: string;
+  price: number;
+  currency: string;
+  thumbnail_url: string | null;
+  featured: boolean;
+  published: boolean;
+  coming_soon: boolean;
+}
 
 function formatPrice(cents: number) {
   return (cents / 100).toFixed(2).replace(".", ",") + " €";
@@ -21,6 +35,19 @@ export default function ProductGrid() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/products")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.products) setProducts(data.products);
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
 
   const activeCategory = searchParams.get("category") ?? "All";
   const sort = (searchParams.get("sort") as SortKey) ?? "default";
@@ -58,23 +85,23 @@ export default function ProductGrid() {
   // Category counts
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = {};
-    for (const p of STATIC_PRODUCTS) {
+    for (const p of products) {
       counts[p.category] = (counts[p.category] ?? 0) + 1;
     }
     return counts;
-  }, []);
+  }, [products]);
 
   // Filter
   const filtered = useMemo(() => {
     const base =
       activeCategory === "All"
-        ? STATIC_PRODUCTS
-        : STATIC_PRODUCTS.filter((p) => p.category === activeCategory);
+        ? products
+        : products.filter((p) => p.category === activeCategory);
 
     if (sort === "price-asc") return [...base].sort((a, b) => a.price - b.price);
     if (sort === "price-desc") return [...base].sort((a, b) => b.price - a.price);
     return base;
-  }, [activeCategory, sort]);
+  }, [activeCategory, sort, products]);
 
   const totalPages = Math.ceil(filtered.length / PER_PAGE);
   const start = (page - 1) * PER_PAGE;
@@ -354,7 +381,7 @@ export default function ProductGrid() {
               >
                 <span>{cat === "All" ? t("allCategories") : cat}</span>
                 <span style={{ color: "#a38d51", fontSize: "0.75rem" }}>
-                  ({cat === "All" ? STATIC_PRODUCTS.length : categoryCounts[cat] ?? 0})
+                  ({cat === "All" ? products.length : categoryCounts[cat] ?? 0})
                 </span>
               </button>
             </li>
