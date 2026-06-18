@@ -4,9 +4,12 @@ import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import AnimateIn from "@/components/ui/AnimateIn";
 import { STATIC_PRODUCTS } from "@/lib/static-products";
+import { createServiceClient } from "@/lib/supabase/server";
 import BuyButton from "@/components/shop/BuyButton";
 import { Link } from "@/i18n/navigation";
 import { ShieldCheck, Download, ArrowLeft } from "lucide-react";
+
+export const dynamic = "force-dynamic";
 
 function formatPrice(cents: number) {
   return new Intl.NumberFormat("de-DE", {
@@ -26,7 +29,17 @@ export async function generateMetadata({
   params: Promise<{ slug: string; locale: string }>;
 }): Promise<Metadata> {
   const { slug, locale } = await params;
-  const product = STATIC_PRODUCTS.find((p) => p.slug === slug);
+  let product: any;
+  try {
+    const supabase = createServiceClient();
+    const { data } = await supabase
+      .from("products")
+      .select("slug, name_en, name_de")
+      .eq("slug", slug)
+      .single();
+    product = data;
+  } catch {}
+  if (!product) product = STATIC_PRODUCTS.find((p) => p.slug === slug);
   if (!product) return {};
   const name =
     locale === "de" && product.name_de ? product.name_de : product.name_en;
@@ -39,22 +52,30 @@ export default async function ProductDetailPage({
   params: Promise<{ slug: string; locale: string }>;
 }) {
   const { slug, locale } = await params;
-  const product = STATIC_PRODUCTS.find((p) => p.slug === slug);
+  const supabase = createServiceClient();
+  const { data: dbProduct } = await supabase
+    .from("products")
+    .select("*")
+    .eq("slug", slug)
+    .single();
+  const fallback = STATIC_PRODUCTS.find((p) => p.slug === slug);
+  const product = dbProduct ?? fallback;
   if (!product) notFound();
 
   const t = await getTranslations({ locale, namespace: "productDetail" });
 
   const name =
-    locale === "de" && product.name_de ? product.name_de : product.name_en;
+    locale === "de" && (product as any).name_de
+      ? (product as any).name_de
+      : (product as any).name_en;
   const description =
-    locale === "de" && product.description_de
-      ? product.description_de
-      : product.description_en;
+    locale === "de" && (product as any).description_de
+      ? (product as any).description_de
+      : (product as any).description_en;
 
   return (
     <section className="section-padding bg-brand-cream min-h-screen pt-36">
       <div className="container-max">
-        {/* Back */}
         <AnimateIn>
           <Link
             href="/shop"
@@ -77,7 +98,6 @@ export default async function ProductDetailPage({
         </AnimateIn>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">
-          {/* Product image */}
           <AnimateIn>
             <div
               style={{
@@ -88,9 +108,9 @@ export default async function ProductDetailPage({
               }}
             >
               <div style={{ position: "relative", aspectRatio: "450/685" }}>
-                {product.thumbnail_url && (
+                {(product as any).thumbnail_url && (
                   <Image
-                    src={product.thumbnail_url}
+                    src={(product as any).thumbnail_url}
                     alt={name}
                     fill
                     className="object-contain"
@@ -102,7 +122,6 @@ export default async function ProductDetailPage({
             </div>
           </AnimateIn>
 
-          {/* Product info */}
           <AnimateIn delay={0.12}>
             <p
               style={{
@@ -115,7 +134,7 @@ export default async function ProductDetailPage({
                 marginBottom: "0.75rem",
               }}
             >
-              {product.category}
+              {(product as any).category}
             </p>
             <h1
               style={{
@@ -129,7 +148,6 @@ export default async function ProductDetailPage({
               {name}
             </h1>
 
-            {/* Price */}
             <p
               style={{
                 fontFamily: "var(--font-montserrat), sans-serif",
@@ -139,10 +157,9 @@ export default async function ProductDetailPage({
                 marginBottom: "1.5rem",
               }}
             >
-              {formatPrice(product.price)}
+              {formatPrice((product as any).price)}
             </p>
 
-            {/* Description */}
             {description && (
               <p
                 style={{
@@ -157,7 +174,6 @@ export default async function ProductDetailPage({
               </p>
             )}
 
-            {/* Trust badges */}
             <div
               style={{
                 display: "flex",
@@ -196,8 +212,7 @@ export default async function ProductDetailPage({
               </div>
             </div>
 
-            {/* Buy button */}
-            <BuyButton productSlug={slug} price={formatPrice(product.price)} comingSoon={product.coming_soon} />
+            <BuyButton productSlug={slug} price={formatPrice((product as any).price)} />
 
             <p
               style={{

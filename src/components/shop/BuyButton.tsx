@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { ShoppingBag } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
@@ -8,13 +8,23 @@ import { createClient } from "@/lib/supabase/client";
 interface BuyButtonProps {
   productSlug: string;
   price: string;
-  comingSoon?: boolean;
 }
 
-export default function BuyButton({ productSlug, price, comingSoon }: BuyButtonProps) {
+export default function BuyButton({ productSlug, price }: BuyButtonProps) {
   const t = useTranslations("productDetail");
   const locale = useLocale();
   const [loading, setLoading] = useState(false);
+  const [comingSoon, setComingSoon] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/products")
+      .then((r) => r.json())
+      .then((data) => {
+        const product = (data.products ?? []).find((p: any) => p.slug === productSlug);
+        if (product?.coming_soon) setComingSoon(true);
+      })
+      .catch(() => {});
+  }, [productSlug]);
 
   async function handleBuy() {
     if (comingSoon) return;
