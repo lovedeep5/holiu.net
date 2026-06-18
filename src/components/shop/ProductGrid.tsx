@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useMemo, useCallback } from "react";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { useRouter, usePathname, Link } from "@/i18n/navigation";
+import { useSearchParams } from "next/navigation";
 import { STATIC_PRODUCTS, CATEGORIES } from "@/lib/static-products";
 
 const PER_PAGE = 12;
@@ -17,11 +18,44 @@ type SortKey = "default" | "price-asc" | "price-desc";
 export default function ProductGrid() {
   const locale = useLocale();
   const t = useTranslations("shop");
-  const [activeCategory, setActiveCategory] = useState<string>("All");
-  const [sort, setSort] = useState<SortKey>("default");
-  const [page, setPage] = useState(1);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-  // Category counts (always from full list)
+  const activeCategory = searchParams.get("category") ?? "All";
+  const sort = (searchParams.get("sort") as SortKey) ?? "default";
+  const page = parseInt(searchParams.get("page") ?? "1", 10);
+
+  const navigate = useCallback(
+    (updates: Record<string, string>) => {
+      const params = new URLSearchParams(searchParams.toString());
+      for (const [key, value] of Object.entries(updates)) {
+        if (value === "All" || value === "default" || value === "1") {
+          params.delete(key);
+        } else {
+          params.set(key, value);
+        }
+      }
+      const qs = params.toString();
+      router.push(`${pathname}${qs ? `?${qs}` : ""}` as any);
+    },
+    [router, pathname, searchParams]
+  );
+
+  function handleCategory(cat: string) {
+    navigate({ category: cat, page: "1" });
+  }
+
+  function handleSort(val: SortKey) {
+    navigate({ sort: val, page: "1" });
+  }
+
+  function handlePage(p: number) {
+    navigate({ page: String(p) });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // Category counts
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = {};
     for (const p of STATIC_PRODUCTS) {
@@ -45,11 +79,6 @@ export default function ProductGrid() {
   const totalPages = Math.ceil(filtered.length / PER_PAGE);
   const start = (page - 1) * PER_PAGE;
   const pageProducts = filtered.slice(start, start + PER_PAGE);
-
-  function handleCategory(cat: string) {
-    setActiveCategory(cat);
-    setPage(1);
-  }
 
   return (
     <div className="flex flex-col lg:flex-row" style={{ gap: "2.5rem", alignItems: "flex-start" }}>
@@ -79,7 +108,7 @@ export default function ProductGrid() {
           </p>
           <select
             value={sort}
-            onChange={(e) => { setSort(e.target.value as SortKey); setPage(1); }}
+            onChange={(e) => { handleSort(e.target.value as SortKey); }}
             style={{
               fontFamily: "var(--font-montserrat), sans-serif",
               fontSize: "0.8rem",
@@ -187,24 +216,46 @@ export default function ProductGrid() {
                       >
                         {formatPrice(product.price)}
                       </p>
-                      <button
-                        style={{
-                          display: "block",
-                          width: "100%",
-                          padding: "0.45rem 0",
-                          backgroundColor: "#fc8855",
-                          color: "#fff",
-                          border: "none",
-                          borderRadius: "2px",
-                          fontFamily: "var(--font-montserrat), sans-serif",
-                          fontSize: "0.7rem",
-                          fontWeight: 700,
-                          letterSpacing: "0.05em",
-                          cursor: "pointer",
-                        }}
-                      >
-                        {t("addToCart")}
-                      </button>
+                      {product.coming_soon ? (
+                        <button
+                          disabled
+                          style={{
+                            display: "block",
+                            width: "100%",
+                            padding: "0.45rem 0",
+                            backgroundColor: "#d4c9b8",
+                            color: "#fff",
+                            border: "none",
+                            borderRadius: "2px",
+                            fontFamily: "var(--font-montserrat), sans-serif",
+                            fontSize: "0.7rem",
+                            fontWeight: 700,
+                            letterSpacing: "0.05em",
+                            cursor: "not-allowed",
+                          }}
+                        >
+                          {t("comingSoon")}
+                        </button>
+                      ) : (
+                        <button
+                          style={{
+                            display: "block",
+                            width: "100%",
+                            padding: "0.45rem 0",
+                            backgroundColor: "#fc8855",
+                            color: "#fff",
+                            border: "none",
+                            borderRadius: "2px",
+                            fontFamily: "var(--font-montserrat), sans-serif",
+                            fontSize: "0.7rem",
+                            fontWeight: 700,
+                            letterSpacing: "0.05em",
+                            cursor: "pointer",
+                          }}
+                        >
+                          {t("addToCart")}
+                        </button>
+                      )}
                     </div>
                   </div>
                 </Link>
@@ -226,7 +277,7 @@ export default function ProductGrid() {
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
               <button
                 key={p}
-                onClick={() => { setPage(p); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                onClick={() => { handlePage(p); }}
                 style={{
                   width: "32px",
                   height: "32px",
@@ -245,7 +296,7 @@ export default function ProductGrid() {
             ))}
             {page < totalPages && (
               <button
-                onClick={() => { setPage((p) => p + 1); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                onClick={() => { handlePage(page + 1); }}
                 style={{
                   padding: "0 0.6rem",
                   height: "32px",
@@ -265,7 +316,7 @@ export default function ProductGrid() {
         )}
       </div>
 
-      {/* ── Sidebar — vertical on desktop, horizontal scroll on mobile ── */}
+      {/* ── Sidebar — stacked vertical list on all screen sizes ── */}
       <aside className="lg:w-56 lg:flex-shrink-0 w-full order-first lg:order-last">
         <h3
           style={{
@@ -280,12 +331,11 @@ export default function ProductGrid() {
         >
           {t("categoriesHeading")}
         </h3>
-        {/* Desktop: vertical list */}
-        <ul className="hidden lg:block" style={{ listStyle: "none", padding: 0, margin: 0 }}>
-          {(CATEGORIES.filter((c) => c !== "All") as string[]).map((cat) => (
+        <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+          {(["All", ...CATEGORIES.filter((c) => c !== "All")] as string[]).map((cat) => (
             <li key={cat}>
               <button
-                onClick={() => handleCategory(cat === activeCategory ? "All" : cat)}
+                onClick={() => handleCategory(cat === "All" ? "All" : (cat === activeCategory ? "All" : cat))}
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
@@ -302,38 +352,14 @@ export default function ProductGrid() {
                   borderBottom: "1px solid #f0ebe3",
                 }}
               >
-                <span>{cat}</span>
+                <span>{cat === "All" ? t("allCategories") : cat}</span>
                 <span style={{ color: "#a38d51", fontSize: "0.75rem" }}>
-                  ({categoryCounts[cat] ?? 0})
+                  ({cat === "All" ? STATIC_PRODUCTS.length : categoryCounts[cat] ?? 0})
                 </span>
               </button>
             </li>
           ))}
         </ul>
-        {/* Mobile: horizontal pill filters */}
-        <div className="lg:hidden" style={{ display: "flex", gap: "0.5rem", overflowX: "auto", paddingBottom: "0.5rem" }}>
-          {(["All", ...CATEGORIES.filter((c) => c !== "All")] as string[]).map((cat) => (
-            <button
-              key={cat}
-              onClick={() => handleCategory(cat === "All" ? "All" : (cat === activeCategory ? "All" : cat))}
-              style={{
-                flexShrink: 0,
-                padding: "0.35rem 0.875rem",
-                borderRadius: "999px",
-                border: "1px solid",
-                borderColor: activeCategory === cat ? "#fc8855" : "#d4c9b8",
-                background: activeCategory === cat ? "#fc8855" : "#fff",
-                color: activeCategory === cat ? "#fff" : "#5a4a3a",
-                fontFamily: "var(--font-montserrat), sans-serif",
-                fontSize: "0.75rem",
-                cursor: "pointer",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {cat === "All" ? t("allCategories") : cat}
-            </button>
-          ))}
-        </div>
       </aside>
     </div>
   );

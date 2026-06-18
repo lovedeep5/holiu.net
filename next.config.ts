@@ -5,6 +5,7 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const nextConfig: NextConfig = {
   images: {
+    qualities: [70, 75, 90],
     remotePatterns: [
       { protocol: "http", hostname: "holiu.net" },
       { protocol: "https", hostname: "holiu.net" },

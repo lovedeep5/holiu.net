@@ -32,6 +32,7 @@ export default async function AboutRuthSection() {
                 className="object-cover object-top"
                 sizes="(max-width: 768px) 90vw, 420px"
                 quality={75}
+                loading="eager"
               />
             </div>
           </div>

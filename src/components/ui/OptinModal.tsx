@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 
-const COOKIE_DISMISSED = "holiu_optin_dismissed"; // expires 1 day
-const COOKIE_SUBMITTED = "holiu_optin_done";       // never expires
+const COOKIE_DISMISSED = "holiu_optin_dismissed";
+const COOKIE_SUBMITTED = "holiu_optin_done";
 
 function getCookie(name: string) {
   if (typeof document === "undefined") return null;
@@ -44,11 +44,12 @@ export default function OptinModal() {
       clearTimeout(fallbackTimer);
     }
     function onScroll() {
-      const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      const scrollable = document.body.scrollHeight - window.innerHeight;
+      if (scrollable <= 0) return;
+      const scrolled = window.scrollY / scrollable;
       if (scrolled >= 0.35) trigger();
     }
-    // Fallback: show after 10s if user hasn't scrolled enough
-    const fallbackTimer = setTimeout(trigger, 10000);
+    const fallbackTimer = setTimeout(trigger, 8000);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       clearTimeout(fallbackTimer);
@@ -57,7 +58,7 @@ export default function OptinModal() {
   }, []);
 
   function handleDismiss() {
-    setCookie(COOKIE_DISMISSED, "1", 1); // 1 day
+    setCookie(COOKIE_DISMISSED, "1", 1);
     setVisible(false);
   }
 
@@ -70,7 +71,7 @@ export default function OptinModal() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ first_name: firstName, last_name: lastName, email, source: "popup" }),
       });
-      setCookie(COOKIE_SUBMITTED, "1"); // no expiry = never expires
+      setCookie(COOKIE_SUBMITTED, "1");
       setStatus("done");
     } catch {
       setStatus("idle");
@@ -81,7 +82,6 @@ export default function OptinModal() {
 
   return (
     <>
-      {/* Backdrop */}
       <div
         onClick={handleDismiss}
         style={{
@@ -93,7 +93,6 @@ export default function OptinModal() {
         }}
       />
 
-      {/* Modal */}
       <div
         style={{
           position: "fixed",
@@ -108,10 +107,8 @@ export default function OptinModal() {
           animation: "slideUp 0.35s cubic-bezier(0.34,1.56,0.64,1)",
         }}
       >
-        {/* Top accent bar */}
         <div style={{ height: "4px", background: "linear-gradient(90deg, #fc8855, #a38d51)" }} />
 
-        {/* Close button */}
         <button
           onClick={handleDismiss}
           style={{
@@ -127,7 +124,6 @@ export default function OptinModal() {
 
         <div style={{ padding: "2.5rem 2.5rem 2rem" }}>
           {status === "done" ? (
-            /* Success state */
             <div style={{ textAlign: "center", padding: "1rem 0" }}>
               <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>🌸</div>
               <h2 style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "1.6rem", color: "#2c2520", fontWeight: 400, marginBottom: "0.75rem" }}>
@@ -139,7 +135,6 @@ export default function OptinModal() {
             </div>
           ) : (
             <>
-              {/* Heading */}
               <p style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase", color: "#a38d51", marginBottom: "0.5rem" }}>
                 {t("freeGift")}
               </p>

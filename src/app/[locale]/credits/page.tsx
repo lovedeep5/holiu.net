@@ -5,15 +5,14 @@ import styles from "./credits.module.css";
 export const metadata: Metadata = { title: "Credits & Cooperation" };
 
 const photos = [
-  { src: "/images/ruth-meditation-portrait.jpg", name: "Eva Maria Horstick" },
-  { src: "/images/backgrounds/bg-3.jpg", name: "Designecologist" },
-  { src: "/images/med-02.jpg", name: "Elle Pouchet" },
-  { src: "/images/backgrounds/beach-2.jpg", name: "Frank McKenna" },
-  { src: "/images/med-06.jpg", name: "Tim Goedhart" },
-  { src: "/images/backgrounds/channeling.jpg", name: "Saffu" },
-  { src: "/images/med-07.jpg", name: "Motoki Tonn" },
-  { src: "/images/backgrounds/full2.jpg", name: "Chris Ensey" },
-  { src: "/images/med-04.jpg", name: "Drew Graham" },
+  { src: "/images/credits/ruth_heinen.jpg", name: "Eva Maria Horstick" },
+  { src: "/images/credits/meditation-easy-2x5.jpg", name: "Designecologist" },
+  { src: "/images/credits/ruth-1.jpg", name: "Elle Pouchet" },
+  { src: "/images/credits/credits-1.jpg", name: "Frank McKenna" },
+  { src: "/images/credits/tim-goedhart.jpeg", name: "Tim Goedhart" },
+  { src: "/images/credits/credits-4.jpg", name: "Saffu" },
+  { src: "/images/credits/credits-3.jpg", name: "Motoki Tonn" },
+  { src: "/images/credits/chris-ensey.jpeg", name: "Chris Ensey" },
 ];
 
 export default async function CreditsPage() {

@@ -25,6 +25,7 @@ export interface Database {
           thumbnail_url: string | null;
           featured: boolean;
           published: boolean;
+          coming_soon: boolean;
           created_at: string;
         };
         Insert: Omit<Database["public"]["Tables"]["products"]["Row"], "id" | "created_at">;

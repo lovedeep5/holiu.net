@@ -14,11 +14,11 @@ export default function Footer() {
   ];
 
   const shopLinks = [
-    { href: "/shop?cat=Chakra+Balancing" as const, label: t("chakra") },
-    { href: "/shop?cat=Channeling" as const, label: t("channeling") },
-    { href: "/shop?cat=Courses" as const, label: t("courses") },
-    { href: "/shop?cat=Meditations" as const, label: t("meditations") },
-    { href: "/shop?cat=Workshops" as const, label: t("workshops") },
+    { href: "/shop?category=Chakra+Balancing" as const, label: t("chakra") },
+    { href: "/shop?category=Channeling" as const, label: t("channeling") },
+    { href: "/shop?category=Courses" as const, label: t("courses") },
+    { href: "/shop?category=Meditations" as const, label: t("meditations") },
+    { href: "/shop?category=Workshops" as const, label: t("workshops") },
   ];
 
   const linkStyle: React.CSSProperties = {

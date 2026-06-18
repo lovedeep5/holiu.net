@@ -144,18 +144,18 @@ export default async function MeditationPage() {
             {t("quoteHay")}
           </p>
           {/* Avatar + name row */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.75rem" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem" }}>
             <div
               style={{
-                width: "44px",
-                height: "44px",
+                width: "88px",
+                height: "88px",
                 borderRadius: "50%",
                 overflow: "hidden",
                 flexShrink: 0,
               }}
             >
               <img
-                src="/images/louise-hay.jpg"
+                src="/images/louise-hay-quote.png"
                 alt={t("quoteHayAuthor")}
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
@@ -262,15 +262,33 @@ export default async function MeditationPage() {
           >
             {t("quoteBuddha")}
           </p>
-          <p
-            style={{
-              fontFamily: "var(--font-montserrat), sans-serif",
-              fontSize: "0.85rem",
-              color: "#5a4a3a",
-            }}
-          >
-            {t("quoteBuddhaAuthor")} ♥
-          </p>
+          {/* Avatar + name row */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem" }}>
+            <div
+              style={{
+                width: "88px",
+                height: "88px",
+                borderRadius: "50%",
+                overflow: "hidden",
+                flexShrink: 0,
+              }}
+            >
+              <img
+                src="/images/buddha-centered.jpeg"
+                alt={t("quoteBuddhaAuthor")}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </div>
+            <p
+              style={{
+                fontFamily: "var(--font-montserrat), sans-serif",
+                fontSize: "0.85rem",
+                color: "#5a4a3a",
+              }}
+            >
+              {t("quoteBuddhaAuthor")} ♥
+            </p>
+          </div>
         </div>
       </section>
 
@@ -388,16 +406,33 @@ export default async function MeditationPage() {
             <strong>{t("quoteYogananda").split(" ").slice(0, 1).join(" ")}</strong>{" "}
             {t("quoteYogananda").split(" ").slice(1).join(" ")}
           </p>
-          <p
-            style={{
-              fontFamily: "var(--font-montserrat), sans-serif",
-              fontSize: "0.85rem",
-              color: "#5a4a3a",
-              textAlign: "center",
-            }}
-          >
-            {t("quoteYoganandaAuthor")}
-          </p>
+          {/* Avatar + name row */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem", marginTop: "1.25rem" }}>
+            <div
+              style={{
+                width: "88px",
+                height: "88px",
+                borderRadius: "50%",
+                overflow: "hidden",
+                flexShrink: 0,
+              }}
+            >
+              <img
+                src="/images/yogananda-portrait.jpeg"
+                alt={t("quoteYoganandaAuthor")}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </div>
+            <p
+              style={{
+                fontFamily: "var(--font-montserrat), sans-serif",
+                fontSize: "0.85rem",
+                color: "#5a4a3a",
+              }}
+            >
+              {t("quoteYoganandaAuthor")}
+            </p>
+          </div>
         </div>
       </section>
 

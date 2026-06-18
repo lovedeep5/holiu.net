@@ -21,6 +21,7 @@ export const STATIC_PRODUCTS = [
     thumbnail_url: "/images/products/2x5-meditation-easy.png",
     featured: true,
     published: true,
+    coming_soon: false,
     created_at: "2024-01-01",
   },
   {
@@ -39,6 +40,7 @@ export const STATIC_PRODUCTS = [
     thumbnail_url: "/images/products/create-life-you-want.png",
     featured: false,
     published: true,
+    coming_soon: false,
     created_at: "2024-01-01",
   },
   {
@@ -56,6 +58,7 @@ export const STATIC_PRODUCTS = [
     thumbnail_url: "/images/products/create-life-you-want.png",
     featured: false,
     published: true,
+    coming_soon: false,
     created_at: "2024-01-01",
   },
   {
@@ -74,6 +77,7 @@ export const STATIC_PRODUCTS = [
     thumbnail_url: "/images/products/create-new-identity.png",
     featured: true,
     published: true,
+    coming_soon: false,
     created_at: "2024-01-01",
   },
   {
@@ -91,6 +95,7 @@ export const STATIC_PRODUCTS = [
     thumbnail_url: "/images/products/create-new-identity.png",
     featured: false,
     published: true,
+    coming_soon: false,
     created_at: "2024-01-01",
   },
   {
@@ -109,6 +114,7 @@ export const STATIC_PRODUCTS = [
     thumbnail_url: "/images/products/create-perfect-love-life.png",
     featured: false,
     published: true,
+    coming_soon: false,
     created_at: "2024-01-01",
   },
   {
@@ -127,6 +133,7 @@ export const STATIC_PRODUCTS = [
     thumbnail_url: "/images/products/energizer.png",
     featured: false,
     published: true,
+    coming_soon: false,
     created_at: "2024-01-01",
   },
   {
@@ -144,6 +151,7 @@ export const STATIC_PRODUCTS = [
     thumbnail_url: "/images/products/find-your-flow.png",
     featured: false,
     published: true,
+    coming_soon: false,
     created_at: "2024-01-01",
   },
   {
@@ -162,6 +170,7 @@ export const STATIC_PRODUCTS = [
     thumbnail_url: "/images/products/healing-witch-wound.png",
     featured: true,
     published: true,
+    coming_soon: false,
     created_at: "2024-01-01",
   },
   {
@@ -179,6 +188,7 @@ export const STATIC_PRODUCTS = [
     thumbnail_url: "/images/products/heilung-familienkarmas.png",
     featured: false,
     published: true,
+    coming_soon: false,
     created_at: "2024-01-01",
   },
   {
@@ -197,6 +207,7 @@ export const STATIC_PRODUCTS = [
     thumbnail_url: "/images/products/individual-chakra-balancing.png",
     featured: false,
     published: true,
+    coming_soon: false,
     created_at: "2024-01-01",
   },
   {
@@ -215,6 +226,7 @@ export const STATIC_PRODUCTS = [
     thumbnail_url: "/images/products/personalized-channeling.png",
     featured: false,
     published: true,
+    coming_soon: false,
     created_at: "2024-01-01",
   },
 ] as const;

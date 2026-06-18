@@ -7,6 +7,7 @@ import { routing } from "@/i18n/routing";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import OptinModal from "@/components/ui/OptinModal";
+import BackgroundMusic from "@/components/ui/BackgroundMusic";
 
 export const metadata: Metadata = {
   title: {
@@ -61,6 +62,7 @@ export default async function LocaleLayout({
             <main className="flex-1">{children}</main>
             <Footer />
             <OptinModal />
+            <BackgroundMusic />
           </>
         )}
       </NextIntlClientProvider>

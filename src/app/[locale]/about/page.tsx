@@ -90,7 +90,7 @@ export default async function AboutPage() {
           </div>
 
           {/* CTA */}
-          <Link href="/meditation" className="btn-primary">
+          <Link href="/get-started" className="btn-primary">
             {t("freeMeditationBtn")}
           </Link>
         </div>

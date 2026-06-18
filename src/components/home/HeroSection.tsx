@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden">
+    <section className="relative min-h-[120vh] flex flex-col items-center justify-start text-center overflow-hidden">
       {/* Full-bleed beach background */}
       <div className="absolute inset-0">
         <Image
@@ -14,13 +14,12 @@ export default function HeroSection() {
           className="object-cover object-center"
           priority
         />
-        <div className="absolute inset-0" style={{ background: "rgba(253,248,242,0.35)" }} />
       </div>
 
-      {/* Centered logo — pushed below fixed navbar (80px), with breathing room top & bottom */}
+      {/* Centered logo */}
       <div
         className="relative z-10 flex flex-col items-center px-6"
-        style={{ gap: "1rem", paddingTop: "calc(80px + 2vh)", paddingBottom: "2vh" }}
+        style={{ gap: "1rem", paddingTop: "40px" }}
       >
         <Image
           src="/images/logo-dark.png"
@@ -31,7 +30,7 @@ export default function HeroSection() {
           priority
           sizes="(max-width: 768px) 92vw, 820px"
           style={{
-            width: "min(92vw, 86vh)",
+            width: "min(92vw, 95vh)",
             height: "auto",
             objectFit: "contain",
           }}

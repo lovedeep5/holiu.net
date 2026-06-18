@@ -8,6 +8,9 @@ const slides = [
   { src: "/images/med-02.jpg", alt: "Reflection" },
   { src: "/images/med-07.jpg", alt: "Lotus" },
   { src: "/images/med-03.jpg", alt: "Practice" },
+  { src: "/images/louise-hay-quote.png", alt: "Louise Hay" },
+  { src: "/images/buddha-centered.jpeg", alt: "Buddha" },
+  { src: "/images/yogananda-portrait.jpeg", alt: "Yogananda" },
 ];
 
 export default function InspirationCarousel() {
