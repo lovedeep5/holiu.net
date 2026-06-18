@@ -3,9 +3,9 @@ import { createServiceClient } from "@/lib/supabase/server";
 
 export default async function AdminProductsPage() {
   const supabase = createServiceClient();
-  const { data: products } = await supabase
+  const { data: products, error } = await supabase
     .from("products")
-    .select("id, slug, name_en, category, price, featured, published, coming_soon")
+    .select("id, slug, name_en, category, price, featured, published")
     .order("category")
     .order("name_en");
 
@@ -36,7 +36,7 @@ export default async function AdminProductsPage() {
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr style={{ borderBottom: "1px solid rgba(163,141,81,0.1)" }}>
-              {["Name", "Category", "Price", "Featured", "Published", "Coming Soon", ""].map((h) => (
+              {["Name", "Category", "Price", "Featured", "Published", ""].map((h) => (
                 <th key={h} style={{
                   padding: "0.875rem 1rem",
                   textAlign: "left",
@@ -73,21 +73,6 @@ export default async function AdminProductsPage() {
                 </td>
                 <td style={{ padding: "0.875rem 1rem" }}>
                   <PublishedToggle id={p.id} published={p.published} />
-                </td>
-                <td style={{ padding: "0.875rem 1rem" }}>
-                  <span style={{
-                    padding: "0.25rem 0.6rem",
-                    borderRadius: "999px",
-                    fontFamily: "var(--font-montserrat), sans-serif",
-                    fontSize: "0.65rem",
-                    fontWeight: 700,
-                    letterSpacing: "0.05em",
-                    textTransform: "uppercase",
-                    background: p.coming_soon ? "rgba(252,136,85,0.15)" : "rgba(255,255,255,0.08)",
-                    color: p.coming_soon ? "#fc8855" : "rgba(255,255,255,0.35)",
-                  }}>
-                    {p.coming_soon ? "Yes" : "No"}
-                  </span>
                 </td>
                 <td style={{ padding: "0.875rem 1rem" }}>
                   <Link
