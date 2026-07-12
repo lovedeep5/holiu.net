@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { formatSize, type MediaItem } from "./MediaPicker";
+import { uploadMediaFile } from "@/lib/media-upload";
 
 const mont = "var(--font-montserrat), sans-serif";
 type Filter = "all" | "image" | "file";
@@ -92,19 +93,18 @@ export default function MediaManager() {
     if (!files || !files.length) return;
     setUploading(true);
     setError(null);
-    try {
-      const fd = new FormData();
-      Array.from(files).forEach((f) => fd.append("files", f));
-      const r = await fetch("/api/admin/media", { method: "POST", body: fd });
-      const d = await r.json();
-      if (!r.ok) throw new Error(d.error || "Upload failed");
-      await load();
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setUploading(false);
-      if (fileRef.current) fileRef.current.value = "";
+    const errors: string[] = [];
+    for (const file of Array.from(files)) {
+      try {
+        await uploadMediaFile(file);
+      } catch (err: any) {
+        errors.push(err.message);
+      }
     }
+    await load();
+    if (errors.length) setError(errors.join("; "));
+    setUploading(false);
+    if (fileRef.current) fileRef.current.value = "";
   }
 
   async function deleteItems(targets: MediaItem[]) {

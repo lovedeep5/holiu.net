@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServiceClient } from "@/lib/supabase/server";
 import { isAdminAuthed } from "@/lib/admin-auth";
+import { IMAGE_BUCKET, FILE_BUCKET, sanitizeName, sanitizeBase } from "@/lib/media";
 
 export const runtime = "nodejs";
 
-// Images live in the public "thumbnails" bucket; everything else (digital
-// products) lives in the private "digital-products" bucket. The media library
-// is a unified view over both — no separate DB table required.
-const IMAGE_BUCKET = "thumbnails";
-const FILE_BUCKET = "digital-products";
+// The media library is a unified view over both storage buckets — no
+// separate DB table required. Uploads go directly from the browser to
+// Supabase Storage via /api/admin/media/sign (see src/lib/media-upload.ts),
+// bypassing Vercel's serverless function body size limit.
 
 type MediaItem = {
   id: string;
@@ -21,23 +21,6 @@ type MediaItem = {
   createdAt: string | null;
   type: "image" | "file";
 };
-
-function sanitizeBase(name: string) {
-  return name
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, "")
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 80);
-}
-
-function sanitizeName(name: string) {
-  const dot = name.lastIndexOf(".");
-  const ext = dot >= 0 ? name.slice(dot).toLowerCase() : "";
-  const base = sanitizeBase(dot >= 0 ? name.slice(0, dot) : name) || "file";
-  return `${base}-${Date.now()}${ext}`;
-}
 
 async function listBucket(
   supabase: ReturnType<typeof createServiceClient>,
@@ -100,69 +83,6 @@ export async function GET(req: NextRequest) {
     .sort((a, b) => (b.createdAt ?? "").localeCompare(a.createdAt ?? ""));
 
   return NextResponse.json({ items });
-}
-
-export async function POST(req: NextRequest) {
-  if (!(await isAdminAuthed())) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  const formData = await req.formData();
-  const files = formData.getAll("files").filter((f): f is File => f instanceof File);
-  // Back-compat: allow a single "file" field too
-  const single = formData.get("file");
-  if (single instanceof File) files.push(single);
-
-  if (!files.length) {
-    return NextResponse.json({ error: "No files provided" }, { status: 400 });
-  }
-
-  const supabase = createServiceClient();
-  const created: MediaItem[] = [];
-  const errors: string[] = [];
-
-  for (const file of files) {
-    const isImage = (file.type || "").startsWith("image/");
-    const bucket = isImage ? IMAGE_BUCKET : FILE_BUCKET;
-    const path = sanitizeName(file.name);
-    const buffer = Buffer.from(await file.arrayBuffer());
-
-    const { data, error } = await supabase.storage
-      .from(bucket)
-      .upload(path, buffer, { contentType: file.type || "application/octet-stream", upsert: true });
-
-    if (error || !data) {
-      errors.push(`${file.name}: ${error?.message ?? "upload failed"}`);
-      continue;
-    }
-
-    const type: "image" | "file" = isImage ? "image" : "file";
-    let url: string | null = null;
-    if (isImage) {
-      url = supabase.storage.from(bucket).getPublicUrl(data.path).data.publicUrl;
-    } else {
-      const { data: s } = await supabase.storage.from(bucket).createSignedUrl(data.path, 60 * 60);
-      url = s?.signedUrl ?? null;
-    }
-
-    created.push({
-      id: `${bucket}/${data.path}`,
-      bucket,
-      path: data.path,
-      name: data.path,
-      url,
-      mimetype: file.type || null,
-      size: file.size,
-      createdAt: new Date().toISOString(),
-      type,
-    });
-  }
-
-  if (!created.length) {
-    return NextResponse.json({ error: errors.join("; ") || "Upload failed" }, { status: 500 });
-  }
-
-  return NextResponse.json({ items: created, errors }, { status: 201 });
 }
 
 // Rename a single media file (Storage has no rename — we move within the bucket).

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import type { Product } from "@/types/database";
 import MediaPicker, { type MediaItem } from "./MediaPicker";
+import { uploadMediaFile } from "@/lib/media-upload";
 
 const DEFAULT_CATEGORIES = ["Courses", "Workshops", "Meditations", "Chakra Balancing", "Channeling"];
 
@@ -110,24 +111,20 @@ export default function ProductForm({ product }: Props) {
       // New uploads go through the media library so they're reusable later.
       let finalThumbnail = thumbnailUrl;
       if (thumbnailFile) {
-        const fd = new FormData();
-        fd.append("files", thumbnailFile);
-        const r = await fetch("/api/admin/media", { method: "POST", body: fd });
-        const d = await r.json();
-        if (!r.ok) throw new Error(d.error || "Thumbnail upload failed");
-        finalThumbnail = d.items?.[0]?.url ?? null;
+        const uploaded = await uploadMediaFile(thumbnailFile).catch((err) => {
+          throw new Error(err.message || "Thumbnail upload failed");
+        });
+        finalThumbnail = uploaded.publicUrl;
       }
       payload.thumbnail_url = finalThumbnail;
 
       // Resolve digital file the same way.
       let finalFilePath = filePath;
       if (digitalFile) {
-        const fd = new FormData();
-        fd.append("files", digitalFile);
-        const r = await fetch("/api/admin/media", { method: "POST", body: fd });
-        const d = await r.json();
-        if (!r.ok) throw new Error(d.error || "File upload failed");
-        finalFilePath = d.items?.[0]?.path ?? null;
+        const uploaded = await uploadMediaFile(digitalFile).catch((err) => {
+          throw new Error(err.message || "File upload failed");
+        });
+        finalFilePath = uploaded.path;
       }
       payload.file_path = finalFilePath;
       const url = isEdit ? `/api/admin/products/${product!.id}` : "/api/admin/products";

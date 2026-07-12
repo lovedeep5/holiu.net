@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { uploadMediaFile } from "@/lib/media-upload";
 
 export type MediaItem = {
   id: string;
@@ -37,15 +38,18 @@ export default function MediaPicker({ type, onSelect, onClose }: Props) {
   const [selected, setSelected] = useState<MediaItem | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
-  const load = useCallback(async () => {
+  const load = useCallback(async (): Promise<MediaItem[]> => {
     setLoading(true);
     try {
       const r = await fetch(`/api/admin/media?type=${type}`);
       const d = await r.json();
       if (!r.ok) throw new Error(d.error || "Failed to load media");
-      setItems(d.items ?? []);
+      const loaded: MediaItem[] = d.items ?? [];
+      setItems(loaded);
+      return loaded;
     } catch (e: any) {
       setError(e.message);
+      return [];
     } finally {
       setLoading(false);
     }
@@ -60,20 +64,24 @@ export default function MediaPicker({ type, onSelect, onClose }: Props) {
     if (!files || !files.length) return;
     setUploading(true);
     setError(null);
-    try {
-      const fd = new FormData();
-      Array.from(files).forEach((f) => fd.append("files", f));
-      const r = await fetch("/api/admin/media", { method: "POST", body: fd });
-      const d = await r.json();
-      if (!r.ok) throw new Error(d.error || "Upload failed");
-      await load();
-      if (d.items?.[0]) setSelected(d.items[0]);
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setUploading(false);
-      if (fileRef.current) fileRef.current.value = "";
+    const errors: string[] = [];
+    let firstUploaded: { bucket: string; path: string } | null = null;
+    for (const file of Array.from(files)) {
+      try {
+        const uploaded = await uploadMediaFile(file);
+        if (!firstUploaded) firstUploaded = uploaded;
+      } catch (err: any) {
+        errors.push(err.message);
+      }
     }
+    const freshItems = await load();
+    if (firstUploaded) {
+      const match = freshItems.find((it) => it.bucket === firstUploaded!.bucket && it.path === firstUploaded!.path);
+      if (match) setSelected(match);
+    }
+    if (errors.length) setError(errors.join("; "));
+    setUploading(false);
+    if (fileRef.current) fileRef.current.value = "";
   }
 
   return (
