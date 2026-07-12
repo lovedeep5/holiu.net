@@ -89,13 +89,14 @@ export default async function CoursesPage() {
               marginBottom: "1.75rem",
               position: "relative",
               aspectRatio: "3/4",
+              background: "linear-gradient(to bottom, #fdf0ea, #ffffff)",
             }}
           >
             <Image
-              src="/images/backgrounds/courses-hero.jpg"
+              src="/images/products/2x5-meditation-easy.png"
               alt={t("featuredTitle")}
               fill
-              className="object-cover"
+              className="object-contain"
               sizes="360px"
             />
           </div>

@@ -200,9 +200,9 @@ export default async function AboutPage() {
 
           {/* 2 images side by side — stacks on mobile, 2-col on md+ */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Course card */}
+            {/* Course card — 2X5 Meditation Easy */}
             <Link
-              href="/courses"
+              href="/shop/2x5-meditation-easy"
               className="group"
               style={{
                 display: "block",
@@ -210,13 +210,14 @@ export default async function AboutPage() {
                 borderRadius: "0.5rem",
                 overflow: "hidden",
                 aspectRatio: "2/3",
+                background: "linear-gradient(to bottom, #fdf0ea, #ffffff)",
               }}
             >
               <Image
-                src="/images/backgrounds/courses-hero.jpg"
+                src="/images/products/2x5-meditation-easy.png"
                 alt={t("visitCourse")}
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                className="object-contain transition-transform duration-500 group-hover:scale-110"
                 sizes="(max-width: 768px) 90vw, 45vw"
               />
               {/* 20% orange overlay on hover */}

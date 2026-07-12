@@ -14,7 +14,7 @@ export const STATIC_PRODUCTS = [
     description_de:
       "Eine kraftvolle 2×5 Minuten tägliche Meditationspraxis, die dein Mindset für Freude und Erfolg umprogrammiert.",
     category: "Courses",
-    price: 9700,
+    price: 19700,
     currency: "EUR",
     stripe_price_id: null,
     file_path: null,

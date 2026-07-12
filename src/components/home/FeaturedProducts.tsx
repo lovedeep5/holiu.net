@@ -6,7 +6,7 @@ const featured = [
   {
     name: "2X5 Meditation Easy",
     category: "Course",
-    price: "€97",
+    price: "€197",
     image: "/images/products/2x5-meditation-easy.png",
     href: "/shop/2x5-meditation-easy",
   },

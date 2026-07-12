@@ -2,11 +2,11 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-[120vh] flex flex-col items-center justify-start text-center overflow-hidden">
+    <section className="relative min-h-[120vh] flex flex-col items-center justify-center text-center overflow-hidden">
       {/* Full-bleed beach background */}
       <div className="absolute inset-0">
         <Image
-          src="/images/hero-bg-2.jpg"
+          src="/images/hero-bg-3.jpg"
           alt=""
           fill
           sizes="100vw"
@@ -19,7 +19,7 @@ export default function HeroSection() {
       {/* Centered logo */}
       <div
         className="relative z-10 flex flex-col items-center px-6"
-        style={{ gap: "1rem", paddingTop: "40px" }}
+        style={{ gap: "1rem" }}
       >
         <Image
           src="/images/logo-dark.png"
@@ -30,7 +30,7 @@ export default function HeroSection() {
           priority
           sizes="(max-width: 768px) 92vw, 820px"
           style={{
-            width: "min(92vw, 95vh)",
+            width: "min(46vw, 47.5vh)",
             height: "auto",
             objectFit: "contain",
           }}
