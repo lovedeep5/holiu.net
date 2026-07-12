@@ -23,12 +23,10 @@ export async function POST(req: NextRequest) {
       .from("leads")
       .insert({
         name: fullName,
-        first_name: fName,
-        last_name: lName,
         email,
         message,
         source,
-      } as any);
+      });
 
     if (error) {
       console.error("[leads]", error);
