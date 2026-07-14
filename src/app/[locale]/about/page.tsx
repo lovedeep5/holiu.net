@@ -226,18 +226,32 @@ export default async function AboutPage() {
                 style={{ background: "rgba(252,136,85,0.45)" }}
               />
               {/* Label */}
-              <div style={{ position: "absolute", top: "1.25rem", left: "1.25rem" }}>
+              <div style={{ position: "absolute", top: "1.25rem", left: "1.25rem", right: "1.25rem" }}>
                 <span
                   style={{
+                    display: "block",
                     fontFamily: "var(--font-montserrat), sans-serif",
                     fontSize: "0.85rem",
                     fontWeight: 700,
                     letterSpacing: "0.04em",
                     color: "white",
                     textShadow: "0 1px 4px rgba(0,0,0,0.5)",
+                    marginBottom: "0.35rem",
                   }}
                 >
                   {t("visitCourse")}
+                </span>
+                <span
+                  style={{
+                    display: "block",
+                    fontFamily: "var(--font-montserrat), sans-serif",
+                    fontSize: "0.72rem",
+                    lineHeight: 1.4,
+                    color: "white",
+                    textShadow: "0 1px 4px rgba(0,0,0,0.5)",
+                  }}
+                >
+                  {t("visitCourseHeadline")}
                 </span>
               </div>
             </Link>

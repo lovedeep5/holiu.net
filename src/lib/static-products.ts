@@ -10,9 +10,9 @@ export const STATIC_PRODUCTS = [
     name_en: "2X5 Meditation Easy – Your Magic Formula for Joy & Success",
     name_de: "2X5 Meditation Easy – Deine Zauberformel für Freude & Erfolg",
     description_en:
-      "A powerful 2×5 minute daily meditation practice that rewires your mindset for joy and success. Includes audio guide + workbook.",
+      "Learn a Fast, Powerful Meditation Method Even on Your Busiest Days.\n\nBuild a simple 2×5-minute daily habit that helps you reduce stress, find inner peace, and reconnect with your best self.",
     description_de:
-      "Eine kraftvolle 2×5 Minuten tägliche Meditationspraxis, die dein Mindset für Freude und Erfolg umprogrammiert.",
+      "Lerne eine schnelle und wirkungsvolle Meditationsmethode Selbst an deinen stressigsten Tagen.\n\nEntwickle eine einfache tägliche 2×5-Minuten-Gewohnheit, die dir hilft, Stress abzubauen, innere Ruhe zu finden und wieder mit deinem besten Selbst in Verbindung zu kommen.",
     category: "Courses",
     price: 19700,
     currency: "EUR",

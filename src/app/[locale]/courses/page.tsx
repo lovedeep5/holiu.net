@@ -102,18 +102,88 @@ export default async function CoursesPage() {
           </div>
 
           {/* Title */}
-          <h2
+          <p
             style={{
-              fontFamily: "var(--font-playfair), Georgia, serif",
-              fontSize: "clamp(1rem, 2vw, 1.2rem)",
-              color: "#2c2520",
-              fontWeight: 400,
+              fontFamily: "var(--font-montserrat), sans-serif",
+              fontSize: "0.7rem",
+              fontWeight: 700,
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              color: "#a38d51",
               marginBottom: "0.5rem",
-              lineHeight: 1.4,
             }}
           >
             {t("featuredTitle")}
+          </p>
+          <h2
+            style={{
+              fontFamily: "var(--font-playfair), Georgia, serif",
+              fontSize: "clamp(1.2rem, 2.5vw, 1.5rem)",
+              color: "#2c2520",
+              fontWeight: 400,
+              marginBottom: "1.25rem",
+              lineHeight: 1.4,
+            }}
+          >
+            {t("featuredHeadline")}
           </h2>
+
+          {/* Body copy */}
+          <p
+            style={{
+              fontFamily: "var(--font-montserrat), sans-serif",
+              fontSize: "0.85rem",
+              color: "#5a4a3a",
+              lineHeight: 1.8,
+              marginBottom: "1.25rem",
+              textAlign: "left",
+            }}
+          >
+            {t("featuredBody1")}
+          </p>
+
+          {/* Bullet list */}
+          <p
+            style={{
+              fontFamily: "var(--font-montserrat), sans-serif",
+              fontSize: "0.8rem",
+              fontWeight: 700,
+              color: "#2c2520",
+              marginBottom: "0.5rem",
+              textAlign: "left",
+            }}
+          >
+            {t("featuredListHeading")}
+          </p>
+          <ul style={{ listStyle: "disc", paddingLeft: "1.25rem", marginBottom: "1.25rem", textAlign: "left" }}>
+            {t("featuredBullets").split("|").map((b, i) => (
+              <li
+                key={i}
+                style={{
+                  fontFamily: "var(--font-montserrat), sans-serif",
+                  fontSize: "0.85rem",
+                  color: "#5a4a3a",
+                  lineHeight: 1.7,
+                  marginBottom: "0.2rem",
+                }}
+              >
+                {b}
+              </li>
+            ))}
+          </ul>
+
+          <p
+            style={{
+              fontFamily: "var(--font-montserrat), sans-serif",
+              fontSize: "0.85rem",
+              color: "#5a4a3a",
+              lineHeight: 1.8,
+              marginBottom: "1.5rem",
+              textAlign: "left",
+            }}
+          >
+            {t("featuredBody2")}
+          </p>
 
           {/* Coming Soon label */}
           <p
@@ -130,7 +200,7 @@ export default async function CoursesPage() {
 
           {/* CTA button */}
           <Link href={"/shop/2x5-meditation-easy" as any} className="btn-primary">
-            {t("viewCourse")}
+            {t("featuredClosing")}
           </Link>
         </div>
       </section>

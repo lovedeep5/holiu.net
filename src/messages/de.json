@@ -169,6 +169,7 @@
     "visitSection": "Besuche",
     "visitSubheading": "Kurse & Workshops",
     "visitCourse": "2X5 Meditation Easy",
+    "visitCourseHeadline": "Lerne eine schnelle und wirkungsvolle Meditationsmethode Selbst an deinen stressigsten Tagen.",
     "visitWorkshop": "Zum Workshop",
     "signatureLabel": "Mit Liebe",
     "ctaHeading": "Bereit anzufangen?",
@@ -184,10 +185,14 @@
     "allCourses": "Alle anzeigen →",
     "noResults": "Keine Kurse gefunden.",
     "featuredCourse": "Empfohlener Kurs",
-    "featuredTitle": "2×5 Meditation Easy – Deine Zauberformel für Freude & Erfüllung in deinem Leben",
-    "featuredBody1": "Möchtest du mehr Freude, Gelassenheit und Erfüllung in deinem Leben? Dann ist dieser Kurs genau das Richtige für dich! Mit nur 2×5 Minuten Meditation pro Tag – einmal morgens, einmal abends – wirst du eine tiefe Transformation erleben.",
-    "featuredBody2": "Das ist deine Zauberformel: Kontinuität + nur 5 Minuten = eine völlig neue Lebensqualität. Probiere es aus und du wirst staunen, was für dich möglich ist!",
-    "featuredBuy": "Kurs kaufen – €97",
+    "featuredTitle": "2X5 Meditation Easy™",
+    "featuredHeadline": "Lerne eine schnelle und wirkungsvolle Meditationsmethode — Selbst an deinen stressigsten Tagen.",
+    "featuredBody1": "Stell dir vor, du fühlst dich ruhiger, klarer und voller Energie – selbst wenn dein Alltag durchgetaktet ist. Die 2×5 Meditation Easy™ Methode wurde für das echte Leben entwickelt. Nur 5 Minuten am Morgen. Nur 5 Minuten am Abend. Einfach genug, um dauerhaft dranzubleiben. Kraftvoll genug, um dein Leben zu verändern.",
+    "featuredListHeading": "In diesem Kurs lernst du:",
+    "featuredBullets": "täglichen Stress zu reduzieren|deinen Geist in wenigen Minuten zu beruhigen|eine einfache tägliche Meditations Routine aufzubauen, die bleibt|deine innere Ruhe und Intuition zu stärken|mehr Klarheit, Fokus und emotionale Balance zu entwickeln|Schritt für Schritt dein höchstes Potenzial zu leben",
+    "featuredBody2": "Die 2×5-Methode funktioniert, weil Beständigkeit – nicht Perfektion – nachhaltige Veränderung schafft. Du brauchst nicht mehr Zeit. Du brauchst nur eine Methode, die funktioniert.",
+    "featuredClosing": "✨ Beginne deine Reise.",
+    "featuredBuy": "Kurs kaufen – €197",
     "comingSoon": "Trage dich in die Warteliste ein",
     "comingSoonLabel": "Demnächst",
     "viewCourse": "Kurs ansehen"
@@ -275,23 +280,22 @@
       "cta": "Mehr erfahren"
     },
     "quote": {
-      "text": "Meditation ist ein Prozess der Aufhellung, des Vertrauens in die grundsätzliche Güte dessen, was wir haben und wer wir sind, und des Erkennens, dass alle Weisheit, die existiert, in dem lebt, was wir bereits haben. Wir können unser Leben so führen, dass wir wacher werden für das, wer wir sind und was wir tun – anstatt zu versuchen, uns zu verbessern oder zu verändern. Der Schlüssel ist, aufzuwachen, wacher, neugieriger und interessierter an unserem wahren Selbst zu werden."
+      "text": "Meditation bedeutet nicht, dem Leben zu entfliehen. Sie bedeutet, wieder bei dir selbst anzukommen. Durch Stille, Achtsamkeit und kleine tägliche Rituale verbindest du dich wieder mit dem Frieden, der Weisheit und der Kraft, die schon immer in dir waren. Du musst niemand anderes werden. Du erinnerst dich einfach daran, wer du in Wahrheit bist. ✨ Willkommen zu Hause."
     },
     "downloadCta": {
       "heading": "Willst du mehr vom Leben?",
       "sub": "Entdecke den Schatz in dir!",
-      "cta": "JETZT HERUNTERLADEN"
+      "cta": "🎧 Erlebe deine kostenlose Meditation"
     },
     "testimonials": {
       "eyebrow": "Kundenstimmen",
       "heading": "WAS UNSERE KUNDEN SAGEN",
       "items": [
-        { "name": "Sabine Wollert", "text": "Liebe Ruth, du lebst eine bodenständige, alltagstaugliche Spiritualität und vermittelst diese in deinen Workshops sehr professionell. Hier werden alle Ebenen miteinander verbunden, sodass die freigesetzten Energien und Erkenntnisse nachhaltig wirken und umgesetzt werden können. Chapeau" },
-        { "name": "Nic Naa", "text": "Für mich sind die Meditationen sehr harmonisch aufeinander abgestimmt und strukturiert. Man freut sich schon auf den nächsten Teil. Ich fühle mich leicht, lebendig und gestärkt. Die angenehme, klare und feinfühlige Stimme erdet mich. Man spürt die überaus positive Energie, die mir erlaubt, meine volle Kraft zurückzugewinnen. Die Meditationen hinterlassen mich sehr entspannt und voller Lebensfreude, selbst wenn mein Tag nicht so gut lief. Ich ermutige jeden, der seinem Leben eine neue Richtung geben möchte, diese Meditationen auszuprobieren. Sie sind sehr beruhigend und gleichzeitig motivierend, um dich zu deinem vollen Potenzial zu führen. Ich danke dir für diesen hilfreichen Workshop, der mich unterstützt und meinen Alltag sehr positiv macht." },
-        { "name": "Anne Probst", "text": "Ruth nimmt dich in ihren Meditationen mit auf eine ganz besondere Reise. Voller Klarheit, Schärfe und Mitgefühl berühren ihre Ansagen den tiefsten Teil in mir und öffnen die Türen zum Licht. Danke, liebe Ruth, für deine besondere Gabe." },
-        { "name": "Jens Schack", "text": "Ruth liebt die Menschen. Daher kann sie sich behutsam in die Bedürfnisse der Teilnehmer einer Gruppe einfühlen. Das schätze ich sehr." },
-        { "name": "Ursa Jordan", "text": "Liebe Ruth, wenn ich deinen Channelings lausche, ob über Audiodatei oder im Kreis mit dir in deinem lichtdurchfluteten, farbenfrohen, energiegeladenen und kreativen Atem-Loft, erlaubt mir deine Stimme schon nach kurzer Zeit, meine Gedanken zu leeren, und bringt mir tiefe Entspannung. Deine sanfte, aber kraftvolle Führung nimmt mich mit auf eine Reise in mich selbst. Ich kann mein Herz für heilende innere Bilder öffnen, für Begegnungen mit verborgenen Emotionen, positiven Visionen und allerlei spirituellen Helfern. Selbst wenn es um schwierige Themen wie finanzielle Sorgen oder Familienkonflikte geht. Ich komme jedes Mal erfrischt, zuversichtlich, entspannt und voller Kraft und Vertrauen ins Hier und Jetzt zurück. Vielen herzlichen Dank dafür …" },
-        { "name": "Bernd Kienle", "text": "Liebe Ruth, vielen Dank für den wunderbaren Workshop. Er hat perfekt zu mir gepasst. Respekt, du machst es sehr professionell und einfühlsam, was nicht selbstverständlich ist, und das alles in einem bezaubernden Rahmen (… die Klänge, die Atmosphäre und die Energie – ich liebe das alles). Mach weiter so, ‚Channel-Engel‘." }
+        { "name": "Annette Fischer", "text": "Obwohl Meditation für mich völliges Neuland war, habe ich mich sofort willkommen gefühlt. Ruth schafft eine wunderschöne, friedvolle Atmosphäre, in der es leichtfällt, zur Ruhe zu kommen und wieder bei sich selbst anzukommen. Nach jeder Meditation gehe ich entspannter, voller neuer Energie und mit Vorfreude auf das nächste Mal nach Hause." },
+        { "name": "Evelyn Bieber", "text": "Die Meditationen mit Ruth haben mein Leben verändert. Sie haben sich positiv auf meine Gesundheit, mein Bewusstsein und meine Denkweise ausgewirkt. Nach jeder Meditation fühle ich mich gestärkt, inspiriert und tief getragen." },
+        { "name": "Berit Niemeyer", "text": "Ruth schafft eine warme und inspirierende Atmosphäre, in der ich mich sofort geborgen fühle. Besonders schätze ich die Tiefe der Gespräche und die herzliche Verbindung, die ganz natürlich zwischen allen Teilnehmern entsteht." },
+        { "name": "Romy Rittmann", "text": "Nach jedem Workshop fühle ich mich geerdeter, inspirierter und tief mit mir selbst verbunden. Ich entdecke immer wieder Neues, das ich in mein Leben integrieren kann. Ruth besitzt die besondere Gabe, Menschen sanft zu ihrer inneren Weisheit zurückzuführen." },
+        { "name": "Sandra Mantz — Autorin & Gründerin der Sprachgut Akademie", "text": "Ruths Meditationen sind Balsam für Seele und Geist. Ich fühle mich stets liebevoll geführt, begleitet und – wie ich gerne sage – 'von Worten umarmt'. Ihre Authentizität, Lebensfreude und starke Präsenz machen jede Meditation zu einer tief berührenden Erfahrung." }
       ]
     },
     "shop": {

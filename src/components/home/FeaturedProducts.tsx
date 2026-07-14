@@ -5,6 +5,7 @@ import { getTranslations } from "next-intl/server";
 const featured = [
   {
     name: "2X5 Meditation Easy",
+    headline: "Learn a Fast, Powerful Meditation Method Even on Your Busiest Days.",
     category: "Course",
     price: "€197",
     image: "/images/products/2x5-meditation-easy.png",
@@ -66,6 +67,11 @@ export default async function FeaturedProducts() {
                         {product.price}
                       </span>
                     </div>
+                    {"headline" in product && (
+                      <p className="font-body text-xs text-brand-dark/60 mt-2 leading-snug">
+                        {product.headline}
+                      </p>
+                    )}
                   </div>
                 </div>
               </Link>

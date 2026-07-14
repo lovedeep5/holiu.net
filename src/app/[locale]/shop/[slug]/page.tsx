@@ -160,19 +160,53 @@ export default async function ProductDetailPage({
               {formatPrice((product as any).price)}
             </p>
 
-            {description && (
-              <p
-                style={{
-                  fontFamily: "var(--font-montserrat), sans-serif",
-                  fontSize: "1rem",
-                  lineHeight: 1.8,
-                  color: "#7a6f66",
-                  marginBottom: "2rem",
-                }}
-              >
-                {description}
-              </p>
-            )}
+            {description && (() => {
+              const [headline, ...rest] = (description as string).split("\n\n");
+              return (
+                <div style={{ marginBottom: "2rem" }}>
+                  {rest.length > 0 ? (
+                    <>
+                      <p
+                        style={{
+                          fontFamily: "var(--font-montserrat), sans-serif",
+                          fontSize: "1.1rem",
+                          fontWeight: 700,
+                          lineHeight: 1.5,
+                          color: "#2c2520",
+                          marginBottom: "0.75rem",
+                        }}
+                      >
+                        {headline}
+                      </p>
+                      {rest.map((para, i) => (
+                        <p
+                          key={i}
+                          style={{
+                            fontFamily: "var(--font-montserrat), sans-serif",
+                            fontSize: "1rem",
+                            lineHeight: 1.8,
+                            color: "#7a6f66",
+                          }}
+                        >
+                          {para}
+                        </p>
+                      ))}
+                    </>
+                  ) : (
+                    <p
+                      style={{
+                        fontFamily: "var(--font-montserrat), sans-serif",
+                        fontSize: "1rem",
+                        lineHeight: 1.8,
+                        color: "#7a6f66",
+                      }}
+                    >
+                      {headline}
+                    </p>
+                  )}
+                </div>
+              );
+            })()}
 
             <div
               style={{

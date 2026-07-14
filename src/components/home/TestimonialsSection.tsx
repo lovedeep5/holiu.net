@@ -4,14 +4,42 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 
 // Avatars stay in code (not translatable); names + quotes come from translations.
-const avatars = [
-  "/images/testimonials/sabine-wollert.png",
-  "/images/testimonials/nic-naa.png",
-  "/images/testimonials/anne-probst.png",
-  "/images/testimonials/jens-schack.jpg",
-  "/images/testimonials/ursa.jpg",
-  "/images/testimonials/bernd-kienle.png",
-];
+// null = no photo yet, falls back to an initials circle (see Avatar below).
+const avatars: (string | null)[] = [null, null, null, null, null];
+
+function initials(name: string) {
+  return name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((p) => p[0])
+    .join("")
+    .toUpperCase();
+}
+
+function Avatar({ name, src }: { name: string; src: string | null }) {
+  if (src) {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img key={name} src={src} alt={name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />;
+  }
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "#fdf0ea",
+        color: "#a38d51",
+        fontFamily: "var(--font-playfair), Georgia, serif",
+        fontSize: "1.5rem",
+      }}
+    >
+      {initials(name)}
+    </div>
+  );
+}
 
 function Stars() {
   return (
@@ -76,12 +104,7 @@ export default function TestimonialsSection() {
             margin: "0 auto 1.5rem",
             border: "3px solid rgba(163,141,81,0.3)",
           }}>
-            <img
-              key={t.name}
-              src={t.avatar}
-              alt={t.name}
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            />
+            <Avatar name={t.name} src={t.avatar} />
           </div>
 
           {/* Stars */}
