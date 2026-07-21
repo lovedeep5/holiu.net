@@ -6,6 +6,14 @@ import WaveDivider from "@/components/ui/WaveDivider";
 import InspirationCarousel from "@/components/meditation/InspirationCarousel";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 
+const MEDITATION_TESTIMONIAL_AVATARS = [
+  "/images/testimonials/annette-fischer.jpg",
+  "/images/testimonials/evelyn-bieber.jpg",
+  "/images/testimonials/berit-niemeyer.jpg",
+  "/images/testimonials/romy-rittmann.jpg",
+  "/images/testimonials/sandra-mantz.png",
+];
+
 export async function generateMetadata({
   params,
 }: {
@@ -514,7 +522,7 @@ export default async function MeditationPage() {
       </section>
 
       {/* Testimonials */}
-      <TestimonialsSection />
+      <TestimonialsSection namespace="meditationPage.testimonials" avatars={MEDITATION_TESTIMONIAL_AVATARS} />
     </>
   );
 }

@@ -4,8 +4,15 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 
 // Avatars stay in code (not translatable); names + quotes come from translations.
-// null = no photo yet, falls back to an initials circle (see Avatar below).
-const avatars: (string | null)[] = [null, null, null, null, null];
+// null = no photo, falls back to an initials circle (see Avatar below).
+const HOME_AVATARS: (string | null)[] = [
+  "/images/testimonials/sabine-wollert.png",
+  "/images/testimonials/nic-naa.png",
+  "/images/testimonials/anne-probst.png",
+  "/images/testimonials/jens-schack.jpg",
+  "/images/testimonials/ursa.jpg",
+  "/images/testimonials/bernd-kienle.png",
+];
 
 function initials(name: string) {
   return name
@@ -53,8 +60,13 @@ function Stars() {
   );
 }
 
-export default function TestimonialsSection() {
-  const tl = useTranslations("home.testimonials");
+interface Props {
+  namespace?: string;
+  avatars?: (string | null)[];
+}
+
+export default function TestimonialsSection({ namespace = "home.testimonials", avatars = HOME_AVATARS }: Props) {
+  const tl = useTranslations(namespace);
   const [current, setCurrent] = useState(0);
 
   const items = tl.raw("items") as { name: string; text: string }[];

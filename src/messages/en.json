@@ -221,7 +221,18 @@
     "inspirationTitle": "Inspiration & Motivation",
     "inspirationSub": "WHAT OUR CLIENTS SAY",
     "ruthName": "Ruth Heinen",
-    "ruthRole": "CEO & Founder HOLIU"
+    "ruthRole": "CEO & Founder HOLIU",
+    "testimonials": {
+      "eyebrow": "Testimonials",
+      "heading": "WHAT OUR CLIENTS SAY",
+      "items": [
+        { "name": "Annette Fischer", "text": "Although meditation was completely new to me, I immediately felt welcome. Ruth creates a beautiful, peaceful atmosphere where it's easy to relax and reconnect. Every meditation leaves me feeling calmer, energized and already looking forward to the next one." },
+        { "name": "Evelyn Bieber", "text": "Meditating with Ruth has changed my life. It has positively influenced my health, my awareness and my way of thinking. Every session leaves me feeling stronger, inspired and deeply supported." },
+        { "name": "Berit Niemeyer", "text": "Ruth creates such a warm and inspiring atmosphere that I immediately feel safe. What I appreciate most is the depth of the conversations and the heartfelt connection that naturally develops between everyone." },
+        { "name": "Romy Rittmann", "text": "Every workshop leaves me feeling more grounded, inspired and deeply connected to myself. I always discover something new that I can integrate into my life. Ruth has a remarkable gift for gently guiding people back to their own inner wisdom." },
+        { "name": "Sandra Mantz — Author & Founder of Sprachgut Akademie", "text": "Ruth's meditations are balm for the soul. I always feel beautifully guided, supported and, as I like to say, 'embraced by words.' Her authenticity, joyful spirit and powerful presence create a truly transformative experience." }
+      ]
+    }
   },
   "legal": {
     "privacy": "Privacy Policy",
@@ -291,11 +302,12 @@
       "eyebrow": "Testimonials",
       "heading": "WHAT OUR CLIENTS SAY",
       "items": [
-        { "name": "Annette Fischer", "text": "Although meditation was completely new to me, I immediately felt welcome. Ruth creates a beautiful, peaceful atmosphere where it's easy to relax and reconnect. Every meditation leaves me feeling calmer, energized and already looking forward to the next one." },
-        { "name": "Evelyn Bieber", "text": "Meditating with Ruth has changed my life. It has positively influenced my health, my awareness and my way of thinking. Every session leaves me feeling stronger, inspired and deeply supported." },
-        { "name": "Berit Niemeyer", "text": "Ruth creates such a warm and inspiring atmosphere that I immediately feel safe. What I appreciate most is the depth of the conversations and the heartfelt connection that naturally develops between everyone." },
-        { "name": "Romy Rittmann", "text": "Every workshop leaves me feeling more grounded, inspired and deeply connected to myself. I always discover something new that I can integrate into my life. Ruth has a remarkable gift for gently guiding people back to their own inner wisdom." },
-        { "name": "Sandra Mantz — Author & Founder of Sprachgut Akademie", "text": "Ruth's meditations are balm for the soul. I always feel beautifully guided, supported and, as I like to say, 'embraced by words.' Her authenticity, joyful spirit and powerful presence create a truly transformative experience." }
+        { "name": "Sabine Wollert", "text": "Dear Ruth, you live a down-to-earth, everyday spirituality and you convey this very professionally in your workshops. Here all levels are linked so that the released energies and insights have a lasting effect and can be implemented. Chapeau" },
+        { "name": "Nic Naa", "text": "For me, the meditations are very harmoniously coordinated and structured. You're already looking forward to the next part. I feel light and lively and empowered. The pleasant, clear and sensitive voice grounds me. You can feel the extremely positive energy, which allows me to regain my full strength. The meditations leave me feeling very relaxed and full of zest for life even if my day did not go so well. I encourage everyone who wants to give their life a new direction to try these meditations. They are very calming and at the same time motivating to get you to your full potential. I thank you for this helpful workshop, which supports me and makes my everyday life very positive." },
+        { "name": "Anne Probst", "text": "Ruth takes you on a very special journey in her meditations. Full of clarity, sharpness and compassion, her announcements touch the deepest part of me and open the doors to the light. Thank you dear Ruth for your special gift." },
+        { "name": "Jens Schack", "text": "Ruth loves people. Therefore she can carefully empathize with the needs of the participants in a group. I appreciate this." },
+        { "name": "Ursa Jordan", "text": "Dear Ruth, when I listen to your channelings, whether via audio file or in circle with you in your light-flooded, colourful, energetic and creative breathing loft, after a short time, your voice allows me to empty my thoughts and brings deep relaxation to me. Your gentle but powerful guidance takes me on a journey within myself. I can open my heart to healing inner images for encounters with hidden emotions, positive visions and all kinds of spiritual helpers. Even when it comes to difficult topics such as financial worries or family conflicts. I come back refreshed, confident, relaxed and full of strength and trust in the here and now every time. Thank you very much for that ..." },
+        { "name": "Bernd Kienle", "text": "Dear Ruth, thank you very much for the wonderful workshop. It was a perfect fit for me. Respect, you do it very professionally and sensitively, which is not a matter of course, and all of this in an enchanting setting (... the sounds, atmosphere and energy - love all of this). Keep it up 'channel angel'" }
       ]
     },
     "shop": {
