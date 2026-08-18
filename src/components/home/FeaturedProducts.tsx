@@ -9,7 +9,8 @@ const featured = [
     category: "Course",
     price: "€197",
     image: "/images/products/2x5-meditation-easy.png",
-    href: "/shop/2x5-meditation-easy",
+    href: "https://ruthheinen.mykajabi.com/sales-page",
+    fillBackdrop: true,
   },
   {
     name: "Healing The Witch Wound",
@@ -44,7 +45,16 @@ export default async function FeaturedProducts() {
               <Link href={product.href} className="group block">
                 <div className="relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-xl transition-shadow duration-400">
                   {/* Product arch image */}
-                  <div className="relative aspect-[450/685] bg-gradient-to-b from-brand-cream to-white">
+                  <div className="relative aspect-[450/685] bg-gradient-to-b from-brand-cream to-white overflow-hidden">
+                    {"fillBackdrop" in product && (
+                      <Image
+                        src={product.image}
+                        alt=""
+                        aria-hidden="true"
+                        fill
+                        className="object-cover scale-110 blur-md opacity-55"
+                      />
+                    )}
                     <Image
                       src={product.image}
                       alt={product.name}

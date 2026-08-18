@@ -215,6 +215,13 @@ export default async function AboutPage() {
             >
               <Image
                 src="/images/products/2x5-meditation-easy.png"
+                alt=""
+                aria-hidden="true"
+                fill
+                className="object-cover scale-110 blur-md opacity-55"
+              />
+              <Image
+                src="/images/products/2x5-meditation-easy.png"
                 alt={t("visitCourse")}
                 fill
                 className="object-contain transition-transform duration-500 group-hover:scale-110"
@@ -225,40 +232,47 @@ export default async function AboutPage() {
                 className="absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100"
                 style={{ background: "rgba(252,136,85,0.45)" }}
               />
-              {/* Label */}
+              {/* Label — dark chip guarantees contrast regardless of what's behind it */}
               <div style={{ position: "absolute", top: "1.25rem", left: "1.25rem", right: "1.25rem" }}>
-                <span
+                <div
                   style={{
-                    display: "block",
-                    fontFamily: "var(--font-montserrat), sans-serif",
-                    fontSize: "0.85rem",
-                    fontWeight: 700,
-                    letterSpacing: "0.04em",
-                    color: "white",
-                    textShadow: "0 1px 4px rgba(0,0,0,0.5)",
-                    marginBottom: "0.35rem",
+                    display: "inline-block",
+                    background: "rgba(44,37,32,0.72)",
+                    borderRadius: "0.4rem",
+                    padding: "0.55rem 0.85rem",
                   }}
                 >
-                  {t("visitCourse")}
-                </span>
-                <span
-                  style={{
-                    display: "block",
-                    fontFamily: "var(--font-montserrat), sans-serif",
-                    fontSize: "0.72rem",
-                    lineHeight: 1.4,
-                    color: "white",
-                    textShadow: "0 1px 4px rgba(0,0,0,0.5)",
-                  }}
-                >
-                  {t("visitCourseHeadline")}
-                </span>
+                  <span
+                    style={{
+                      display: "block",
+                      fontFamily: "var(--font-montserrat), sans-serif",
+                      fontSize: "0.85rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.04em",
+                      color: "white",
+                      marginBottom: "0.25rem",
+                    }}
+                  >
+                    {t("visitCourse")}
+                  </span>
+                  <span
+                    style={{
+                      display: "block",
+                      fontFamily: "var(--font-montserrat), sans-serif",
+                      fontSize: "0.72rem",
+                      lineHeight: 1.4,
+                      color: "white",
+                    }}
+                  >
+                    {t("visitCourseHeadline")}
+                  </span>
+                </div>
               </div>
             </Link>
 
-            {/* Workshop card */}
+            {/* Workshop card — Private Session / Chakra Balancing */}
             <Link
-              href="/shop"
+              href="/shop/individual-chakra-balancing"
               className="group"
               style={{
                 display: "block",
@@ -266,13 +280,14 @@ export default async function AboutPage() {
                 borderRadius: "0.5rem",
                 overflow: "hidden",
                 aspectRatio: "2/3",
+                background: "linear-gradient(to bottom, #fdf0ea, #ffffff)",
               }}
             >
               <Image
-                src="/images/backgrounds/full2.jpg"
+                src="/images/products/individual-chakra-balancing.png"
                 alt={t("visitWorkshop")}
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                className="object-contain transition-transform duration-500 group-hover:scale-110"
                 sizes="(max-width: 768px) 90vw, 45vw"
               />
               {/* 20% orange overlay on hover */}
@@ -280,20 +295,41 @@ export default async function AboutPage() {
                 className="absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100"
                 style={{ background: "rgba(252,136,85,0.45)" }}
               />
-              {/* Label */}
-              <div style={{ position: "absolute", top: "1.25rem", left: "1.25rem" }}>
-                <span
+              {/* Label — dark chip guarantees contrast regardless of what's behind it */}
+              <div style={{ position: "absolute", top: "1.25rem", left: "1.25rem", right: "1.25rem" }}>
+                <div
                   style={{
-                    fontFamily: "var(--font-montserrat), sans-serif",
-                    fontSize: "0.85rem",
-                    fontWeight: 700,
-                    letterSpacing: "0.04em",
-                    color: "white",
-                    textShadow: "0 1px 4px rgba(0,0,0,0.5)",
+                    display: "inline-block",
+                    background: "rgba(44,37,32,0.72)",
+                    borderRadius: "0.4rem",
+                    padding: "0.55rem 0.85rem",
                   }}
                 >
-                  {t("visitWorkshop")}
-                </span>
+                  <span
+                    style={{
+                      display: "block",
+                      fontFamily: "var(--font-montserrat), sans-serif",
+                      fontSize: "0.85rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.04em",
+                      color: "white",
+                      marginBottom: "0.25rem",
+                    }}
+                  >
+                    {t("visitWorkshop")}
+                  </span>
+                  <span
+                    style={{
+                      display: "block",
+                      fontFamily: "var(--font-montserrat), sans-serif",
+                      fontSize: "0.72rem",
+                      lineHeight: 1.4,
+                      color: "white",
+                    }}
+                  >
+                    {t("visitWorkshopHeadline")}
+                  </span>
+                </div>
               </div>
             </Link>
           </div>

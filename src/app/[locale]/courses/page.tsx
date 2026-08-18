@@ -81,26 +81,6 @@ export default async function CoursesPage() {
       {/* Section: Featured course card — white bg, centered */}
       <section style={{ backgroundColor: "#ffffff", padding: "3rem 1.5rem 6rem" }}>
         <div style={{ maxWidth: "360px", margin: "0 auto", textAlign: "center" }}>
-          {/* Course image card */}
-          <div
-            style={{
-              borderRadius: "0.5rem",
-              overflow: "hidden",
-              marginBottom: "1.75rem",
-              position: "relative",
-              aspectRatio: "3/4",
-              background: "linear-gradient(to bottom, #fdf0ea, #ffffff)",
-            }}
-          >
-            <Image
-              src="/images/products/2x5-meditation-easy.png"
-              alt={t("featuredTitle")}
-              fill
-              className="object-contain"
-              sizes="360px"
-            />
-          </div>
-
           {/* Title */}
           <p
             style={{
@@ -121,12 +101,39 @@ export default async function CoursesPage() {
               fontSize: "clamp(1.2rem, 2.5vw, 1.5rem)",
               color: "#2c2520",
               fontWeight: 400,
-              marginBottom: "1.25rem",
+              marginBottom: "1.75rem",
               lineHeight: 1.4,
             }}
           >
             {t("featuredHeadline")}
           </h2>
+
+          {/* Course image card */}
+          <div
+            style={{
+              borderRadius: "0.5rem",
+              overflow: "hidden",
+              marginBottom: "1.75rem",
+              position: "relative",
+              aspectRatio: "3/4",
+              background: "linear-gradient(to bottom, #fdf0ea, #ffffff)",
+            }}
+          >
+            <Image
+              src="/images/products/2x5-meditation-easy.png"
+              alt=""
+              aria-hidden="true"
+              fill
+              className="object-cover scale-110 blur-md opacity-55"
+            />
+            <Image
+              src="/images/products/2x5-meditation-easy.png"
+              alt={t("featuredTitle")}
+              fill
+              className="object-contain"
+              sizes="360px"
+            />
+          </div>
 
           {/* Body copy */}
           <p
@@ -184,6 +191,26 @@ export default async function CoursesPage() {
           >
             {t("featuredBody2")}
           </p>
+
+          {/* Product mock-up */}
+          <div
+            style={{
+              borderRadius: "0.5rem",
+              overflow: "hidden",
+              marginBottom: "1.5rem",
+              position: "relative",
+              aspectRatio: "1415/1000",
+              background: "linear-gradient(to bottom, #fdf0ea, #ffffff)",
+            }}
+          >
+            <Image
+              src="/images/products/2x5-meditation-easy-full.png"
+              alt={t("featuredTitle")}
+              fill
+              className="object-contain"
+              sizes="360px"
+            />
+          </div>
 
           {/* Coming Soon label */}
           <p

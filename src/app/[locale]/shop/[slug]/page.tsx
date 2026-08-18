@@ -107,16 +107,27 @@ export default async function ProductDetailPage({
                 boxShadow: "0 10px 40px rgba(0,0,0,0.06)",
               }}
             >
-              <div style={{ position: "relative", aspectRatio: "450/685" }}>
+              <div style={{ position: "relative", aspectRatio: "450/685", overflow: "hidden", borderRadius: "0.5rem" }}>
                 {(product as any).thumbnail_url && (
-                  <Image
-                    src={(product as any).thumbnail_url}
-                    alt={name}
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 768px) 90vw, 45vw"
-                    priority
-                  />
+                  <>
+                    {(product as any).slug === "2x5-meditation-easy" && (
+                      <Image
+                        src={(product as any).thumbnail_url}
+                        alt=""
+                        aria-hidden="true"
+                        fill
+                        className="object-cover scale-110 blur-md opacity-55"
+                      />
+                    )}
+                    <Image
+                      src={(product as any).thumbnail_url}
+                      alt={name}
+                      fill
+                      className="object-contain"
+                      sizes="(max-width: 768px) 90vw, 45vw"
+                      priority
+                    />
+                  </>
                 )}
               </div>
             </div>

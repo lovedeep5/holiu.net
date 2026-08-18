@@ -66,7 +66,7 @@ export default async function AboutRuthSection() {
               Ruth ❤
             </p>
 
-            <Link href="/about" className="btn-primary">
+            <Link href="/get-started" className="btn-primary">
               {t("cta")}
             </Link>
           </div>

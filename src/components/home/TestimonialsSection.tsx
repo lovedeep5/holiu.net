@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 
 // Avatars stay in code (not translatable); names + quotes come from translations.
@@ -65,15 +65,34 @@ interface Props {
   avatars?: (string | null)[];
 }
 
+const SWIPE_THRESHOLD = 40;
+
 export default function TestimonialsSection({ namespace = "home.testimonials", avatars = HOME_AVATARS }: Props) {
   const tl = useTranslations(namespace);
   const [current, setCurrent] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+  const touchDeltaX = useRef(0);
 
   const items = tl.raw("items") as { name: string; text: string }[];
   const testimonials = items.map((it, i) => ({ ...it, avatar: avatars[i] }));
 
   const prev = () => setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length);
   const next = () => setCurrent((c) => (c + 1) % testimonials.length);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchDeltaX.current = 0;
+  };
+  const onTouchMove = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    touchDeltaX.current = e.touches[0].clientX - touchStartX.current;
+  };
+  const onTouchEnd = () => {
+    if (touchDeltaX.current > SWIPE_THRESHOLD) prev();
+    else if (touchDeltaX.current < -SWIPE_THRESHOLD) next();
+    touchStartX.current = null;
+    touchDeltaX.current = 0;
+  };
 
   const t = testimonials[current];
 
@@ -106,7 +125,12 @@ export default function TestimonialsSection({ namespace = "home.testimonials", a
         </div>
 
         {/* Carousel */}
-        <div style={{ maxWidth: "760px", margin: "0 auto", textAlign: "center" }}>
+        <div
+          style={{ maxWidth: "760px", margin: "0 auto", textAlign: "center", touchAction: "pan-y" }}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
           {/* Avatar — plain img + key forces reload on slide change */}
           <div style={{
             width: "80px",
