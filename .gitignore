@@ -45,3 +45,5 @@ supabase/.temp/
 
 # large source audio files
 /01.*.mp3
+
+.playwright-mcp/

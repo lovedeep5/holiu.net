@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
       password,
       options: {
         data: { first_name: fName, last_name: lName, name: fullName },
-        redirectTo: `${BASE_URL}/en/account`,
+        redirectTo: `${BASE_URL}/en/account/confirm`,
       },
     });
     if (error || !data?.properties?.action_link) {

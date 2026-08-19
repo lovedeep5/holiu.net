@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { validatePassword, PASSWORD_REQUIREMENTS_TEXT } from "@/lib/password";
+import { extractHashTokens } from "@/lib/auth-hash";
 import { Link } from "@/i18n/navigation";
 import AnimateIn from "@/components/ui/AnimateIn";
 
@@ -30,10 +31,26 @@ export default function ResetPasswordPage() {
 
   useEffect(() => {
     const supabase = createClient();
-    supabase.auth.getSession().then(({ data }) => {
+
+    async function init() {
+      const tokens = extractHashTokens();
+      if (tokens) {
+        const { error } = await supabase.auth.setSession(tokens);
+        // Strip the tokens from the URL either way so they don't linger in history.
+        window.history.replaceState(null, "", window.location.pathname + window.location.search);
+        if (!error) {
+          setSessionReady(true);
+          setChecking(false);
+          return;
+        }
+      }
+
+      const { data } = await supabase.auth.getSession();
       setSessionReady(!!data.session);
       setChecking(false);
-    });
+    }
+
+    init();
   }, []);
 
   async function handleSubmit(e: React.FormEvent) {

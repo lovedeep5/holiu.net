@@ -29,7 +29,8 @@ export default async function proxy(req: NextRequest) {
   const isAccountPublic =
     sub === "/account/login" || sub.startsWith("/account/login/") ||
     sub === "/account/forgot-password" || sub.startsWith("/account/forgot-password/") ||
-    sub === "/account/reset-password" || sub.startsWith("/account/reset-password/");
+    sub === "/account/reset-password" || sub.startsWith("/account/reset-password/") ||
+    sub === "/account/confirm" || sub.startsWith("/account/confirm/");
 
   if (isAccountRoute && !isAccountPublic) {
     try {
