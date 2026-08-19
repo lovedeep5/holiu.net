@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import WaveDivider from "@/components/ui/WaveDivider";
 import LottieAnimation from "@/components/ui/LottieAnimation";
 import { buildAlternates, OG_IMAGE } from "@/lib/seo";
+import HreflangLinks from "@/components/seo/HreflangLinks";
 
 export async function generateMetadata({
   params,
@@ -30,6 +31,7 @@ export default async function CoursesPage() {
 
   return (
     <>
+      <HreflangLinks path="/courses" />
       {/* Hero — Buddha stone hands with flowers */}
       <section className="relative">
         {/* Mobile: full image, no cropping */}

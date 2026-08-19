@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import ProductGrid from "@/components/shop/ProductGrid";
 import { buildAlternates, OG_IMAGE } from "@/lib/seo";
+import HreflangLinks from "@/components/seo/HreflangLinks";
 
 export async function generateMetadata({
   params,
@@ -32,6 +33,7 @@ export default async function ShopPage({
   const tn = await getTranslations({ locale, namespace: "nav" });
   return (
     <>
+      <HreflangLinks path="/shop" />
       {/* Simple page header — matches original */}
       <div style={{ backgroundColor: "#ffffff", paddingTop: "6rem", paddingBottom: "0" }}>
         <div className="container-max">

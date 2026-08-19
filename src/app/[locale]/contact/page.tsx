@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import ContactForm from "./ContactForm";
 import { buildAlternates, OG_IMAGE } from "@/lib/seo";
+import HreflangLinks from "@/components/seo/HreflangLinks";
 
 export async function generateMetadata({
   params,
@@ -23,5 +24,10 @@ export async function generateMetadata({
 }
 
 export default function ContactPage() {
-  return <ContactForm />;
+  return (
+    <>
+      <HreflangLinks path="/contact" />
+      <ContactForm />
+    </>
+  );
 }

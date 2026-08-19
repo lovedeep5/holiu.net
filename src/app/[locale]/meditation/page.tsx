@@ -6,6 +6,7 @@ import WaveDivider from "@/components/ui/WaveDivider";
 import InspirationCarousel from "@/components/meditation/InspirationCarousel";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import { buildAlternates, OG_IMAGE } from "@/lib/seo";
+import HreflangLinks from "@/components/seo/HreflangLinks";
 
 const MEDITATION_TESTIMONIAL_AVATARS = [
   "/images/testimonials/annette-fischer.jpg",
@@ -40,6 +41,7 @@ export default async function MeditationPage() {
 
   return (
     <>
+      <HreflangLinks path="/meditation" />
       {/* Hero — "breathe" neon */}
       <section className="relative">
         {/* Mobile: full image, no cropping */}

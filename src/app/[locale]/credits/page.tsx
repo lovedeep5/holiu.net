@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import styles from "./credits.module.css";
 import { buildAlternates } from "@/lib/seo";
+import HreflangLinks from "@/components/seo/HreflangLinks";
 
 export async function generateMetadata({
   params,
@@ -39,6 +40,7 @@ export default async function CreditsPage() {
         paddingBottom: "5rem",
       }}
     >
+      <HreflangLinks path="/credits" />
       <div className="container-max">
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "0.5rem" }}>

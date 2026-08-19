@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import WaveDivider from "@/components/ui/WaveDivider";
 import { buildAlternates, OG_IMAGE } from "@/lib/seo";
+import HreflangLinks from "@/components/seo/HreflangLinks";
 
 export async function generateMetadata({
   params,
@@ -43,6 +44,7 @@ export default async function AboutPage() {
 
   return (
     <>
+      <HreflangLinks path="/about" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON_SCHEMA) }}

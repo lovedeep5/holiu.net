@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import GetStartedForm from "./GetStartedForm";
 import { buildAlternates, OG_IMAGE } from "@/lib/seo";
+import HreflangLinks from "@/components/seo/HreflangLinks";
 
 export async function generateMetadata({
   params,
@@ -28,6 +29,7 @@ export default async function GetStartedPage() {
 
   return (
     <section style={{ backgroundColor: "#fdf8f2", minHeight: "100vh", paddingTop: "8rem", paddingBottom: "8rem" }}>
+      <HreflangLinks path="/get-started" />
       <div className="container-max">
         <div
           className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center"

@@ -9,6 +9,7 @@ import BuyButton from "@/components/shop/BuyButton";
 import { Link } from "@/i18n/navigation";
 import { ShieldCheck, Download, ArrowLeft } from "lucide-react";
 import { buildAlternates, OG_IMAGE } from "@/lib/seo";
+import HreflangLinks from "@/components/seo/HreflangLinks";
 
 export const dynamic = "force-dynamic";
 
@@ -90,6 +91,7 @@ export default async function ProductDetailPage({
 
   return (
     <section className="section-padding bg-brand-cream min-h-screen pt-36">
+      <HreflangLinks path={`/shop/${slug}`} />
       <div className="container-max">
         <AnimateIn>
           <Link

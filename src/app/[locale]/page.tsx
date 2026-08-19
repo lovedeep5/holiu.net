@@ -9,6 +9,7 @@ import FeaturedProducts from "@/components/home/FeaturedProducts";
 import ContactSection from "@/components/home/ContactSection";
 import WaveDivider from "@/components/ui/WaveDivider";
 import { buildAlternates } from "@/lib/seo";
+import HreflangLinks from "@/components/seo/HreflangLinks";
 
 export async function generateMetadata({
   params,
@@ -22,6 +23,8 @@ export async function generateMetadata({
 export default function HomePage() {
   return (
     <>
+      <HreflangLinks path="/" />
+
       {/* 1 — Hero */}
       <HeroSection />
 

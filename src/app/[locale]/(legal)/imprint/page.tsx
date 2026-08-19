@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { buildAlternates } from "@/lib/seo";
+import HreflangLinks from "@/components/seo/HreflangLinks";
 
 export async function generateMetadata({
   params,
@@ -34,6 +35,7 @@ const p: React.CSSProperties = {
 export default function ImprintPage() {
   return (
     <section className="section-padding bg-brand-cream min-h-screen pt-40">
+      <HreflangLinks path="/imprint" />
       <div className="container-max" style={{ maxWidth: "760px" }}>
         <h1
           style={{
