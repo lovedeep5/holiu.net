@@ -21,6 +21,7 @@ export default function HeroSection() {
         className="relative z-10 flex flex-col items-center px-6"
         style={{ gap: "1rem" }}
       >
+        <h1 className="sr-only">HOLIU — Discover the Treasure Inside of You</h1>
         <Image
           src="/images/logo-dark.png"
           alt="HOLIU"

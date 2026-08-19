@@ -82,7 +82,6 @@ export default async function LocaleLayout({
 
   return (
     <div
-      lang={locale}
       className={isAdmin ? "min-h-screen" : "min-h-screen flex flex-col bg-brand-cream"}
     >
       <NextIntlClientProvider messages={messages}>

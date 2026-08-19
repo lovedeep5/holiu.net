@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Playfair_Display, Montserrat } from "next/font/google";
+import { getLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.holiu.net"),
@@ -18,11 +19,14 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const locale = await getLocale();
+
   return (
     <html
+      lang={locale}
       suppressHydrationWarning
       className={`${playfair.variable} ${montserrat.variable}`}
     >
