@@ -1,5 +1,10 @@
 import "./globals.css";
+import type { Metadata } from "next";
 import { Playfair_Display, Montserrat } from "next/font/google";
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://www.holiu.net"),
+};
 
 const playfair = Playfair_Display({
   subsets: ["latin"],

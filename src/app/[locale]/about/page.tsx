@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import WaveDivider from "@/components/ui/WaveDivider";
+import { buildAlternates, OG_IMAGE } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -11,8 +12,29 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "nav" });
-  return { title: t("about") };
+  const description =
+    locale === "de"
+      ? "Lerne Ruth Heinen kennen – Meditationslehrerin, Chakra-Heilerin und spirituelle Begleiterin. Erfahre ihre Geschichte und wie HOLIU dir hilft, den Schatz in dir zu entdecken."
+      : "Meet Ruth Heinen — meditation teacher, chakra healer, and spiritual guide. Learn her story and how HOLIU helps you discover the treasure inside of you.";
+  return {
+    title: t("about"),
+    description,
+    alternates: buildAlternates(locale, "/about"),
+    openGraph: { title: t("about"), description, images: [OG_IMAGE] },
+  };
 }
+
+const PERSON_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Ruth Heinen",
+  jobTitle: "Meditation Teacher & Spiritual Guide",
+  worksFor: {
+    "@type": "Organization",
+    name: "HOLIU",
+  },
+  url: "https://www.holiu.net/about",
+};
 
 export default async function AboutPage() {
   const t = await getTranslations("aboutPage");
@@ -21,6 +43,10 @@ export default async function AboutPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON_SCHEMA) }}
+      />
       {/* Hero — natural image on mobile (no crop), full-screen fill on desktop */}
       <section className="relative">
         {/* Mobile: full image visible, no cropping */}

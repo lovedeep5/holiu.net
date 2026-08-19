@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import HeroSection from "@/components/home/HeroSection";
 import TreasureSection from "@/components/home/TreasureSection";
 import AboutRuthSection from "@/components/home/AboutRuthSection";
@@ -7,6 +8,16 @@ import TestimonialsSection from "@/components/home/TestimonialsSection";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
 import ContactSection from "@/components/home/ContactSection";
 import WaveDivider from "@/components/ui/WaveDivider";
+import { buildAlternates } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return { alternates: buildAlternates(locale, "/") };
+}
 
 export default function HomePage() {
   return (

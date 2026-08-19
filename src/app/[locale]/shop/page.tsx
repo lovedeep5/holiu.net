@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import ProductGrid from "@/components/shop/ProductGrid";
+import { buildAlternates, OG_IMAGE } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -10,7 +11,16 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "nav" });
-  return { title: t("shop") };
+  const description =
+    locale === "de"
+      ? "Entdecke Meditationen, Chakra-Balancing-Sitzungen und spirituelle Coaching-Programme von Ruth Heinen – digitale Downloads für deinen Weg zu mehr Wohlbefinden."
+      : "Shop meditations, chakra balancing sessions, and spiritual coaching programs by Ruth Heinen — digital downloads to support your wellness journey.";
+  return {
+    title: t("shop"),
+    description,
+    alternates: buildAlternates(locale, "/shop"),
+    openGraph: { title: t("shop"), description, images: [OG_IMAGE] },
+  };
 }
 
 export default async function ShopPage({

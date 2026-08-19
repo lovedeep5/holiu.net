@@ -8,23 +8,55 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import OptinModal from "@/components/ui/OptinModal";
 import BackgroundMusic from "@/components/ui/BackgroundMusic";
+import { OG_IMAGE } from "@/lib/seo";
+
+const SITE_NAME = "HOLIU";
+const SITE_TITLE = "HOLIU — Discover the Treasure Inside of You";
+const SITE_DESCRIPTION =
+  "Spiritual wellness courses, meditations, chakra balancing and channeling sessions by Ruth Heinen. Discover the treasure inside of you.";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.holiu.net"),
   title: {
-    default: "HOLIU — Discover the Treasure Inside of You",
+    default: SITE_TITLE,
     template: "%s | HOLIU",
   },
-  description:
-    "Spiritual wellness courses, meditations, chakra balancing and channeling sessions by Ruth Heinen. Discover the treasure inside of you.",
+  description: SITE_DESCRIPTION,
   keywords: ["meditation", "spiritual", "wellness", "chakra", "channeling", "courses"],
   openGraph: {
-    title: "HOLIU — Discover the Treasure Inside of You",
-    description:
-      "Spiritual wellness courses, meditations, chakra balancing and channeling sessions by Ruth Heinen.",
-    url: "https://holiu.net",
-    siteName: "HOLIU",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: "https://www.holiu.net",
+    siteName: SITE_NAME,
     type: "website",
+    images: [OG_IMAGE],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [OG_IMAGE.url],
+  },
+};
+
+const ORGANIZATION_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "HOLIU",
+  url: "https://www.holiu.net",
+  logo: "https://www.holiu.net/images/logo-dark.png",
+  description: SITE_DESCRIPTION,
+  founder: {
+    "@type": "Person",
+    name: "Ruth Heinen",
+  },
+};
+
+const WEBSITE_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "HOLIU",
+  url: "https://www.holiu.net",
 };
 
 export function generateStaticParams() {
@@ -58,6 +90,14 @@ export default async function LocaleLayout({
           children
         ) : (
           <>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_SCHEMA) }}
+            />
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(WEBSITE_SCHEMA) }}
+            />
             <Navbar />
             <main className="flex-1">{children}</main>
             <Footer />

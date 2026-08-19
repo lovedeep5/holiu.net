@@ -8,6 +8,7 @@ import { createServiceClient } from "@/lib/supabase/server";
 import BuyButton from "@/components/shop/BuyButton";
 import { Link } from "@/i18n/navigation";
 import { ShieldCheck, Download, ArrowLeft } from "lucide-react";
+import { buildAlternates, OG_IMAGE } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -34,7 +35,7 @@ export async function generateMetadata({
     const supabase = createServiceClient();
     const { data } = await supabase
       .from("products")
-      .select("slug, name_en, name_de")
+      .select("slug, name_en, name_de, description_en, description_de")
       .eq("slug", slug)
       .single();
     product = data;
@@ -43,7 +44,21 @@ export async function generateMetadata({
   if (!product) return {};
   const name =
     locale === "de" && product.name_de ? product.name_de : product.name_en;
-  return { title: name };
+  const rawDescription =
+    locale === "de" && product.description_de
+      ? product.description_de
+      : product.description_en;
+  const description = rawDescription
+    ? String(rawDescription).slice(0, 160)
+    : locale === "de"
+      ? `${name} – von Ruth Heinen bei HOLIU. Jetzt als digitalen Download entdecken.`
+      : `${name} — by Ruth Heinen at HOLIU. Discover it now as a digital download.`;
+  return {
+    title: name,
+    description,
+    alternates: buildAlternates(locale, `/shop/${slug}`),
+    openGraph: { title: name, description, images: [OG_IMAGE] },
+  };
 }
 
 export default async function ProductDetailPage({

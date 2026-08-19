@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import WaveDivider from "@/components/ui/WaveDivider";
 import InspirationCarousel from "@/components/meditation/InspirationCarousel";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
+import { buildAlternates, OG_IMAGE } from "@/lib/seo";
 
 const MEDITATION_TESTIMONIAL_AVATARS = [
   "/images/testimonials/annette-fischer.jpg",
@@ -21,7 +22,16 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "nav" });
-  return { title: t("meditation") };
+  const description =
+    locale === "de"
+      ? "Kostenlose geführte Meditationen von Ruth Heinen, die dir helfen zu entspannen, dich neu zu verbinden und den Schatz in dir zu entdecken."
+      : "Free guided meditations from Ruth Heinen to help you relax, reconnect, and discover the treasure inside of you.";
+  return {
+    title: t("meditation"),
+    description,
+    alternates: buildAlternates(locale, "/meditation"),
+    openGraph: { title: t("meditation"), description, images: [OG_IMAGE] },
+  };
 }
 
 export default async function MeditationPage() {

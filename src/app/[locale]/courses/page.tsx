@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import WaveDivider from "@/components/ui/WaveDivider";
 import LottieAnimation from "@/components/ui/LottieAnimation";
+import { buildAlternates, OG_IMAGE } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -12,7 +13,16 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "nav" });
-  return { title: t("courses") };
+  const description =
+    locale === "de"
+      ? "Entdecke die Meditations- und Entwicklungskurse von HOLIU – Chakra-Balancing, Channeling und geführte Programme, die dir helfen, das Leben zu erschaffen, das du willst."
+      : "Explore HOLIU's meditation and spiritual development courses — chakra balancing, channeling, and guided programs to help you create the life you want.";
+  return {
+    title: t("courses"),
+    description,
+    alternates: buildAlternates(locale, "/courses"),
+    openGraph: { title: t("courses"), description, images: [OG_IMAGE] },
+  };
 }
 
 export default async function CoursesPage() {

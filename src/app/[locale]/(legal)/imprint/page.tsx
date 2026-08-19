@@ -1,9 +1,18 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { buildAlternates } from "@/lib/seo";
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations("legal");
-  return { title: t("imprint") };
+  return {
+    title: t("imprint"),
+    alternates: buildAlternates(locale, "/imprint"),
+  };
 }
 
 const section: React.CSSProperties = { marginTop: "2rem" };

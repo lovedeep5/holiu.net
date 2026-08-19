@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import GetStartedForm from "./GetStartedForm";
+import { buildAlternates, OG_IMAGE } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -10,7 +11,16 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "getStarted" });
-  return { title: t("heading") };
+  const description =
+    locale === "de"
+      ? "Neu bei HOLIU? Finde hier den passenden Einstieg – Meditation, Kurs oder Coaching-Sitzung mit Ruth Heinen."
+      : "New to HOLIU? Start here to find the right meditation, course, or coaching session for your journey with Ruth Heinen.";
+  return {
+    title: t("heading"),
+    description,
+    alternates: buildAlternates(locale, "/get-started"),
+    openGraph: { title: t("heading"), description, images: [OG_IMAGE] },
+  };
 }
 
 export default async function GetStartedPage() {

@@ -1,8 +1,21 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import styles from "./credits.module.css";
+import { buildAlternates } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Credits & Cooperation" };
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return {
+    title: "Credits & Cooperation",
+    description: "Photo credits and cooperation partners for the HOLIU website.",
+    alternates: buildAlternates(locale, "/credits"),
+    robots: { index: false, follow: true },
+  };
+}
 
 const photos = [
   { src: "/images/credits/ruth_heinen.jpg", name: "Eva Maria Horstick" },
