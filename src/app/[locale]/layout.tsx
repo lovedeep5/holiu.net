@@ -13,7 +13,7 @@ import { OG_IMAGE } from "@/lib/seo";
 const SITE_NAME = "HOLIU";
 const SITE_TITLE = "HOLIU — Discover the Treasure Inside of You";
 const SITE_DESCRIPTION =
-  "Spiritual wellness courses, meditations, chakra balancing and channeling sessions by Ruth Heinen. Discover the treasure inside of you.";
+  "Meditation, holistic wisdom and transformative experiences to help you find inner peace, reconnect with yourself and live your highest potential.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.holiu.net"),
