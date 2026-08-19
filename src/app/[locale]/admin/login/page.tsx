@@ -124,6 +124,19 @@ export default function AdminLoginPage() {
                 boxSizing: "border-box",
               }}
             />
+            <a
+              href="/en/account/forgot-password"
+              style={{
+                display: "block",
+                textAlign: "right",
+                marginTop: "0.5rem",
+                fontFamily: "var(--font-montserrat), sans-serif",
+                fontSize: "0.7rem",
+                color: "#a38d51",
+              }}
+            >
+              Forgot password?
+            </a>
           </div>
 
           <button

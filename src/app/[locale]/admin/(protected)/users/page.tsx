@@ -139,7 +139,7 @@ export default function AdminUsersPage() {
             </div>
             <div>
               <label style={lbl}>Password *</label>
-              <input type="text" required minLength={8} value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} style={inp} placeholder="min 8 characters" />
+              <input type="text" required minLength={8} maxLength={16} value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} style={inp} placeholder="8-16 chars, 1 letter, 1 number, 1 special" />
             </div>
             <div>
               <label style={lbl}>Full Name</label>

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServiceClient } from "@/lib/supabase/server";
 import { isAdminAuthed, getAdminUserId } from "@/lib/admin-auth";
+import { validatePassword } from "@/lib/password";
 
 export const runtime = "nodejs";
 
@@ -50,8 +51,9 @@ export async function POST(req: NextRequest) {
   if (!email || !password) {
     return NextResponse.json({ error: "Email and password are required" }, { status: 400 });
   }
-  if (password.length < 8) {
-    return NextResponse.json({ error: "Password must be at least 8 characters" }, { status: 400 });
+  const pw = validatePassword(password);
+  if (!pw.valid) {
+    return NextResponse.json({ error: pw.error }, { status: 400 });
   }
 
   const supabase = createServiceClient();

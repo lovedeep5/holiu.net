@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
 import { createServiceClient } from "@/lib/supabase/server";
 import { fulfillOrder } from "@/lib/orders";
-import { sendPurchaseEmail } from "@/lib/resend";
+import { sendPurchaseEmail, sendAdminNewOrderEmail } from "@/lib/resend";
 import type { Product } from "@/types/database";
 
 export const runtime = "nodejs";
@@ -26,21 +26,18 @@ export async function POST(req: NextRequest) {
   const body = await req.text();
   const sig = req.headers.get("stripe-signature");
 
-  let event;
+  // A missing signature must never fall back to trusting the raw body — that would let
+  // anyone POST a fake "checkout.session.completed" event and get products for free.
+  if (!sig) {
+    return NextResponse.json({ error: "Missing signature" }, { status: 400 });
+  }
 
-  if (sig) {
-    try {
-      event = constructEvent(body, sig);
-    } catch (err: any) {
-      console.error("[webhook] Signature verification failed:", err.message);
-      return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
-    }
-  } else {
-    try {
-      event = JSON.parse(body);
-    } catch {
-      return NextResponse.json({ error: "Bad JSON" }, { status: 400 });
-    }
+  let event;
+  try {
+    event = constructEvent(body, sig);
+  } catch (err: any) {
+    console.error("[webhook] Signature verification failed:", err.message);
+    return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
   }
 
   if (event.type === "checkout.session.completed") {
@@ -98,6 +95,11 @@ export async function POST(req: NextRequest) {
       to: customerEmail,
       products: [{ name: product.name_en }],
       downloadLinks: links,
+    });
+
+    await sendAdminNewOrderEmail({
+      customerEmail,
+      products: [{ name: product.name_en, price: product.price }],
     });
   }
 

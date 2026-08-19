@@ -106,6 +106,31 @@ export interface Database {
         Update: Partial<Database["public"]["Tables"]["site_settings"]["Row"]>;
         Relationships: [];
       };
+      login_attempts: {
+        Row: {
+          id: string;
+          identifier_type: "email" | "ip";
+          identifier_value: string;
+          attempt_count: number;
+          locked_until: string | null;
+          last_attempt_at: string;
+          created_at: string;
+        };
+        Insert: Omit<Database["public"]["Tables"]["login_attempts"]["Row"], "id" | "created_at">;
+        Update: Partial<Database["public"]["Tables"]["login_attempts"]["Insert"]>;
+        Relationships: [];
+      };
+      rate_limit_hits: {
+        Row: {
+          bucket: string;
+          identifier: string;
+          count: number;
+          window_start: string;
+        };
+        Insert: Database["public"]["Tables"]["rate_limit_hits"]["Row"];
+        Update: Partial<Database["public"]["Tables"]["rate_limit_hits"]["Row"]>;
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;

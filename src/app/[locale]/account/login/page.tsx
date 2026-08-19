@@ -251,6 +251,8 @@ function LoginForm() {
                   type="password"
                   name="password"
                   required
+                  minLength={mode === "signup" ? 8 : undefined}
+                  maxLength={mode === "signup" ? 16 : undefined}
                   style={{
                     width: "100%",
                     padding: "0.75rem 1rem",
@@ -264,6 +266,18 @@ function LoginForm() {
                     boxSizing: "border-box",
                   }}
                 />
+                {mode === "signup" && (
+                  <p style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "0.7rem", color: "#b0a898", marginTop: "0.4rem", marginBottom: 0 }}>
+                    8-16 characters, with at least one letter, one number, and one special character.
+                  </p>
+                )}
+                {mode === "login" && (
+                  <p style={{ textAlign: "right", marginTop: "0.5rem", marginBottom: 0 }}>
+                    <Link href="/account/forgot-password" style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "0.75rem", color: "#a38d51", textDecoration: "underline" }}>
+                      Forgot password?
+                    </Link>
+                  </p>
+                )}
               </div>
 
               {error && (

@@ -3,6 +3,10 @@
     {
       "path": "/api/keep-alive",
       "schedule": "0 8 * * *"
+    },
+    {
+      "path": "/api/cron/unlock-logins",
+      "schedule": "0 0 * * *"
     }
   ]
 }
