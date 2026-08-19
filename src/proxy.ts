@@ -26,9 +26,12 @@ export default async function proxy(req: NextRequest) {
 
   // ── Account protection ──────────────────────────────────────────
   const isAccountRoute = /^\/account(\/|$)/.test(sub);
-  const isAccountLogin = sub === "/account/login" || sub.startsWith("/account/login/");
+  const isAccountPublic =
+    sub === "/account/login" || sub.startsWith("/account/login/") ||
+    sub === "/account/forgot-password" || sub.startsWith("/account/forgot-password/") ||
+    sub === "/account/reset-password" || sub.startsWith("/account/reset-password/");
 
-  if (isAccountRoute && !isAccountLogin) {
+  if (isAccountRoute && !isAccountPublic) {
     try {
       const supabaseRes = NextResponse.next({ request: req });
 
