@@ -127,11 +127,13 @@ export default function ProductGrid() {
               color: "#7a6f66",
             }}
           >
-            {t("resultsCount", {
-              from: start + 1,
-              to: Math.min(start + PER_PAGE, filtered.length),
-              total: filtered.length,
-            })}
+            {loading
+              ? " "
+              : t("resultsCount", {
+                  from: start + 1,
+                  to: Math.min(start + PER_PAGE, filtered.length),
+                  total: filtered.length,
+                })}
           </p>
           <select
             value={sort}
@@ -154,7 +156,29 @@ export default function ProductGrid() {
         </div>
 
         {/* Product grid */}
-        {pageProducts.length === 0 ? (
+        {loading ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4" style={{ gap: "1.25rem" }}>
+            {Array.from({ length: 8 }, (_, i) => (
+              <div
+                key={i}
+                className="animate-pulse"
+                style={{
+                  border: "1px solid #e8e0d4",
+                  borderRadius: "2px",
+                  overflow: "hidden",
+                  backgroundColor: "#fff",
+                }}
+              >
+                <div style={{ aspectRatio: "1/1", backgroundColor: "#f0ebe3" }} />
+                <div style={{ padding: "0.75rem", display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem" }}>
+                  <div style={{ height: "0.7rem", width: "70%", backgroundColor: "#f0ebe3", borderRadius: "2px" }} />
+                  <div style={{ height: "0.7rem", width: "40%", backgroundColor: "#f0ebe3", borderRadius: "2px" }} />
+                  <div style={{ height: "1.6rem", width: "100%", backgroundColor: "#f0ebe3", borderRadius: "2px", marginTop: "0.25rem" }} />
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : pageProducts.length === 0 ? (
           <p style={{ fontFamily: "var(--font-montserrat), sans-serif", color: "#7a6f66" }}>
             {t("noProducts")}
           </p>
