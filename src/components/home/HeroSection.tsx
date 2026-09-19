@@ -23,7 +23,7 @@ export default function HeroSection() {
       >
         <h1 className="sr-only">HOLIU — Discover the Treasure Inside of You</h1>
         <Image
-          src="/images/logo-dark.png"
+          src="/images/logo-dark-hero.png"
           alt="HOLIU"
           width={900}
           height={900}

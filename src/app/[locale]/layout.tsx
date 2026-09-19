@@ -44,7 +44,7 @@ const ORGANIZATION_SCHEMA = {
   "@type": "Organization",
   name: "HOLIU",
   url: "https://www.holiu.net",
-  logo: "https://www.holiu.net/images/logo-dark.png",
+  logo: "https://www.holiu.net/images/logo-dark-opt.png",
   description: SITE_DESCRIPTION,
   founder: {
     "@type": "Person",
